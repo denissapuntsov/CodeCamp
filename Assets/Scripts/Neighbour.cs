@@ -6,6 +6,6 @@ using UnityEngine.Rendering.Universal;
 public struct Neighbour
 {
     public string name;
-    public char differenceChar;
-    public int differenceIndex;
+    [InspectorName("Character")] public char differenceChar;
+    [InspectorName("Index")] public int differenceIndex;
 }

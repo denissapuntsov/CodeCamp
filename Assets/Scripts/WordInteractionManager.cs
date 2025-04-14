@@ -8,13 +8,15 @@ public class WordInteractionManager : MonoBehaviour
 {
     [SerializeField] string activeName;
     [SerializeField] public List<Neighbour> neighbours;
-    [SerializeField] GridLayoutGroup wordGrid;
-    [SerializeField] GameObject letterButton;
+    [SerializeField] private Canvas interactionCanvas;
+    [SerializeField] private GridLayoutGroup wordGrid;
+    [SerializeField] private GameObject letterButton;
 
-    List<string> sameLengthWords = new List<string>();
+    private List<string> _sameLengthWords;
 
     private void Start()
     {
+        _sameLengthWords = new List<string>();
         FilterNeighbours();
     }
     private void FilterNeighbours()
@@ -23,7 +25,9 @@ public class WordInteractionManager : MonoBehaviour
 
         // check that active word is in dictionary
 
-        if (activeName == null || !WordDictionary.words.Contains(activeName))
+        if (activeName == String.Empty) return;
+        
+        if (!WordDictionary.words.Contains(activeName))
         {
             Debug.LogError($"The word {activeName} is invalid. Please check spelling or add word to the Dictionary");
             return;
@@ -35,15 +39,15 @@ public class WordInteractionManager : MonoBehaviour
 
         foreach (string word in WordDictionary.words)
         {
-            if (word.Length == activeName.Length && word != activeName && !sameLengthWords.Contains(word))
+            if (word.Length == activeName.Length && word != activeName && !_sameLengthWords.Contains(word))
             {
-                sameLengthWords.Add(word);
+                _sameLengthWords.Add(word);
             }
         }
 
         // filter all words that are only different from the active word by 1 character
 
-        foreach (string word in sameLengthWords)
+        foreach (string word in _sameLengthWords)
         {
             int differenceCount = 0;
             Tuple<char, int> difference = Tuple.Create('N', 0);
@@ -54,7 +58,6 @@ public class WordInteractionManager : MonoBehaviour
                 {
                     differenceCount++;
                     difference = Tuple.Create(word[i], i);
-                    if (differenceCount > 1) { continue; }
                 }
             }
 
@@ -71,7 +74,7 @@ public class WordInteractionManager : MonoBehaviour
             }
         }
     }
-    public void DisplayActiveWord()
+    private void DisplayActiveWord()
     {
         if (activeName == null || !WordDictionary.words.Contains(activeName)) { return; }
         
@@ -119,5 +122,13 @@ public class WordInteractionManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void SetActiveWord(string word)
+    {
+        interactionCanvas.gameObject.SetActive(true);
+        activeName = word;
+        DisplayActiveWord();
+        FilterNeighbours();
     }
 }
