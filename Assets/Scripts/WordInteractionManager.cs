@@ -13,10 +13,14 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private GameObject letterButton;
 
     private List<string> _sameLengthWords;
+    private Dictionary _dictionary;
+
+    public bool isInteracting;
 
     private void Start()
     {
         _sameLengthWords = new List<string>();
+        _dictionary = FindAnyObjectByType<Dictionary>();
         FilterNeighbours();
     }
     private void FilterNeighbours()
@@ -27,17 +31,17 @@ public class WordInteractionManager : MonoBehaviour
 
         if (activeName == String.Empty) return;
         
-        if (!WordDictionary.words.Contains(activeName))
+        if (_dictionary.GetInteractionByName(activeName) == null)
         {
-            Debug.LogError($"The word {activeName} is invalid. Please check spelling or add word to the Dictionary");
+            Debug.LogError($"No Interaction with name {activeName} found. Please check spelling or add Interaction to the Dictionary");
             return;
         }
 
         DisplayActiveWord();
 
-        // filter all unique words with length different to active word, with the exception of the active word
+        // filter all unique words with length different to active word, except the active word
 
-        foreach (string word in WordDictionary.words)
+        foreach (string word in _dictionary.words)
         {
             if (word.Length == activeName.Length && word != activeName && !_sameLengthWords.Contains(word))
             {
@@ -76,7 +80,7 @@ public class WordInteractionManager : MonoBehaviour
     }
     private void DisplayActiveWord()
     {
-        if (activeName == null || !WordDictionary.words.Contains(activeName)) { return; }
+        if (activeName == null || !_dictionary.words.Contains(activeName)) { return; }
         
         // Populate the word grid letter by letter
         ClearActiveWord();
@@ -126,6 +130,7 @@ public class WordInteractionManager : MonoBehaviour
 
     public void SetActiveWord(string word)
     {
+        isInteracting = true;
         interactionCanvas.gameObject.SetActive(true);
         activeName = word;
         DisplayActiveWord();

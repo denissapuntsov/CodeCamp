@@ -7,6 +7,11 @@ public class CursorManager : MonoBehaviour
 
     private void Start()
     {
+        if (Camera.main == null)
+        {
+            Debug.Log("Ты еблан?");
+            return;
+        }
         _mainCamera = Camera.main;
     }
     
@@ -21,7 +26,7 @@ public class CursorManager : MonoBehaviour
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                 {
                     _hitObject = hit.collider.transform.gameObject;
-                    _hitObject.GetComponent<Interactable>().OnLeftClick();
+                    _hitObject.GetComponent<InteractableFramework>().OnLeftClick();
                 }
             }
         }
@@ -35,7 +40,7 @@ public class CursorManager : MonoBehaviour
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                 {
                     _hitObject = hit.collider.transform.gameObject;
-                    _hitObject.GetComponent<Interactable>().OnRightClick();
+                    _hitObject.GetComponent<InteractableFramework>().OnRightClick();
                 }
             }
         }
