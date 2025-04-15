@@ -18,6 +18,6 @@ public class Dictionary : MonoBehaviour
 
     public Interaction GetInteractionByName(string nameToMatch)
     {
-        return interactions.Find(x => x.id == nameToMatch);
+        return interactions.Find(x => x.id == nameToMatch.ToLower());
     }
 }

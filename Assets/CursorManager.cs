@@ -39,6 +39,7 @@ public class CursorManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                 {
+                    Debug.Log(hit.collider.gameObject.name);
                     _hitObject = hit.collider.transform.gameObject;
                     _hitObject.GetComponent<InteractableFramework>().OnRightClick();
                 }

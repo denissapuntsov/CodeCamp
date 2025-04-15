@@ -2,26 +2,28 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class WordInteractionManager : MonoBehaviour
 {
-    [SerializeField] string activeName;
-    [SerializeField] public List<Neighbour> neighbours;
+    [SerializeField] private Interaction activeInteraction;
+    public List<Neighbour> neighbours;
     [SerializeField] private Canvas interactionCanvas;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton;
 
+    private string _activeName;
     private List<string> _sameLengthWords;
     private Dictionary _dictionary;
 
+    public InteractableFramework activeFramework;
     public bool isInteracting;
 
     private void Start()
     {
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
-        FilterNeighbours();
     }
     private void FilterNeighbours()
     {
@@ -29,11 +31,11 @@ public class WordInteractionManager : MonoBehaviour
 
         // check that active word is in dictionary
 
-        if (activeName == String.Empty) return;
+        if (_activeName == String.Empty) return;
         
-        if (_dictionary.GetInteractionByName(activeName) == null)
+        if (_dictionary.GetInteractionByName(_activeName) == null)
         {
-            Debug.LogError($"No Interaction with name {activeName} found. Please check spelling or add Interaction to the Dictionary");
+            Debug.LogError($"No Interaction with name {_activeName} found. Please check spelling or add Interaction to the Dictionary");
             return;
         }
 
@@ -43,7 +45,7 @@ public class WordInteractionManager : MonoBehaviour
 
         foreach (string word in _dictionary.words)
         {
-            if (word.Length == activeName.Length && word != activeName && !_sameLengthWords.Contains(word))
+            if (word.Length == _activeName.Length && word != _activeName && !_sameLengthWords.Contains(word))
             {
                 _sameLengthWords.Add(word);
             }
@@ -58,7 +60,7 @@ public class WordInteractionManager : MonoBehaviour
 
             for (int i = 0; i < word.Length; i++)
             {
-                if (word[i] != activeName[i])
+                if (word[i] != _activeName[i])
                 {
                     differenceCount++;
                     difference = Tuple.Create(word[i], i);
@@ -80,16 +82,16 @@ public class WordInteractionManager : MonoBehaviour
     }
     private void DisplayActiveWord()
     {
-        if (activeName == null || !_dictionary.words.Contains(activeName)) { return; }
+        if (_activeName == null || !_dictionary.words.Contains(_activeName)) { return; }
         
         // Populate the word grid letter by letter
         ClearActiveWord();
 
-        for (int i = 0; i < activeName.Length; i++)
+        for (int i = 0; i < _activeName.Length; i++)
         {
             var charBox = Instantiate(letterButton, wordGrid.transform, false);
-            charBox.GetComponentInChildren<TextMeshProUGUI>().text = activeName[i].ToString();
-            charBox.GetComponent<UILetter>().character = activeName[i];
+            charBox.GetComponentInChildren<TextMeshProUGUI>().text = _activeName[i].ToString();
+            charBox.GetComponent<UILetter>().character = _activeName[i];
             charBox.GetComponent<UILetter>().index = i;
         }
     }
@@ -98,12 +100,12 @@ public class WordInteractionManager : MonoBehaviour
         // create a temporary version of the proposed word
 
         string wordToTry = "";
-        for (int i = 0; i < activeName.Length; i++)
+        for (int i = 0; i < _activeName.Length; i++)
         {
             if (i == index) { wordToTry += letter.ToString(); }
             else
             {
-                wordToTry += activeName[i];
+                wordToTry += _activeName[i];
             }
         }
 
@@ -113,9 +115,9 @@ public class WordInteractionManager : MonoBehaviour
         {
             if (word.name == wordToTry)
             {
-                FindAnyObjectByType<Inventory>().SetLetter(activeName[index]);
-                activeName = word.name;
-                FilterNeighbours();
+                FindAnyObjectByType<Inventory>().SetLetter(_activeName[index]);
+                _activeName = word.name;
+                SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
                 break;
             }
         }
@@ -128,11 +130,13 @@ public class WordInteractionManager : MonoBehaviour
         }
     }
 
-    public void SetActiveWord(string word)
+    public void SetActiveInteraction(Interaction interaction)
     {
         isInteracting = true;
         interactionCanvas.gameObject.SetActive(true);
-        activeName = word;
+        activeInteraction = interaction;
+        activeFramework.ReplaceInteraction(activeInteraction);
+        _activeName = interaction.id;
         DisplayActiveWord();
         FilterNeighbours();
     }

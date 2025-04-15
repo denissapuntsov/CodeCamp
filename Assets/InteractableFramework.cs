@@ -12,37 +12,45 @@ public class InteractableFramework : MonoBehaviour
 
     private void Reset()
     {
+        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
+        
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+        if (GetComponent<BoxCollider>() != null) return;
         var boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = true;
-        
-        gameObject.AddComponent<Rigidbody>();
+        boxCollider.size = new Vector3(10, 10, 10);
     }
     
     private void Start()
     {
         _interactionManager = FindAnyObjectByType<WordInteractionManager>();
         _childInteractable = transform.GetChild(0).gameObject;
-        _childInteractable = activeInteraction.prefab;
         
-        gameObject.layer = LayerMask.NameToLayer("Interactable");
+        ReplaceChildInteractable();
     }
 
-    public void SetActiveInteraction(Interaction interaction)
+    private void ReplaceChildInteractable()
+    {
+        Destroy(_childInteractable);
+        _childInteractable = Instantiate(activeInteraction.prefab, transform, false);
+    }
+
+    public void ReplaceInteraction(Interaction interaction)
     {
         activeInteraction = interaction;
-        _childInteractable = activeInteraction.prefab;
+        ReplaceChildInteractable();
     }
 
     public void OnLeftClick()
     {
-        Debug.Log($"Left click on {activeInteraction.name}");
-        _interactionManager.SetActiveWord(activeInteraction.id);
+        _interactionManager.activeFramework = this;
+        _interactionManager.SetActiveInteraction(activeInteraction);
         activeInteraction.onLeftClick.Invoke();
     }
     
     public void OnRightClick()
     {
-        Debug.Log($"Right click on {activeInteraction.id}");
         activeInteraction.onRightClick?.Invoke();
     }
 }

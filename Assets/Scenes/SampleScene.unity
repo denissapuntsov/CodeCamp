@@ -148,11 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3f55eb200f683489acea44dff69aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeName: 
+  activeInteraction: {fileID: 0}
   neighbours: []
   interactionCanvas: {fileID: 599378387}
   wordGrid: {fileID: 1303971683}
   letterButton: {fileID: 6760024076451211582, guid: 1a6adb5fc90d8494692074642cbeb683, type: 3}
+  activeFramework: {fileID: 0}
   isInteracting: 0
 --- !u!4 &198372732
 Transform:
@@ -1083,10 +1084,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002575426}
-  - component: {fileID: 2002575428}
   - component: {fileID: 2002575425}
   - component: {fileID: 2002575427}
-  m_Layer: 1
+  - component: {fileID: 2002575428}
+  m_Layer: 6
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6482172160063749011, guid: 8216c69b9e0ee4702a5cf22f313d850b, type: 3}
       propertyPath: m_Name
-      value: BoatPrefab
+      value: BootPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
