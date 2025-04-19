@@ -9,7 +9,7 @@ public class CursorManager : MonoBehaviour
     {
         if (Camera.main == null)
         {
-            Debug.Log("Ты еблан?");
+            Debug.LogError("No enabled camera with tag 'MainCamera'.");
             return;
         }
         _mainCamera = Camera.main;
