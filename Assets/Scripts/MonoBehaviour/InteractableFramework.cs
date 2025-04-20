@@ -4,7 +4,6 @@ using UnityEngine;
 public class InteractableFramework : MonoBehaviour
 {
     [SerializeField] private Interaction activeInteraction;
-    [SerializeField] private GameObject popupPrefab;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
@@ -73,7 +72,7 @@ public class InteractableFramework : MonoBehaviour
     {
         if (!_menuManager.activeMenuGroup && !_newPopup)
         {
-            _newPopup = Instantiate(popupPrefab, transform.position, Camera.main.transform.rotation, transform);
+            _newPopup = Instantiate(_interactionManager.popupPrefab, transform.position, Camera.main.transform.rotation, transform);
             _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
         }
     }

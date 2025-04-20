@@ -254,6 +254,7 @@ MonoBehaviour:
   interactionUIGroup: {fileID: 678164506}
   wordGrid: {fileID: 1303971683}
   letterButton: {fileID: 6760024076451211582, guid: 1a6adb5fc90d8494692074642cbeb683, type: 3}
+  popupPrefab: {fileID: 2744016560201615939, guid: 7f05dae53a80d924e9829e0f195bcaaf, type: 3}
 --- !u!4 &198372732
 Transform:
   m_ObjectHideFlags: 0
@@ -871,7 +872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteraction: {fileID: 11400000, guid: c043a170b3c644bf18bcbaa2d9185fd7, type: 2}
-  popupPrefab: {fileID: 2744016560201615939, guid: 7f05dae53a80d924e9829e0f195bcaaf, type: 3}
 --- !u!54 &841148468
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1440,7 +1440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteraction: {fileID: 11400000, guid: 627d32878043d433eaad787cd8774dad, type: 2}
-  popupPrefab: {fileID: 2744016560201615939, guid: 7f05dae53a80d924e9829e0f195bcaaf, type: 3}
 --- !u!65 &2002575428
 BoxCollider:
   m_ObjectHideFlags: 0

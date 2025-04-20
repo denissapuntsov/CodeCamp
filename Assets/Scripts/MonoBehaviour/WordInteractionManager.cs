@@ -15,6 +15,7 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private GameObject interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton;
+    public GameObject popupPrefab;
 
     private string _activeName;
     private List<string> _sameLengthWords;
