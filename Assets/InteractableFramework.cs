@@ -1,22 +1,25 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class InteractableFramework : MonoBehaviour
 {
     [SerializeField] private Interaction activeInteraction;
     
+    [Header("Scene References")]
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
     private BoxCollider _collider;
 
     private void Reset()
     {
-        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
-        
+        // set layer to open interaction menus on click
         gameObject.layer = LayerMask.NameToLayer("Interactable");
-
-        if (GetComponent<BoxCollider>() != null) return;
+        
+        // add physics if no Rigidbody present
+        if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
+        
+        // sets a trigger for cursor detection
+        if (GetComponent<BoxCollider>()) return;
+        
         var boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = true;
         boxCollider.size = new Vector3(10, 10, 10);
@@ -44,7 +47,7 @@ public class InteractableFramework : MonoBehaviour
 
     public void OnLeftClick()
     {
-        _interactionManager.activeFramework = this;
+        _interactionManager.lastActiveFramework = this;
         _interactionManager.SetActiveInteraction(activeInteraction);
         activeInteraction.onLeftClick.Invoke();
     }

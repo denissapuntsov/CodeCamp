@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class WordInteractionManager : MonoBehaviour
 {
     [Header("Properties of Active Word Interaction")]
-    public InteractableFramework activeFramework;
-    [SerializeField] private Interaction activeInteraction;
-    public List<Neighbour> neighbours;
+    public InteractableFramework lastActiveFramework;
+    [SerializeField] private Interaction lastActiveInteraction;
+    [SerializeField] private List<Neighbour> neighbours;
     
     [Header("UI Elements")]
     [SerializeField] private GameObject interactionUIGroup;
@@ -139,8 +139,8 @@ public class WordInteractionManager : MonoBehaviour
         _menuManager.SetMenu(interactionUIGroup);
         
         interactionUIGroup.gameObject.SetActive(true);
-        activeInteraction = interaction;
-        activeFramework.ReplaceInteraction(activeInteraction);
+        lastActiveInteraction = interaction;
+        lastActiveFramework.ReplaceInteraction(lastActiveInteraction);
         _activeName = interaction.id;
         DisplayActiveWord();
         FilterNeighbours();
