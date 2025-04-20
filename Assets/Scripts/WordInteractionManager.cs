@@ -7,23 +7,26 @@ using UnityEngine.UI;
 
 public class WordInteractionManager : MonoBehaviour
 {
+    [Header("Properties of Active Word Interaction")]
+    public InteractableFramework activeFramework;
     [SerializeField] private Interaction activeInteraction;
     public List<Neighbour> neighbours;
-    [SerializeField] private Canvas interactionCanvas;
+    
+    [Header("UI Elements")]
+    [SerializeField] private GameObject interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton;
 
     private string _activeName;
     private List<string> _sameLengthWords;
     private Dictionary _dictionary;
-
-    public InteractableFramework activeFramework;
-    public bool isInteracting;
+    private MenuManager _menuManager;
 
     private void Start()
     {
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
+        _menuManager = FindAnyObjectByType<MenuManager>();
     }
     private void FilterNeighbours()
     {
@@ -56,7 +59,7 @@ public class WordInteractionManager : MonoBehaviour
         foreach (string word in _sameLengthWords)
         {
             int differenceCount = 0;
-            Tuple<char, int> difference = Tuple.Create('N', 0);
+            Tuple<char, int> difference = Tuple.Create(' ', 0);
 
             for (int i = 0; i < word.Length; i++)
             {
@@ -132,8 +135,10 @@ public class WordInteractionManager : MonoBehaviour
 
     public void SetActiveInteraction(Interaction interaction)
     {
-        isInteracting = true;
-        interactionCanvas.gameObject.SetActive(true);
+        // honestly not even sure this is elegant enough, but it works?
+        _menuManager.SetMenu(interactionUIGroup);
+        
+        interactionUIGroup.gameObject.SetActive(true);
         activeInteraction = interaction;
         activeFramework.ReplaceInteraction(activeInteraction);
         _activeName = interaction.id;
