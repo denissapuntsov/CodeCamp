@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90de5ed9-b1ae-455e-b5a8-4b8f2178bad3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dictionary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dictionary.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/InteractableFramework.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InteractableFramework.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +108,7 @@
       <workItem from="1744665003328" duration="6741000" />
       <workItem from="1744734918537" duration="6536000" />
       <workItem from="1745101480613" duration="1314000" />
-      <workItem from="1745149701146" duration="4869000" />
+      <workItem from="1745149701146" duration="8992000" />
     </task>
     <servers />
   </component>

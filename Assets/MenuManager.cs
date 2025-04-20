@@ -3,7 +3,7 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuParent;
-    [SerializeField] private GameObject activeMenuGroup;
+    public GameObject activeMenuGroup;
 
     private void Start()
     {
@@ -28,17 +28,14 @@ public class MenuManager : MonoBehaviour
 
     public void SetMenu(GameObject menuGroup)
     {
-        if (activeMenuGroup)
-        {
-            return;
-            
-        }
+        if (activeMenuGroup) return;
+        
         activeMenuGroup = menuGroup;
         Clear();
         activeMenuGroup.SetActive(true);
     }
     
-    private void CloseActiveMenu()
+    public void CloseActiveMenu()
     {
         if (!activeMenuGroup)
         {

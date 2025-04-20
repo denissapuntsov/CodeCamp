@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class WordInteractionManager : MonoBehaviour
@@ -36,7 +35,7 @@ public class WordInteractionManager : MonoBehaviour
 
         if (_activeName == String.Empty) return;
         
-        if (_dictionary.GetInteractionByName(_activeName) == null)
+        if (!_dictionary.GetInteractionByName(_activeName))
         {
             Debug.LogError($"No Interaction with name {_activeName} found. Please check spelling or add Interaction to the Dictionary");
             return;
@@ -121,6 +120,7 @@ public class WordInteractionManager : MonoBehaviour
                 FindAnyObjectByType<Inventory>().SetLetter(_activeName[index]);
                 _activeName = word.name;
                 SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
+                _menuManager.CloseActiveMenu();
                 break;
             }
         }

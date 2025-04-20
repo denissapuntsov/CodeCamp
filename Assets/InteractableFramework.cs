@@ -7,6 +7,7 @@ public class InteractableFramework : MonoBehaviour
     [Header("Scene References")]
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
+    private MenuManager _menuManager;
     private BoxCollider _collider;
 
     private void Reset()
@@ -29,6 +30,7 @@ public class InteractableFramework : MonoBehaviour
     {
         _interactionManager = FindAnyObjectByType<WordInteractionManager>();
         _childInteractable = transform.GetChild(0).gameObject;
+        _menuManager = FindAnyObjectByType<MenuManager>();
         
         ReplaceChildInteractable();
     }
@@ -44,9 +46,11 @@ public class InteractableFramework : MonoBehaviour
         activeInteraction = interaction;
         ReplaceChildInteractable();
     }
-
+    
     public void OnLeftClick()
     {
+        if (_menuManager.activeMenuGroup) return;
+        
         _interactionManager.lastActiveFramework = this;
         _interactionManager.SetActiveInteraction(activeInteraction);
         activeInteraction.onLeftClick.Invoke();
