@@ -20,3 +20,5 @@ MonoBehaviour:
   onLeftClick:
     m_PersistentCalls:
       m_Calls: []
+  leftMouseText: Change
+  rightMouseText: Wear

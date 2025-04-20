@@ -1,14 +1,17 @@
+using System;
 using UnityEngine;
 
 public class InteractableFramework : MonoBehaviour
 {
     [SerializeField] private Interaction activeInteraction;
+    [SerializeField] private GameObject popupPrefab;
     
-    [Header("Scene References")]
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
     private MenuManager _menuManager;
     private BoxCollider _collider;
+    private GameObject _newPopup;
+    
 
     private void Reset()
     {
@@ -46,18 +49,37 @@ public class InteractableFramework : MonoBehaviour
         activeInteraction = interaction;
         ReplaceChildInteractable();
     }
-    
-    public void OnLeftClick()
+
+    public void OnMouseDown()
     {
         if (_menuManager.activeMenuGroup) return;
         
-        _interactionManager.lastActiveFramework = this;
-        _interactionManager.SetActiveInteraction(activeInteraction);
-        activeInteraction.onLeftClick.Invoke();
+        if (_newPopup) Destroy(_newPopup);
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            _interactionManager.lastActiveFramework = this;
+            _interactionManager.SetActiveInteraction(activeInteraction);
+            activeInteraction.onLeftClick.Invoke();
+        }
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            activeInteraction.onRightClick?.Invoke();
+        }
     }
-    
-    public void OnRightClick()
+
+    public void OnMouseOver()
     {
-        activeInteraction.onRightClick?.Invoke();
+        if (!_menuManager.activeMenuGroup && !_newPopup)
+        {
+            _newPopup = Instantiate(popupPrefab, transform.position, Camera.main.transform.rotation, transform);
+            _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
+        }
+    }
+
+    public void OnMouseExit()
+    {
+        if (_newPopup) Destroy(_newPopup);
     }
 }

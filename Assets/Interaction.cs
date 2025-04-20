@@ -7,4 +7,6 @@ public class Interaction : ScriptableObject
     public string id;
     public GameObject prefab;
     public UnityEvent onRightClick, onLeftClick;
+    public string leftMouseText = "Change"; 
+    public string rightMouseText = "Use";
 }

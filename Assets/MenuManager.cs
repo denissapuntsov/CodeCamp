@@ -28,6 +28,8 @@ public class MenuManager : MonoBehaviour
 
     public void SetMenu(GameObject menuGroup)
     {
+        menuParent.SetActive(true);
+        
         if (activeMenuGroup) return;
         
         activeMenuGroup = menuGroup;

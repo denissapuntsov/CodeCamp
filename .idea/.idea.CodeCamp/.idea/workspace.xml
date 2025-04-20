@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="90de5ed9-b1ae-455e-b5a8-4b8f2178bad3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dictionary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dictionary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CursorManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CursorManager.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/InteractableFramework.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InteractableFramework.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Interaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Interaction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MenuManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/CursorManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Interaction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/MenuManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -108,7 +108,8 @@
       <workItem from="1744665003328" duration="6741000" />
       <workItem from="1744734918537" duration="6536000" />
       <workItem from="1745101480613" duration="1314000" />
-      <workItem from="1745149701146" duration="8992000" />
+      <workItem from="1745149701146" duration="9420000" />
+      <workItem from="1745171517795" duration="4525000" />
     </task>
     <servers />
   </component>
