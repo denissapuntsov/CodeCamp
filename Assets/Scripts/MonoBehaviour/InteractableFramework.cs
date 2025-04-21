@@ -70,11 +70,10 @@ public class InteractableFramework : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (!_menuManager.activeMenuGroup && !_newPopup)
-        {
-            _newPopup = Instantiate(_interactionManager.popupPrefab, transform.position, Camera.main.transform.rotation, transform);
-            _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
-        }
+        if (_menuManager.activeMenuGroup || _newPopup) return;
+        
+        _newPopup = Instantiate(_interactionManager.popupPrefab, transform.position, Camera.main.transform.rotation, transform);
+        _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
     }
 
     public void OnMouseExit()
