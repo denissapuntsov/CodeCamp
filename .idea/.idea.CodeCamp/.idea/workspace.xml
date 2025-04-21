@@ -6,23 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="90de5ed9-b1ae-455e-b5a8-4b8f2178bad3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dictionary.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dictionary.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InteractableFramework.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InteractableFramework.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Interaction.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Interaction.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LetterButton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LetterButton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Popup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Popup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/InteractablePopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/InteractablePopup.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WordInteractionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/WordInteractionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/WordInteractionManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +104,8 @@
       <workItem from="1744734918537" duration="6536000" />
       <workItem from="1745101480613" duration="1314000" />
       <workItem from="1745149701146" duration="9420000" />
-      <workItem from="1745171517795" duration="5550000" />
+      <workItem from="1745171517795" duration="5906000" />
+      <workItem from="1745272905125" duration="323000" />
     </task>
     <servers />
   </component>

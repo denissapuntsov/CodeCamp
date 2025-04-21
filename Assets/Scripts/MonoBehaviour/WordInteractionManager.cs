@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,13 +47,7 @@ public class WordInteractionManager : MonoBehaviour
 
         // filter all unique words with length different to active word, except the active word
 
-        foreach (string word in _dictionary.words)
-        {
-            if (word.Length == _activeName.Length && word != _activeName && !_sameLengthWords.Contains(word))
-            {
-                _sameLengthWords.Add(word);
-            }
-        }
+        _sameLengthWords = _dictionary.words.Where(word => word.Length == _activeName.Length && word != _activeName).ToList();
 
         // filter all words that are only different from the active word by 1 character
 
