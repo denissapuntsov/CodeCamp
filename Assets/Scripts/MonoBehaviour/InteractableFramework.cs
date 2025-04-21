@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class InteractableFramework : MonoBehaviour
@@ -10,6 +9,7 @@ public class InteractableFramework : MonoBehaviour
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private GameObject _newPopup;
+    //private GameObject _selectedPopupPrefab;
     
 
     private void Reset()
@@ -21,11 +21,15 @@ public class InteractableFramework : MonoBehaviour
         if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
         
         // sets a trigger for cursor detection
-        if (GetComponent<BoxCollider>()) return;
+        if (GetComponent<BoxCollider>())
+        {
+            _collider = GetComponent<BoxCollider>();
+            return;
+        }
         
-        var boxCollider = gameObject.AddComponent<BoxCollider>();
-        boxCollider.isTrigger = true;
-        boxCollider.size = new Vector3(10, 10, 10);
+        _collider = gameObject.AddComponent<BoxCollider>();
+        _collider.isTrigger = true;
+        _collider.size = new Vector3(10, 10, 10);
     }
     
     private void Start()
@@ -80,4 +84,17 @@ public class InteractableFramework : MonoBehaviour
     {
         if (_newPopup) Destroy(_newPopup);
     }
+
+    // TODO: change popup to "Go to" symbol if player is not close enough to the object
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        
+    }*/
 }
