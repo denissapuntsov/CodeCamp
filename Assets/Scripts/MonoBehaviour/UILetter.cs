@@ -1,21 +1,20 @@
-using System;
 using UnityEngine;
 
 public class UILetter : MonoBehaviour
 {
     public int index;
     public char character;
-    Inventory inventory;
-    WordInteractionManager wordInteractionManager;
+    private Inventory _inventory;
+    private WordInteractionManager _wordInteractionManager;
 
     private void Start()
     {
-        inventory = FindAnyObjectByType<Inventory>();
-        wordInteractionManager = FindAnyObjectByType<WordInteractionManager>();
+        _inventory = FindAnyObjectByType<Inventory>();
+        _wordInteractionManager = FindAnyObjectByType<WordInteractionManager>();
     }
 
     public void CheckForWord()
     {
-        wordInteractionManager.TryLetter(inventory.heldLetter, index);
+        _wordInteractionManager.TryLetter(_inventory.heldLetter, index);
     }
 }

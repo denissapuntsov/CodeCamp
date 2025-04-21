@@ -41,7 +41,6 @@ public class MenuManager : MonoBehaviour
     {
         if (!activeMenuGroup)
         {
-            Debug.LogWarning("No menu group active.");
             return;
         }
 

@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class Inventory : MonoBehaviour
     {
         SetLetter(heldLetter);
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))

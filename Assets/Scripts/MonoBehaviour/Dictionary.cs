@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Dictionary : MonoBehaviour
@@ -9,14 +10,11 @@ public class Dictionary : MonoBehaviour
 
     private void Start()
     {
-        foreach (var interaction in interactions)
-        {
-            words.Add(interaction.name.ToLower());
-        }
+        words = interactions.Select(interaction => interaction.name).ToList();
     }
 
     public Interaction GetInteractionByName(string nameToMatch)
     {
-        return interactions.Find(x => x.id == nameToMatch.ToLower());
+        return interactions.Find(interaction => interaction.id == nameToMatch.ToLower());
     }
 }
