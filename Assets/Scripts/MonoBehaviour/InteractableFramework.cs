@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class InteractableFramework : MonoBehaviour
@@ -29,7 +30,7 @@ public class InteractableFramework : MonoBehaviour
         
         _collider = gameObject.AddComponent<BoxCollider>();
         _collider.isTrigger = true;
-        _collider.size = new Vector3(10, 10, 10);
+        _collider.size = new Vector3(3, 3, 3);
     }
     
     private void Start()
@@ -73,6 +74,10 @@ public class InteractableFramework : MonoBehaviour
         if (!_isWithinPlayerRange)
         {
             Debug.Log($"player approaching {this.name}");
+            if (Input.GetMouseButtonDown(0))
+            {
+                FindAnyObjectByType<Player>().GetComponent<AIDestinationSetter>().target = gameObject.transform;
+            }
             return;
         }
         
