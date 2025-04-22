@@ -16,7 +16,7 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private GameObject interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton;
-    public GameObject popupPrefab;
+    public GameObject usePopupPrefab, approachPopupPrefab;
 
     private string _activeName;
     private List<string> _sameLengthWords;
@@ -47,7 +47,7 @@ public class WordInteractionManager : MonoBehaviour
 
         // filter all unique words with length different to active word, except the active word
 
-        _sameLengthWords = _dictionary.words.Where(word => word.Length == _activeName.Length && word != _activeName).ToList();
+        _sameLengthWords = _dictionary.Words.Where(word => word.Length == _activeName.Length && word != _activeName).ToList();
 
         // filter all words that are only different from the active word by 1 character
 
@@ -80,7 +80,7 @@ public class WordInteractionManager : MonoBehaviour
     }
     private void DisplayActiveWord()
     {
-        if (_activeName == null || !_dictionary.words.Contains(_activeName)) { return; }
+        if (_activeName == null || !_dictionary.Words.Contains(_activeName)) return;
         
         // Populate the word grid letter by letter
         ClearActiveWord();

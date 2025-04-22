@@ -9,9 +9,9 @@ public class InteractableFramework : MonoBehaviour
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private GameObject _newPopup;
-    //private GameObject _selectedPopupPrefab;
+    private bool _isWithinPlayerRange;     
+    private GameObject _selectedPopupPrefab;
     
-
     private void Reset()
     {
         // set layer to open interaction menus on click
@@ -37,14 +37,25 @@ public class InteractableFramework : MonoBehaviour
         _interactionManager = FindAnyObjectByType<WordInteractionManager>();
         _childInteractable = transform.GetChild(0).gameObject;
         _menuManager = FindAnyObjectByType<MenuManager>();
+        _selectedPopupPrefab = _interactionManager.approachPopupPrefab;
         
         ReplaceChildInteractable();
+    }
+
+    private void Update()
+    {
+        UpdatePopup();
     }
 
     private void ReplaceChildInteractable()
     {
         Destroy(_childInteractable);
         _childInteractable = Instantiate(activeInteraction.prefab, transform, false);
+    }
+
+    private void UpdatePopup()
+    {
+        _selectedPopupPrefab = _isWithinPlayerRange ? _interactionManager.usePopupPrefab : _interactionManager.approachPopupPrefab;
     }
 
     public void ReplaceInteraction(Interaction interaction)
@@ -58,6 +69,12 @@ public class InteractableFramework : MonoBehaviour
         if (_menuManager.activeMenuGroup) return;
         
         if (_newPopup) Destroy(_newPopup);
+
+        if (!_isWithinPlayerRange)
+        {
+            Debug.Log($"player approaching {this.name}");
+            return;
+        }
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -76,7 +93,9 @@ public class InteractableFramework : MonoBehaviour
     {
         if (_menuManager.activeMenuGroup || _newPopup) return;
         
-        _newPopup = Instantiate(_interactionManager.popupPrefab, transform.position, Camera.main.transform.rotation, transform);
+        _newPopup = Instantiate(_selectedPopupPrefab, transform.position, Camera.main.transform.rotation, transform);
+        
+        if (!_newPopup.GetComponent<Popup>()) return;
         _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
     }
 
@@ -86,15 +105,15 @@ public class InteractableFramework : MonoBehaviour
     }
 
     // TODO: change popup to "Go to" symbol if player is not close enough to the object
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        
+        _isWithinPlayerRange = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        
-    }*/
+        _isWithinPlayerRange = false;
+    }
 }

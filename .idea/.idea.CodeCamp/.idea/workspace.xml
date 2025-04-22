@@ -46,7 +46,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -111,6 +111,7 @@
       <workItem from="1745272905125" duration="1734000" />
       <workItem from="1745275000462" duration="350000" />
       <workItem from="1745313266743" duration="201000" />
+      <workItem from="1745313684518" duration="4020000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />
@@ -138,5 +139,24 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Minor refactoring" />
     <option name="LAST_COMMIT_MESSAGE" value="Minor refactoring" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/InteractableFramework.cs</url>
+          <line>46</line>
+          <properties documentPath="C:\Users\denis.sapuntsov\Documents\Unity Projects\CodeCamp\Assets\Scripts\MonoBehaviour\InteractableFramework.cs" containingFunctionPresentation="Method 'Update'">
+            <startOffsets>
+              <option value="1475" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1489" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

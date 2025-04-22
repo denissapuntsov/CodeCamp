@@ -6,11 +6,12 @@ public class Dictionary : MonoBehaviour
 {
     [SerializeField] private List<Interaction> interactions;
 
-    public List<string> words;
+    private List<string> _words;
+    public List<string> Words => _words;
 
     private void Start()
     {
-        words = interactions.Select(interaction => interaction.name).ToList();
+        _words = interactions.Select(x => x.id).ToList();
     }
 
     public Interaction GetInteractionByName(string nameToMatch)
