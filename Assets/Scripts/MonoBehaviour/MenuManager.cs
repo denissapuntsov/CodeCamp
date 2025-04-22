@@ -1,9 +1,17 @@
+using System;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuParent;
     public GameObject activeMenuGroup;
+
+    public static MenuManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

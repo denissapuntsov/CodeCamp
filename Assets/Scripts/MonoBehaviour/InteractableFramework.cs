@@ -36,7 +36,7 @@ public class InteractableFramework : MonoBehaviour
     
     private void Start()
     {
-        _interactionManager = FindAnyObjectByType<WordInteractionManager>();
+        _interactionManager = WordInteractionManager.Instance;
         _childInteractable = transform.GetChild(0).gameObject;
         _menuManager = FindAnyObjectByType<MenuManager>();
         _selectedPopupPrefab = _interactionManager.approachPopupPrefab;

@@ -23,11 +23,18 @@ public class WordInteractionManager : MonoBehaviour
     private Dictionary _dictionary;
     private MenuManager _menuManager;
 
+    public static WordInteractionManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
-        _menuManager = FindAnyObjectByType<MenuManager>();
+        _menuManager = MenuManager.Instance;
     }
     private void FilterNeighbours()
     {
