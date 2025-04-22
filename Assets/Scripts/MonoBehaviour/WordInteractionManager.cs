@@ -138,7 +138,8 @@ public class WordInteractionManager : MonoBehaviour
         lastActiveInteraction = interaction;
         lastActiveFramework.ReplaceInteraction(lastActiveInteraction);
         _activeName = interaction.id;
-        DisplayActiveWord();
+        
+        //DisplayActiveWord();
         FilterNeighbours();
     }
 }
