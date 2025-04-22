@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e860483e02116f4396cb40f0966980d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftMousePopup: {fileID: 269776784888358037}
-  rightMousePopup: {fileID: 2173806162830128058}
+  mousePopups:
+  - {fileID: 269776784888358037}
+  - {fileID: 2173806162830128058}
 --- !u!1 &4562128253471083061
 GameObject:
   m_ObjectHideFlags: 0

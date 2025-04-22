@@ -254,8 +254,8 @@ MonoBehaviour:
   interactionUIGroup: {fileID: 678164506}
   wordGrid: {fileID: 1303971683}
   letterButton: {fileID: 6760024076451211582, guid: 1a6adb5fc90d8494692074642cbeb683, type: 3}
-  usePopupPrefab: {fileID: 0}
-  approachPopupPrefab: {fileID: 0}
+  usePopupPrefab: {fileID: 2744016560201615939, guid: 7f05dae53a80d924e9829e0f195bcaaf, type: 3}
+  approachPopupPrefab: {fileID: 2744016560201615939, guid: 0771aa84db9da13409cf2e50e62f51a5, type: 3}
 --- !u!4 &198372732
 Transform:
   m_ObjectHideFlags: 0
@@ -905,7 +905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteraction: {fileID: 11400000, guid: c043a170b3c644bf18bcbaa2d9185fd7, type: 2}
-  _selectedPopupPrefab: {fileID: 0}
 --- !u!54 &841148468
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1166,7 +1165,6 @@ MonoBehaviour:
   interactions:
   - {fileID: 11400000, guid: 627d32878043d433eaad787cd8774dad, type: 2}
   - {fileID: 11400000, guid: c043a170b3c644bf18bcbaa2d9185fd7, type: 2}
-  words: []
 --- !u!4 &1102237586
 Transform:
   m_ObjectHideFlags: 0
@@ -1584,7 +1582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteraction: {fileID: 11400000, guid: 627d32878043d433eaad787cd8774dad, type: 2}
-  _selectedPopupPrefab: {fileID: 0}
 --- !u!65 &2002575428
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1604,8 +1601,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15, y: 15, z: 15}
+  m_Center: {x: 0, y: 0, z: 1.1061134}
 --- !u!1 &340126985592006385
 GameObject:
   m_ObjectHideFlags: 0

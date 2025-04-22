@@ -94,14 +94,17 @@ public class InteractableFramework : MonoBehaviour
         if (_menuManager.activeMenuGroup || _newPopup) return;
         
         _newPopup = Instantiate(_selectedPopupPrefab, transform.position, Camera.main.transform.rotation, transform);
-        
-        if (!_newPopup.GetComponent<Popup>()) return;
-        _newPopup.GetComponent<Popup>().SetText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
+        if (!_isWithinPlayerRange) return;
+        _newPopup.GetComponent<Popup>().SetUseText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
     }
 
     public void OnMouseExit()
     {
-        if (_newPopup) Destroy(_newPopup);
+        if (_newPopup)
+        {
+            _newPopup.GetComponent<Popup>().Disappear();
+            //Destroy(_newPopup);
+        }
     }
 
     // TODO: change popup to "Go to" symbol if player is not close enough to the object

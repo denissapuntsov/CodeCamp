@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3926492115345227288}
   - component: {fileID: 416736415117490025}
   - component: {fileID: 2284538516144116925}
+  - component: {fileID: -6180152495907390721}
   m_Layer: 5
   m_Name: ApproachPopup
   m_TagString: Untagged
@@ -102,6 +103,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-6180152495907390721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744016560201615939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e860483e02116f4396cb40f0966980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePopups:
+  - {fileID: 269776784888358037}
 --- !u!1 &7719933437874824189
 GameObject:
   m_ObjectHideFlags: 0

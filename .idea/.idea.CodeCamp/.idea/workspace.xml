@@ -20,8 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Interaction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/MenuManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Downloads/Point_And_Click_Adventure_Start/Point_And_Click_Adventure_Start/Library/PackageCache/com.unity.visualscripting/Editor/VisualScripting.Core/Dependencies/ReorderableList/ElementAdderMenu/ElementAdderMeta.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -111,7 +110,7 @@
       <workItem from="1745272905125" duration="1734000" />
       <workItem from="1745275000462" duration="350000" />
       <workItem from="1745313266743" duration="201000" />
-      <workItem from="1745313684518" duration="4020000" />
+      <workItem from="1745313684518" duration="7246000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />
@@ -139,24 +138,5 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Minor refactoring" />
     <option name="LAST_COMMIT_MESSAGE" value="Minor refactoring" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/InteractableFramework.cs</url>
-          <line>46</line>
-          <properties documentPath="C:\Users\denis.sapuntsov\Documents\Unity Projects\CodeCamp\Assets\Scripts\MonoBehaviour\InteractableFramework.cs" containingFunctionPresentation="Method 'Update'">
-            <startOffsets>
-              <option value="1475" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1489" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
