@@ -12,6 +12,7 @@ public class InteractableFramework : MonoBehaviour
     private GameObject _newPopup;
     private bool _isWithinPlayerRange;     
     private GameObject _selectedPopupPrefab;
+    private AIDestinationSetter _playerDestinationSetter;
     
     private void Reset()
     {
@@ -39,6 +40,7 @@ public class InteractableFramework : MonoBehaviour
         _childInteractable = transform.GetChild(0).gameObject;
         _menuManager = FindAnyObjectByType<MenuManager>();
         _selectedPopupPrefab = _interactionManager.approachPopupPrefab;
+        _playerDestinationSetter = GameObject.FindWithTag("Player Parent").GetComponent<AIDestinationSetter>();
         
         ReplaceChildInteractable();
     }
@@ -67,17 +69,14 @@ public class InteractableFramework : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (_playerDestinationSetter.target) return;
         if (_menuManager.activeMenuGroup) return;
 
         if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
         
-        if (!_isWithinPlayerRange)
+        if (!_isWithinPlayerRange && Input.GetMouseButtonDown(0))
         {
-            Debug.Log($"player approaching {this.name}");
-            if (Input.GetMouseButtonDown(0))
-            {
-                FindAnyObjectByType<Player>().GetComponent<AIDestinationSetter>().target = gameObject.transform;
-            }
+            _playerDestinationSetter.target = gameObject.transform;
             return;
         }
         
@@ -110,12 +109,12 @@ public class InteractableFramework : MonoBehaviour
             _newPopup.GetComponent<Popup>().Disappear();
         }
     }
-
-    // TODO: change popup to "Go to" symbol if player is not close enough to the object
+    
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         _isWithinPlayerRange = true;
+        _playerDestinationSetter.target = null;
     }
 
     private void OnTriggerExit(Collider other)

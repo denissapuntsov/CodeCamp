@@ -586,10 +586,9 @@ GameObject:
   - component: {fileID: 465601913}
   - component: {fileID: 465601912}
   - component: {fileID: 465601914}
-  - component: {fileID: 465601915}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player Parent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +621,7 @@ MonoBehaviour:
       leadInRadiusWhenApproachingDestination: 1
       allowRotatingOnSpotBacking: 1
     debugFlags: 64
-    stopDistance: 0.2
+    stopDistance: 1
     rotationSmoothing: 0
     positionSmoothing: 0
     groundMask:
@@ -684,18 +683,6 @@ MonoBehaviour:
   version: 1073741824
   target: {fileID: 0}
   useRotation: 0
---- !u!114 &465601915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465601911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d0d4585fc468e4e8679950e0dcbb8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &571379788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2057,13 +2044,13 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 410087041}
-  - {fileID: 832575519}
-  - {fileID: 1325237434}
-  - {fileID: 1273828733}
-  - {fileID: 1529275672}
   - {fileID: 125165690}
-  - {fileID: 599378388}
-  - {fileID: 1601405192}
-  - {fileID: 1102237586}
-  - {fileID: 1113100062}
+  - {fileID: 832575519}
+  - {fileID: 1273828733}
   - {fileID: 465601913}
+  - {fileID: 1601405192}
+  - {fileID: 1325237434}
+  - {fileID: 1113100062}
+  - {fileID: 1529275672}
+  - {fileID: 599378388}
+  - {fileID: 1102237586}
