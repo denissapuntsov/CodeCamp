@@ -67,9 +67,9 @@ public class InteractableFramework : MonoBehaviour
     public void OnMouseDown()
     {
         if (_menuManager.activeMenuGroup) return;
-        
-        if (_newPopup) Destroy(_newPopup);
 
+        if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
+        
         if (!_isWithinPlayerRange)
         {
             Debug.Log($"player approaching {this.name}");
@@ -103,7 +103,6 @@ public class InteractableFramework : MonoBehaviour
         if (_newPopup)
         {
             _newPopup.GetComponent<Popup>().Disappear();
-            //Destroy(_newPopup);
         }
     }
 

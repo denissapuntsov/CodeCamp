@@ -29,12 +29,17 @@ public class Popup : MonoBehaviour
 
     public void Disappear()
     {
+        Disappear(0.2f);
+    }
+
+    public void Disappear(float duration)
+    {
         Sequence sequence = DOTween.Sequence();
         
         foreach (TextMeshProUGUI popup in mousePopups)
         {
-            sequence.Join(popup.transform.DOLocalMove(Vector3.zero, 0.2f));
-            sequence.Join(popup.transform.DOScale(Vector3.zero, 0.2f));
+            sequence.Join(popup.transform.DOLocalMove(Vector3.zero, duration));
+            sequence.Join(popup.transform.DOScale(Vector3.zero, duration));
         }
 
         sequence.Play().OnComplete(() => Destroy(gameObject));
