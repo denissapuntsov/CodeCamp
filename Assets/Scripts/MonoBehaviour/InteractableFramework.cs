@@ -95,6 +95,7 @@ public class InteractableFramework : MonoBehaviour
 
     public void OnMouseOver()
     {
+        if (_playerDestinationSetter.target) return;
         if (_menuManager.activeMenuGroup || _newPopup) return;
         
         _newPopup = Instantiate(_selectedPopupPrefab, transform.position, Camera.main.transform.rotation, transform);
