@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Sequence = DG.Tweening.Sequence;
 
 public class WordInteractionManager : MonoBehaviour
 {
@@ -15,13 +17,19 @@ public class WordInteractionManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
-    [SerializeField] private GameObject letterButton;
+    [SerializeField] private GameObject letterButton, inventoryLetter;
     public GameObject usePopupPrefab, approachPopupPrefab;
 
+    [Header("Animation Controls")] 
+    [SerializeField] private float positionAnimationDuration = 0.3f;
+    [SerializeField] private float scaleAnimationDuration = 0.2f;
+    
     private string _activeName;
     private List<string> _sameLengthWords;
     private Dictionary _dictionary;
     private MenuManager _menuManager;
+    private Vector3 _inventoryLetterDefaultPosition;
+    private Vector3 _defaultLetterScale;
 
     public static WordInteractionManager Instance;
 
@@ -35,6 +43,8 @@ public class WordInteractionManager : MonoBehaviour
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
         _menuManager = MenuManager.Instance;
+        _inventoryLetterDefaultPosition = inventoryLetter.transform.localPosition;
+        _defaultLetterScale = inventoryLetter.transform.localScale;
     }
     private void FilterNeighbours()
     {
@@ -90,7 +100,7 @@ public class WordInteractionManager : MonoBehaviour
         if (_activeName == null || !_dictionary.Words.Contains(_activeName)) return;
         
         // Populate the word grid letter by letter
-        ClearActiveWord();
+        ClearGrid();
 
         for (int i = 0; i < _activeName.Length; i++)
         {
@@ -99,11 +109,12 @@ public class WordInteractionManager : MonoBehaviour
             charBox.GetComponent<UILetter>().character = _activeName[i];
             charBox.GetComponent<UILetter>().index = i;
         }
+
+        inventoryLetter.transform.localPosition = _inventoryLetterDefaultPosition;
     }
     public void TryLetter(char letter, int index)
     {
         // create a temporary version of the proposed word
-
         string wordToTry = "";
         for (int i = 0; i < _activeName.Length; i++)
         {
@@ -114,24 +125,93 @@ public class WordInteractionManager : MonoBehaviour
             }
         }
 
-        // check if the proposed word exists, and if it does, replace the active word
-
-        foreach (Neighbour word in neighbours)
+        // sequence and play animation of rotating letters + either letters going back or snapping in place
+        Sequence letterChangeSequence = DOTween.Sequence();
+        
+        GameObject currentLetter = wordGrid.GetComponentsInChildren<UILetter>().ToList().Find(match:uiLetter => uiLetter.index == index).gameObject;
+        Vector3 currentLetterDefaultPosition = currentLetter.transform.localPosition;
+        
+        // scale subsequence
+        Sequence scaleSubsequence = DOTween.Sequence();
+        scaleSubsequence.Join(currentLetter.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), scaleAnimationDuration));
+        scaleSubsequence.Join(inventoryLetter.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), scaleAnimationDuration));
+        letterChangeSequence.Append(scaleSubsequence);
+        
+        // position subsequence
+        Sequence positionSubsequence = DOTween.Sequence();
+        positionSubsequence.Join(currentLetter.transform.DOLocalMove(_inventoryLetterDefaultPosition, positionAnimationDuration));
+        positionSubsequence.Join(inventoryLetter.gameObject.transform.DOLocalMove(currentLetterDefaultPosition, positionAnimationDuration));
+        letterChangeSequence.Append(positionSubsequence);
+        
+        // reverse scale subsequence
+        Sequence scaleSubsequenceReverse = DOTween.Sequence();
+        scaleSubsequenceReverse.Join(currentLetter.transform.DOScale(_defaultLetterScale, scaleAnimationDuration));
+        scaleSubsequenceReverse.Join(inventoryLetter.gameObject.transform.DOScale(_defaultLetterScale, scaleAnimationDuration));
+        letterChangeSequence.Append(scaleSubsequenceReverse);
+        
+        letterChangeSequence.Play().OnComplete(() =>
         {
-            if (word.name == wordToTry)
+            // check if the proposed word exists, and if it does, replace the active word
+            bool isWordFound = neighbours.Exists(match: word => word.name == wordToTry);
+            
+            if (isWordFound)
             {
                 FindAnyObjectByType<Inventory>().SetLetter(_activeName[index]);
-                _activeName = word.name;
+                _activeName = wordToTry;
                 SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
-                _menuManager.CloseActiveMenu();
-                break;
+                
+                Sequence successSequence = DOTween.Sequence();
+                
+                // make all the letters except for the switched one pop a little bit
+                Sequence popSubsequence = DOTween.Sequence();
+                foreach (UILetter child in wordGrid.GetComponentsInChildren<UILetter>())
+                {
+                    if (child.gameObject == currentLetter) continue;
+                    popSubsequence.Join(child.transform.DOShakeScale(strength:new Vector3(0.1f, 0.1f, 0.1f), duration:1f));
+                }
+                successSequence.Append(popSubsequence);
+                
+                // add slight interval before closing the menu
+                successSequence.AppendInterval(0.5f);
+                
+                successSequence.Play().OnComplete(() => _menuManager.CloseActiveMenu());
             }
-        }
+            else
+            {
+                Sequence failSequence = DOTween.Sequence();
+                
+                // shake the inventory letter
+                failSequence.Append(inventoryLetter.transform.DOShakePosition(duration:0.5f, strength:new Vector3(10f, 0f)));
+                
+                // scale subsequence
+                failSequence.Append(scaleSubsequence);
+                
+                // reverse position subsequence
+                Sequence positionSubsequenceReverse = DOTween.Sequence();
+                positionSubsequenceReverse.Join(currentLetter.transform.DOLocalMove(currentLetterDefaultPosition, positionAnimationDuration));
+                positionSubsequenceReverse.Join(inventoryLetter.gameObject.transform.DOLocalMove(_inventoryLetterDefaultPosition, positionAnimationDuration));
+                failSequence.Append(positionSubsequenceReverse);
+                
+                // reverse scale subsequence
+                failSequence.Append(scaleSubsequenceReverse);
+                
+                // slight pause before closing the menu
+                /*failSequence.AppendInterval(0.5f);
+
+                failSequence.Play().OnComplete(() => _menuManager.CloseActiveMenu());*/
+            }
+        });
     }
-    private void ClearActiveWord()
+    private void ClearGrid()
     {
-        foreach (Transform child in wordGrid.transform)
+        var gridChildren =
+            from child in wordGrid.transform.GetComponentsInChildren<UILetter>()
+            where !child.gameObject.CompareTag("InventoryLetter")
+            select child;
+        
+        foreach (UILetter child in gridChildren)
         {
+            Debug.Log(child.gameObject.name);
             Destroy(child.gameObject);
         }
     }
