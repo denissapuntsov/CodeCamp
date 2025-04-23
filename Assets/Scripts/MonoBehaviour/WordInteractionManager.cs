@@ -171,9 +171,6 @@ public class WordInteractionManager : MonoBehaviour
                 }
                 successSequence.Append(popSubsequence);
                 
-                // add slight interval before closing the menu
-                successSequence.AppendInterval(0.5f);
-                
                 successSequence.Play().OnComplete(() => _menuManager.CloseActiveMenu());
             }
             else
@@ -183,17 +180,11 @@ public class WordInteractionManager : MonoBehaviour
                 // shake the inventory letter
                 failSequence.Append(inventoryLetter.transform.DOShakePosition(duration:0.5f, strength:new Vector3(10f, 0f)));
                 
-                // scale subsequence
-                failSequence.Append(scaleSubsequence);
-                
                 // reverse position subsequence
                 Sequence positionSubsequenceReverse = DOTween.Sequence();
                 positionSubsequenceReverse.Join(currentLetter.transform.DOLocalMove(currentLetterDefaultPosition, positionAnimationDuration));
                 positionSubsequenceReverse.Join(inventoryLetter.gameObject.transform.DOLocalMove(_inventoryLetterDefaultPosition, positionAnimationDuration));
                 failSequence.Append(positionSubsequenceReverse);
-                
-                // reverse scale subsequence
-                failSequence.Append(scaleSubsequenceReverse);
                 
                 // slight pause before closing the menu
                 /*failSequence.AppendInterval(0.5f);
