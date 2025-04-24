@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
-    [FormerlySerializedAs("activeInteraction")] [SerializeField] private InteractionData activeInteractionData;
+    [SerializeField] private InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
