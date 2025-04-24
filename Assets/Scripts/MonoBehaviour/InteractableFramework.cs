@@ -14,6 +14,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     private Popup _popup;
     private bool _isWithinPlayerRange;     
     private AIDestinationSetter _playerDestinationSetter;
+    private PlayerInventory _playerInventory;
     
     private void Reset()
     {
@@ -40,6 +41,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         
         _childInteractable = transform.GetChild(0).gameObject;
         _playerDestinationSetter = GameObject.FindWithTag("Player Parent").GetComponent<AIDestinationSetter>();
+        _playerInventory = FindAnyObjectByType<PlayerInventory>();
         
         ReplaceChildInteractable();
     }
@@ -48,6 +50,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     {
         Destroy(_childInteractable);
         _childInteractable = Instantiate(activeInteractionData.prefab, transform, false);
+        gameObject.name = activeInteractionData.id;
     }
 
     public void ReplaceInteraction(InteractionData interactionData)
@@ -79,8 +82,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         // use if close
         if (!_isWithinPlayerRange) return;
         if (_popup) _popup.GetComponent<Popup>().Disappear(0.15f);
-        activeInteractionData.prefab.GetComponent<Interaction>().OnRightClick();
-        Debug.Log($"Right click on {gameObject.name}");
+        UseByType();
     }
 
     private void HandleLeftClick()
@@ -97,8 +99,17 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _popup.Disappear(0.15f);
         _interactionManager.lastActiveFramework = this;
         _interactionManager.SetActiveInteraction(activeInteractionData);
-        activeInteractionData.prefab.GetComponent<Interaction>().OnLeftClick();
-        Debug.Log($"Left click on {gameObject.name}");
+    }
+
+    private void UseByType()
+    {
+        switch (activeInteractionData.interactionType)
+        {
+            case Type.Clothes:
+                Debug.Log($"{activeInteractionData.id} is clothes");
+                _playerInventory.PutOn(gameObject);
+                break;
+        }
     }
 
     public void OnMouseOver()

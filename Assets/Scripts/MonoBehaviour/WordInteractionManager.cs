@@ -30,7 +30,7 @@ public class WordInteractionManager : MonoBehaviour
     private List<string> _sameLengthWords;
     private Dictionary _dictionary;
     private MenuManager _menuManager;
-    private Inventory _inventory;
+    private LetterInventory _letterInventory;
     private Vector3 _inventoryLetterDefaultPosition;
     private Vector3 _defaultLetterScale;
     private bool _isTryingLetter = false;
@@ -46,7 +46,7 @@ public class WordInteractionManager : MonoBehaviour
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
         _menuManager = MenuManager.Instance;
-        _inventory = FindAnyObjectByType<Inventory>();
+        _letterInventory = FindAnyObjectByType<LetterInventory>();
         _inventoryLetterDefaultPosition = inventoryLetter.transform.localPosition;
         _defaultLetterScale = inventoryLetter.transform.localScale;
     }
@@ -177,7 +177,8 @@ public class WordInteractionManager : MonoBehaviour
                 
                 successSequence.Play().OnComplete(() =>
                 {
-                    _inventory.SetLetter(_activeName[index]);
+                    _letterInventory.SetLetter(_activeName[index]);
+                    
                     _activeName = wordToTry;
                     SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
                     Instantiate(smokeParticlePrefab, lastActiveFramework.transform, worldPositionStays:false);

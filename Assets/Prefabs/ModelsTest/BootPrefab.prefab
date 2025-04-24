@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2423357562961022510}
   - component: {fileID: 4891887478207744114}
   - component: {fileID: 1242094379088453494}
-  - component: {fileID: -2045335889096376655}
   - component: {fileID: 1974019349200251301}
   m_Layer: 0
   m_Name: BootPrefab
@@ -88,24 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2045335889096376655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6482172160063749011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efda24cab08ab6340909ae453f5cc6df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &1974019349200251301
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,17 +4,17 @@ public class UILetter : MonoBehaviour
 {
     public int index;
     public char character;
-    private Inventory _inventory;
+    private LetterInventory _letterInventory;
     private WordInteractionManager _wordInteractionManager;
 
     private void Start()
     {
-        _inventory = FindAnyObjectByType<Inventory>();
+        _letterInventory = FindAnyObjectByType<LetterInventory>();
         _wordInteractionManager = FindAnyObjectByType<WordInteractionManager>();
     }
 
     public void CheckForWord()
     {
-        _wordInteractionManager.TryLetter(_inventory.heldLetter, index);
+        _wordInteractionManager.TryLetter(_letterInventory.heldLetter, index);
     }
 }

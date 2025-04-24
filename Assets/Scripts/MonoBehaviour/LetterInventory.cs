@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Inventory : MonoBehaviour
+public class LetterInventory : MonoBehaviour
 {
     [SerializeField] public char heldLetter;
     [SerializeField] GameObject inventoryLetter;
