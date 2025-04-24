@@ -9,12 +9,14 @@ public class Popup : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> mousePopups;
     private List<Vector3> _defaultPopupPositions, _defaultPopupScales;
+    private Color _defaultPopupColor;
     public bool hasAppeared = false;
     
     private void Start()
     {
         _defaultPopupPositions = mousePopups.Select(mousePopup => mousePopup.transform.position).ToList();
         _defaultPopupScales = mousePopups.Select(mousePopup => mousePopup.transform.localScale).ToList();
+        _defaultPopupColor = Color.white;
         
         ResetPositionsToZero();
     }
@@ -53,8 +55,9 @@ public class Popup : MonoBehaviour
         
         foreach (TextMeshProUGUI popup in mousePopups)
         {
-            popup.transform.DOMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], 0.2f);
-            popup.transform.DOScale(_defaultPopupScales[mousePopups.IndexOf(popup)], 0.2f);
+            popup.transform.DOMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], duration);
+            popup.transform.DOScale(_defaultPopupScales[mousePopups.IndexOf(popup)], duration);
+            popup.GetComponent<TextMeshProUGUI>().DOColor(_defaultPopupColor, duration);
         }
     }
 
@@ -74,12 +77,12 @@ public class Popup : MonoBehaviour
 
     public void Disappear(float duration)
     {
-        Sequence sequence = DOTween.Sequence();
         
         foreach (TextMeshProUGUI popup in mousePopups)
         {
-            sequence.Join(popup.transform.DOLocalMove(Vector3.zero, duration));
-            sequence.Join(popup.transform.DOScale(Vector3.zero, duration));
+            popup.transform.DOLocalMove(Vector3.zero, duration);
+            popup.transform.DOScale(Vector3.zero, duration);
+            popup.GetComponent<TextMeshProUGUI>().DOColor(Color.clear, duration);
         }
         hasAppeared = false;
     }
