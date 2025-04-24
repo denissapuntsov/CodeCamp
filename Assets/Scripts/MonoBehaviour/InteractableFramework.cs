@@ -1,7 +1,9 @@
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.LowLevel;
 
-public class InteractableFramework : MonoBehaviour
+public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Interaction activeInteraction;
     
@@ -64,30 +66,39 @@ public class InteractableFramework : MonoBehaviour
         activeInteraction = interaction;
         ReplaceChildInteractable();
     }
-
-    public void OnMouseDown()
+    
+    public void OnPointerClick(PointerEventData pointerEventData)
     {
         if (_playerDestinationSetter.target) return;
         if (_menuManager.activeMenuGroup) return;
-
-        if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
         
-        if (!_isWithinPlayerRange && Input.GetMouseButtonDown(0))
+        switch (pointerEventData.button)
         {
-            _playerDestinationSetter.target = gameObject.transform;
-            return;
-        }
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            _interactionManager.lastActiveFramework = this;
-            _interactionManager.SetActiveInteraction(activeInteraction);
-            activeInteraction.onLeftClick.Invoke();
-        }
-
-        if (Input.GetMouseButtonDown(2))
-        {
-            activeInteraction.onRightClick?.Invoke();
+            case PointerEventData.InputButton.Left:
+                // approach if far away
+                if (!_isWithinPlayerRange)
+                {
+                    _playerDestinationSetter.target = gameObject.transform;
+                    if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
+                    break;
+                }
+                
+                // enter word interaction menu if close
+                if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
+                _interactionManager.lastActiveFramework = this;
+                _interactionManager.SetActiveInteraction(activeInteraction);
+                activeInteraction.onLeftClick.Invoke();
+                Debug.Log($"Left click on {gameObject.name}");
+                break;
+            
+            case PointerEventData.InputButton.Right:
+                // use if close
+                if (!_isWithinPlayerRange) break;
+                if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
+                activeInteraction.onRightClick?.Invoke();
+                Debug.Log($"Right click on {gameObject.name}");
+                break;
+                
         }
     }
 
