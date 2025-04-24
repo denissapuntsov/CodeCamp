@@ -19,16 +19,18 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private GameObject interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton, inventoryLetter;
-    public GameObject usePopupPrefab, approachPopupPrefab;
+    //public GameObject usePopupPrefab, approachPopupPrefab;
 
     [Header("Animation Controls")] 
     [SerializeField] private float positionAnimationDuration = 0.3f;
     [SerializeField] private float scaleAnimationDuration = 0.2f;
+    [SerializeField] ParticleSystem smokeParticlePrefab;
     
     private string _activeName;
     private List<string> _sameLengthWords;
     private Dictionary _dictionary;
     private MenuManager _menuManager;
+    private Inventory _inventory;
     private Vector3 _inventoryLetterDefaultPosition;
     private Vector3 _defaultLetterScale;
     private bool _isTryingLetter = false;
@@ -44,6 +46,7 @@ public class WordInteractionManager : MonoBehaviour
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
         _menuManager = MenuManager.Instance;
+        _inventory = FindAnyObjectByType<Inventory>();
         _inventoryLetterDefaultPosition = inventoryLetter.transform.localPosition;
         _defaultLetterScale = inventoryLetter.transform.localScale;
     }
@@ -161,10 +164,6 @@ public class WordInteractionManager : MonoBehaviour
             if (isWordFound)
             {
                 // SUCCESS
-                FindAnyObjectByType<Inventory>().SetLetter(_activeName[index]);
-                _activeName = wordToTry;
-                SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
-                
                 Sequence successSequence = DOTween.Sequence();
                 
                 // make all the letters except for the switched one pop a little bit
@@ -178,6 +177,10 @@ public class WordInteractionManager : MonoBehaviour
                 
                 successSequence.Play().OnComplete(() =>
                 {
+                    _inventory.SetLetter(_activeName[index]);
+                    _activeName = wordToTry;
+                    SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
+                    Instantiate(smokeParticlePrefab, lastActiveFramework.transform, worldPositionStays:false);
                     _isTryingLetter = false;
                     _menuManager.CloseActiveMenu();
                 });
@@ -217,15 +220,12 @@ public class WordInteractionManager : MonoBehaviour
 
     public void SetActiveInteraction(InteractionData interactionData)
     {
-        // honestly not even sure this is elegant enough, but it works?
         _menuManager.SetMenu(interactionUIGroup);
         
         interactionUIGroup.gameObject.SetActive(true);
         lastActiveInteractionData = interactionData;
         lastActiveFramework.ReplaceInteraction(lastActiveInteractionData);
         _activeName = interactionData.id;
-        
-        //DisplayActiveWord();
         FilterNeighbours();
     }
 }

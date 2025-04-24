@@ -16,11 +16,7 @@ public class Popup : MonoBehaviour
         _defaultPopupPositions = mousePopups.Select(mousePopup => mousePopup.transform.position).ToList();
         _defaultPopupScales = mousePopups.Select(mousePopup => mousePopup.transform.localScale).ToList();
         
-        foreach (TextMeshProUGUI popup in mousePopups)
-        {
-            popup.transform.localPosition = Vector3.zero;
-            popup.transform.localScale = Vector3.zero;
-        }
+        ResetPositionsToZero();
     }
 
     private void Update()
@@ -53,16 +49,21 @@ public class Popup : MonoBehaviour
         if (hasAppeared) return;
         hasAppeared = true;
 
-        foreach (TextMeshProUGUI popup in mousePopups)
-        {
-            popup.transform.localPosition = Vector3.zero;
-            popup.transform.localScale = Vector3.zero;
-        }
+        ResetPositionsToZero();
         
         foreach (TextMeshProUGUI popup in mousePopups)
         {
             popup.transform.DOMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], 0.2f);
             popup.transform.DOScale(_defaultPopupScales[mousePopups.IndexOf(popup)], 0.2f);
+        }
+    }
+
+    private void ResetPositionsToZero()
+    {
+        foreach (TextMeshProUGUI popup in mousePopups)
+        {
+            popup.transform.localPosition = Vector3.zero;
+            popup.transform.localScale = Vector3.zero;
         }
     }
 
