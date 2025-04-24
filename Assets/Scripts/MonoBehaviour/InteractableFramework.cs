@@ -21,24 +21,22 @@ public class InteractableFramework : MonoBehaviour
         
         // add physics if no Rigidbody present
         if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         
-        // sets a trigger for cursor detection
-        if (GetComponent<BoxCollider>())
-        {
-            _collider = GetComponent<BoxCollider>();
-            return;
-        }
-        
+        // sets a trigger for cursor and player detection
+        if (!GetComponent<BoxCollider>()) gameObject.AddComponent<BoxCollider>();
+        _collider = GetComponent<BoxCollider>();
         _collider = gameObject.AddComponent<BoxCollider>();
         _collider.isTrigger = true;
-        _collider.size = new Vector3(3, 3, 3);
+        _collider.size = new Vector3(6, 6, 6);
     }
     
     private void Start()
     {
         _interactionManager = WordInteractionManager.Instance;
+        _menuManager = MenuManager.Instance;
+        
         _childInteractable = transform.GetChild(0).gameObject;
-        _menuManager = FindAnyObjectByType<MenuManager>();
         _selectedPopupPrefab = _interactionManager.approachPopupPrefab;
         _playerDestinationSetter = GameObject.FindWithTag("Player Parent").GetComponent<AIDestinationSetter>();
         

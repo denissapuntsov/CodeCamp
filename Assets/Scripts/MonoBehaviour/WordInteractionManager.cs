@@ -30,6 +30,7 @@ public class WordInteractionManager : MonoBehaviour
     private MenuManager _menuManager;
     private Vector3 _inventoryLetterDefaultPosition;
     private Vector3 _defaultLetterScale;
+    private bool _isTryingLetter = false;
 
     public static WordInteractionManager Instance;
 
@@ -37,7 +38,6 @@ public class WordInteractionManager : MonoBehaviour
     {
         Instance = this;
     }
-
     private void Start()
     {
         _sameLengthWords = new List<string>();
@@ -114,6 +114,9 @@ public class WordInteractionManager : MonoBehaviour
     }
     public void TryLetter(char letter, int index)
     {
+        if (_isTryingLetter) return;
+        _isTryingLetter = true;
+        
         // create a temporary version of the proposed word
         string wordToTry = "";
         for (int i = 0; i < _activeName.Length; i++)
@@ -156,6 +159,7 @@ public class WordInteractionManager : MonoBehaviour
             
             if (isWordFound)
             {
+                // SUCCESS
                 FindAnyObjectByType<Inventory>().SetLetter(_activeName[index]);
                 _activeName = wordToTry;
                 SetActiveInteraction(_dictionary.GetInteractionByName(_activeName));
@@ -171,10 +175,15 @@ public class WordInteractionManager : MonoBehaviour
                 }
                 successSequence.Append(popSubsequence);
                 
-                successSequence.Play().OnComplete(() => _menuManager.CloseActiveMenu());
+                successSequence.Play().OnComplete(() =>
+                {
+                    _isTryingLetter = false;
+                    _menuManager.CloseActiveMenu();
+                });
             }
             else
             {
+                // FAIL
                 Sequence failSequence = DOTween.Sequence();
                 
                 // shake the inventory letter
@@ -182,14 +191,12 @@ public class WordInteractionManager : MonoBehaviour
                 
                 // reverse position subsequence
                 Sequence positionSubsequenceReverse = DOTween.Sequence();
+                
                 positionSubsequenceReverse.Join(currentLetter.transform.DOLocalMove(currentLetterDefaultPosition, positionAnimationDuration));
                 positionSubsequenceReverse.Join(inventoryLetter.gameObject.transform.DOLocalMove(_inventoryLetterDefaultPosition, positionAnimationDuration));
                 failSequence.Append(positionSubsequenceReverse);
                 
-                // slight pause before closing the menu
-                /*failSequence.AppendInterval(0.5f);
-
-                failSequence.Play().OnComplete(() => _menuManager.CloseActiveMenu());*/
+                failSequence.Play().OnComplete(() => _isTryingLetter = false);
             }
         });
     }
