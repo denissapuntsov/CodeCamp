@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dictionary : MonoBehaviour
 {
-    [SerializeField] private List<Interaction> interactions;
+    [SerializeField] private List<InteractionData> interactions;
 
     private List<string> _words;
     public List<string> Words => _words;
@@ -14,7 +14,7 @@ public class Dictionary : MonoBehaviour
         _words = interactions.Select(x => x.id).ToList();
     }
 
-    public Interaction GetInteractionByName(string nameToMatch)
+    public InteractionData GetInteractionByName(string nameToMatch)
     {
         return interactions.Find(interaction => interaction.id == nameToMatch.ToLower());
     }

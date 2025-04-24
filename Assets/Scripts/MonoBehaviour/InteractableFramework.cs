@@ -1,19 +1,18 @@
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Serialization;
 
 public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Interaction activeInteraction;
+    [FormerlySerializedAs("activeInteraction")] [SerializeField] private InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
     private MenuManager _menuManager;
     private BoxCollider _collider;
-    private GameObject _newPopup;
+    private Popup _popup;
     private bool _isWithinPlayerRange;     
-    private GameObject _selectedPopupPrefab;
     private AIDestinationSetter _playerDestinationSetter;
     
     private void Reset()
@@ -37,33 +36,23 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     {
         _interactionManager = WordInteractionManager.Instance;
         _menuManager = MenuManager.Instance;
+        _popup = GetComponentInChildren<Popup>();
         
         _childInteractable = transform.GetChild(0).gameObject;
-        _selectedPopupPrefab = _interactionManager.approachPopupPrefab;
         _playerDestinationSetter = GameObject.FindWithTag("Player Parent").GetComponent<AIDestinationSetter>();
         
         ReplaceChildInteractable();
     }
 
-    private void Update()
-    {
-        UpdatePopup();
-    }
-
     private void ReplaceChildInteractable()
     {
         Destroy(_childInteractable);
-        _childInteractable = Instantiate(activeInteraction.prefab, transform, false);
+        _childInteractable = Instantiate(activeInteractionData.prefab, transform, false);
     }
 
-    private void UpdatePopup()
+    public void ReplaceInteraction(InteractionData interactionData)
     {
-        _selectedPopupPrefab = _isWithinPlayerRange ? _interactionManager.usePopupPrefab : _interactionManager.approachPopupPrefab;
-    }
-
-    public void ReplaceInteraction(Interaction interaction)
-    {
-        activeInteraction = interaction;
+        activeInteractionData = interactionData;
         ReplaceChildInteractable();
     }
     
@@ -75,49 +64,60 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         switch (pointerEventData.button)
         {
             case PointerEventData.InputButton.Left:
-                // approach if far away
-                if (!_isWithinPlayerRange)
-                {
-                    _playerDestinationSetter.target = gameObject.transform;
-                    if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
-                    break;
-                }
-                
-                // enter word interaction menu if close
-                if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
-                _interactionManager.lastActiveFramework = this;
-                _interactionManager.SetActiveInteraction(activeInteraction);
-                activeInteraction.onLeftClick.Invoke();
-                Debug.Log($"Left click on {gameObject.name}");
+                HandleLeftClick();
                 break;
             
             case PointerEventData.InputButton.Right:
-                // use if close
-                if (!_isWithinPlayerRange) break;
-                if (_newPopup) _newPopup.GetComponent<Popup>().Disappear(0.15f);
-                activeInteraction.onRightClick?.Invoke();
-                Debug.Log($"Right click on {gameObject.name}");
+                HandleRightClick();
                 break;
                 
         }
+    }
+
+    private void HandleRightClick()
+    {
+        // use if close
+        if (!_isWithinPlayerRange) return;
+        if (_popup) _popup.GetComponent<Popup>().Disappear(0.15f);
+        activeInteractionData.prefab.GetComponent<Interaction>().OnRightClick();
+        Debug.Log($"Right click on {gameObject.name}");
+    }
+
+    private void HandleLeftClick()
+    {
+        // approach if far away
+        if (!_isWithinPlayerRange)
+        {
+            _playerDestinationSetter.target = gameObject.transform;
+            _popup.Disappear(0.15f);
+            return;
+        }
+                
+        // enter word interaction menu if close
+        _popup.Disappear(0.15f);
+        _interactionManager.lastActiveFramework = this;
+        _interactionManager.SetActiveInteraction(activeInteractionData);
+        activeInteractionData.prefab.GetComponent<Interaction>().OnLeftClick();
+        Debug.Log($"Left click on {gameObject.name}");
     }
 
     public void OnMouseOver()
     {
         if (_playerDestinationSetter.target) return;
-        if (_menuManager.activeMenuGroup || _newPopup) return;
+        if (_menuManager.activeMenuGroup) return;
         
-        _newPopup = Instantiate(_selectedPopupPrefab, transform.position, Camera.main.transform.rotation, transform);
+        // set corresponding popup interface
+        string popupMode = _isWithinPlayerRange ? "Use" : "Approach";
+        _popup.UpdateSelection(popupMode);
+        
+        _popup.Appear();
         if (!_isWithinPlayerRange) return;
-        _newPopup.GetComponent<Popup>().SetUseText(activeInteraction.leftMouseText, activeInteraction.rightMouseText);
+        _popup.SetUseText(activeInteractionData.leftMouseText, activeInteractionData.rightMouseText);
     }
 
     public void OnMouseExit()
     {
-        if (_newPopup)
-        {
-            _newPopup.GetComponent<Popup>().Disappear();
-        }
+        _popup.Disappear();
     }
     
     private void OnTriggerEnter(Collider other)

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1268365514693149908}
   - component: {fileID: 7835838738448241307}
   - component: {fileID: 1813154942351268955}
+  - component: {fileID: -1247170915871760655}
   m_Layer: 0
   m_Name: BoatPrefab
   m_TagString: Untagged
@@ -131,3 +132,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1247170915871760655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329947234073499131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efda24cab08ab6340909ae453f5cc6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []

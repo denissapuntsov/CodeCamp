@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "Interaction", menuName = "Scriptable Objects/Interaction")]
-public class Interaction : ScriptableObject
+[CreateAssetMenu(fileName = "InteractionData", menuName = "Scriptable Objects/InteractionData")]
+public class InteractionData : ScriptableObject
 {
     public string id;
     public GameObject prefab;
-    public UnityEvent onRightClick, onLeftClick;
     public string leftMouseText = "Change"; 
     public string rightMouseText = "Use";
 }

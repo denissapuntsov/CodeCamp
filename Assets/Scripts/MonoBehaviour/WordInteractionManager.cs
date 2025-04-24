@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Sequence = DG.Tweening.Sequence;
 
@@ -11,7 +12,7 @@ public class WordInteractionManager : MonoBehaviour
 {
     [Header("Properties of Active Word Interaction")]
     public InteractableFramework lastActiveFramework;
-    [SerializeField] private Interaction lastActiveInteraction;
+    [FormerlySerializedAs("lastActiveInteraction")] [SerializeField] private InteractionData lastActiveInteractionData;
     [SerializeField] private List<Neighbour> neighbours;
     
     [Header("UI Elements")]
@@ -214,15 +215,15 @@ public class WordInteractionManager : MonoBehaviour
         }
     }
 
-    public void SetActiveInteraction(Interaction interaction)
+    public void SetActiveInteraction(InteractionData interactionData)
     {
         // honestly not even sure this is elegant enough, but it works?
         _menuManager.SetMenu(interactionUIGroup);
         
         interactionUIGroup.gameObject.SetActive(true);
-        lastActiveInteraction = interaction;
-        lastActiveFramework.ReplaceInteraction(lastActiveInteraction);
-        _activeName = interaction.id;
+        lastActiveInteractionData = interactionData;
+        lastActiveFramework.ReplaceInteraction(lastActiveInteractionData);
+        _activeName = interactionData.id;
         
         //DisplayActiveWord();
         FilterNeighbours();

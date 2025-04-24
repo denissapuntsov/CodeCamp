@@ -14,9 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: boat
   prefab: {fileID: 329947234073499131, guid: b1efe78e8721b4d909171967e1759605, type: 3}
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
+  leftMouseText: Change
+  rightMouseText: Use
