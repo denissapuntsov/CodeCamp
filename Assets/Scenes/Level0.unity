@@ -800,7 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1073741831
   shape:
-    radius: 1.2
+    radius: 1.25
     height: 4.5
   movement:
     follower:
@@ -833,7 +833,7 @@ MonoBehaviour:
       locked: 0
     pathfindingSettings:
       graphMask:
-        value: -1
+        value: 1
       tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
       traversableTags: -1
     enableLocalAvoidance: 0
@@ -853,15 +853,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465601911}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.35094297, z: 0, w: 0.93639684}
-  m_LocalPosition: {x: 0, y: 2.05, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1138721540}
   - {fileID: 1554387489}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 41.09, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &465601914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,7 +2064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1073741824
   data:
-    dataString: UEsDBBQAAAgIAAAAIexIA43+RAIAAJYEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1U01v2zAM/SuBz2thO03b7bik6w79GJIAKzrswEi0LVSWMklOmhb97yPlj7jodhL8yEfykc+viajAgQjoliBV45Mvk/R09mmSCGuCbdwtPF85Zx3hOaOo9Uq9YEzLOW8P+gk2Gr+jKqvQpfXgXKt6M5Ss4Xml7ZbJ07T9vpIl3qApQ8XMCCqzxFJZ07WZEoZSBevWSmMHZvklwaEDHj4gjwPSeGQe6wquQUK26G7ggO7WSlUoAYF6cfjXbwpKVaPxhFCUGyWLHpguEopvQDyVzjZGrh3s0HnYKK3CgVN/dqI5z6HGHZhw7WBbrRpXgMChpL2zYYl/GuVirrBao+AxVhiCMiVP8zqCe2Ic2zNFRwHgnzhzkuxAN5xxkk3eeAtQdrGoyYGn89JW5lRRSS4xLGOI3aKv4pYK0P5dZI3OgTL/4Kwdjhcb2sTWCDVsF3ZvPNRbTZK+kcWiiaadYJ5j2RdaYACl+WYUtWbeKh9GMo3WrMvZEK/Vin5mXxF66N4XfqP+wjqB8itfyc/RUI+PjLPT9PMsTdP84r/UzmsdMUt7apaf5lnHIjTyfGX3PO99E0guHpfCgTu639wa015zvOSe1jnkSDMIDn1Y0SOqe6MPD48jGhr22R3sauLOm2iaI7dslHzvi+R8hoXEM8BNBkWe40kmsvQyg9lMnp+lF1NMogplVFCgf1B9Hfq90g87Or6BOlZcoqDrTaK/2ZHSwf5avdR2ZAhlCrsSZBJz39YYZNPVQdN65VX8s0e+T17fkre/UEsDBBQAAAgIAAAAIey3P7gIbgAAAHkAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNUz1jPRUVBKL0osyCgGChiCOKWZKSB2tJKZaWpaSqpJYmqSYWKakVGqrmGyoYGFYaKpaYqZiYG5capSLFB9SWVBql9ibipET0BiSUZaZl5KZl66XlBqcmJxiTvIcKXYWgBQSwECLQAUAAAICAAAACHsSAON/kQCAACWBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHstz+4CG4AAAB5AAAACQAkAAAAAAAAAAAAAACRAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAEoDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAAIewTvq0NrAIAAOoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMtu2kAU/RU066YyVh6luxYS0kUSFBJlUbK4eK7xiGHGmkeARPx774wH2yGLSkg259zHuS9/MKFsjYXTZmoEv9Mc2c8BC+/s26Ajb3EHK63m4h2PNi+CuyoYQbR5BCc04cPgZvUGnRHFL7WSwTgj0CtRarO55isca+sswSVIi0QZ7YK3IuhjwHbJYZ+e7+E5ONBbgcqh+Z+VV4WETY08qO2M84tknV9EM0V1JIvAFFpKYZMI5vZ1LHIMtfVUAhlwAVRUTJ/T3wrFqnLpT+v8UJYWXZJkYD8RhnrTRGW/ddOwDdh1o+sNpMdWeBPy7gs7zK8iXxq9uT2mHWYhhatEsX6EfQHW9Rrahyed7mHszhbkGpYSXypU93pqtFecSGd8cPUW80kvVFvauMJi3dk1Yk9AX38dzrAbziEWv5s7rNs6su/nHfps0c6ljr1PIQOTkFEIiYbm9ofqiRtjUyJCg0byf4JVf7UScSOMdUQlPQkNtjMaEHJUBabGnwUDFeQttTchFruhlzC4wruxNgojmvTVqEC6/YwCutMFOOF6sk6YGwhHlsQl7ng7Jy4R7uyz7ISa6W07a0Ora+M+H9/+voYZ2Epv79BWD95JoXrNDsQ99XeslWr2tt/Lo9vcmxKKnpvDnfMGJ+AgZiM5tF+870odjB7KSxlWORYQFVEB4fca+lsB5ZURZvdaxbv79IzyV17wzxfCrnLAIS4vzn8UWI5gdHaV5aOcssDl8vJ8hBmLFyQUtRvkrOlXmhItl+pqUXQtx0/gYGqgjifLDWyn4n2je5MXqtTzwiCqhyZCWywaSkKfFn7NBZU5R+eEimvJPhZM6mKNfNEGWsTGXu+cgUUXZcFq8aZdQBZsHD98Cxbg9iBpc98EbkPyT8FQ0uiQPwmJG6gDlR3Y4R9QSwMEFAAACAgAAAAh7DLDYWBsAAAAdwAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw1TPWM9FRUEovSizIKAYKGII4pZkpIHa0krlRYqphapKpiUVyapploqWuuYGRpVFaYnKiWZKZiWWqgVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAACHsE76tDawCAADqBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHsMsNhYGwAAAB3AAAACQAkAAAAAAAAAAAAAAD5AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAALADAAAAAA==
     file_cachedStartup: {fileID: 0}
     cacheStartup: 0
   showNavGraphs: 1
@@ -2075,7 +2075,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -2089,11 +2089,43 @@ MonoBehaviour:
     _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors: []
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   navmeshUpdates:
@@ -2131,7 +2163,7 @@ GameObject:
   - component: {fileID: 1138721543}
   - component: {fileID: 1138721542}
   - component: {fileID: 1138721541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
