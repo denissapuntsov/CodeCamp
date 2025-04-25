@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
+  m_Name: Hat
+  m_EditorClassIdentifier: 
+  id: hat
+  interactionType: 1
+  prefab: {fileID: 3722737750699343719, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
+  leftMouseText: Change
+  rightMouseText: Wear
