@@ -1,8 +1,6 @@
 using Pathfinding;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
@@ -16,7 +14,8 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     private Popup _popup;
     private bool _isWithinPlayerRange;     
     private AIDestinationSetter _playerDestinationSetter;
-    private PlayerInventory _playerInventory;
+    private PlayerInventory _player;
+    private AIPath _aiPath;
     
     private void Reset()
     {
@@ -40,10 +39,11 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _interactionManager = WordInteractionManager.Instance;
         _menuManager = MenuManager.Instance;
         _popup = GetComponentInChildren<Popup>();
+        _player = FindAnyObjectByType<PlayerInventory>();
+        _aiPath = _player.GetComponent<AIPath>();
+        _playerDestinationSetter = _player.GetComponent<AIDestinationSetter>();
         
         _childInteractable = transform.GetChild(0).gameObject;
-        _playerDestinationSetter = GameObject.FindWithTag("Player Parent").GetComponent<AIDestinationSetter>();
-        _playerInventory = FindAnyObjectByType<PlayerInventory>();
         
         ReplaceChildInteractable();
     }
@@ -108,8 +108,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         switch (activeInteractionData.interactionType)
         {
             case Type.Clothes:
-                Debug.Log($"{activeInteractionData.id} is clothes");
-                _playerInventory.PutOn(gameObject);
+                _player.PutOn(gameObject);
                 break;
         }
     }
@@ -132,12 +131,19 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     {
         _popup.Disappear();
     }
-    
+
+    private void Update()
+    {
+        if (_aiPath.reachedEndOfPath)
+        {
+            _playerDestinationSetter.target = null;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         _isWithinPlayerRange = true;
-        _playerDestinationSetter.target = null;
     }
 
     private void OnTriggerExit(Collider other)

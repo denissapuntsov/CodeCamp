@@ -18,8 +18,8 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 
     private Popup _popup;
     
-    private readonly Collider[] _hitColliders = new Collider[9];
-    private List<Tile> _hitTiles;
+    Collider[] _hitColliders = new Collider[18];
+    public List<Tile> _hitTiles;
 
     private void Start()
     {
@@ -38,11 +38,12 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         item.GetComponent<InteractableFramework>().currentTile.Clear();
         item.GetComponent<InteractableFramework>().currentTile = null;
         
-        
         item.transform.SetParent(headGearParent, false);
         item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
         clothes = item;
+
+        AstarPath.active.Scan();
     }
 
     private void ResetTransform(GameObject obj)
@@ -83,7 +84,13 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         for (int i = 0; i < collidersHit; i++)
         {
             Tile tile = _hitColliders[i].GetComponent<Tile>();
-            if (!tile.hasPlayer && !tile.currentItem) _hitTiles.Add(tile);
+            if (!tile) continue;
+            
+            if (!tile.hasPlayer && tile.currentItem == null)
+            {
+                Debug.Log("Tile");
+                _hitTiles.Add(tile);
+            }
         }
 
         // debug
