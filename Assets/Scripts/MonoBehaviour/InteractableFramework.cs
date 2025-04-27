@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private InteractionData activeInteractionData;
-    public Tile currentTile;
+    //public Tile currentTile;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;

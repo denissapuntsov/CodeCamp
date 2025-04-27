@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Debug")] [SerializeField] 
-    private GameObject debugCube;
-    
     [Header("Level Position")] 
     public Tile activeTile;
+    [SerializeField] private GameObject positioningCube;
     
     [Header("Item Slots")]
     [SerializeField] private GameObject clothes;
@@ -21,10 +20,12 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
     
     private readonly Collider[] _hitColliders = new Collider[18];
     private List<Tile> _hitTiles;
+    private List<GameObject> _cubes;
 
     private void Start()
     {
         _popup = GetComponentInChildren<Popup>();
+        _cubes = new List<GameObject>();
         _hitTiles = new List<Tile>();
     }
 
@@ -34,10 +35,7 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         
         // turn off trigger for tiles and collider for pointers
         item.GetComponent<BoxCollider>().enabled = false;
-        if (item.GetComponentInChildren<MeshCollider>()) item.GetComponentInChildren<MeshCollider>().enabled = false;
-        
-        item.GetComponent<InteractableFramework>().currentTile.Clear();
-        item.GetComponent<InteractableFramework>().currentTile = null;
+        if (item.GetComponentInChildren<Collider>()) item.GetComponentInChildren<Collider>().enabled = false;
         
         item.transform.SetParent(headGearParent, false);
         item.GetComponent<Rigidbody>().isKinematic = true;
@@ -45,16 +43,22 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         clothes = item;
     }
 
-    public void TakeOff(Transform placement)
+    public void PlaceAt(Transform placementCubeTransform)
     {
         if (!clothes) return;
 
         clothes.transform.SetParent(p: null);
         clothes.GetComponent<Rigidbody>().isKinematic = false;
         ResetTransform(clothes);
-        clothes.transform.position = placement.position;
         
+        if (clothes.GetComponentInChildren<Collider>()) clothes.GetComponentInChildren<Collider>().enabled = true;
+        clothes.GetComponent<BoxCollider>().enabled = true;
         
+        clothes.transform.position = placementCubeTransform.position;
+
+        clothes = null;
+        
+        foreach (GameObject cube in _cubes) Destroy(cube);
     }
 
     private void ResetTransform(GameObject obj)
@@ -86,7 +90,6 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
     private void HandleLeftClick()
     {
         if (!clothes) return;
-        Debug.Log("Pressed left click");
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
@@ -97,17 +100,18 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
             Tile tile = _hitColliders[i].GetComponent<Tile>();
             if (!tile) continue;
             
-            if (!tile.hasPlayer && tile.currentItem == null)
+            if (!tile.hasPlayer && !tile.isOccupied)
             {
-                Debug.Log("Tile");
                 _hitTiles.Add(tile);
             }
         }
 
+        _cubes.Clear();
         // debug
         foreach (Tile tile in _hitTiles)
         {
-            Instantiate(debugCube, tile.transform, false);
+            GameObject newCube = Instantiate(positioningCube, tile.transform, false);
+            _cubes.Add(newCube);
         }
     }
 }

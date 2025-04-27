@@ -1476,8 +1476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fdf0a3f9e7572468541916d371dfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugCube: {fileID: 9118174895164179153, guid: efb73a0ce8fcf6340977f0d955af029a, type: 3}
   activeTile: {fileID: 0}
+  positioningCube: {fileID: 9118174895164179153, guid: efb73a0ce8fcf6340977f0d955af029a, type: 3}
   clothes: {fileID: 0}
   headGearParent: {fileID: 2015706784}
 --- !u!65 &465601916
@@ -1647,7 +1647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteractionData: {fileID: 11400000, guid: 3f3596a4693d526408ca2797d1f0552b, type: 2}
-  currentTile: {fileID: 0}
 --- !u!54 &474142452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2695,7 +2694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteractionData: {fileID: 11400000, guid: c043a170b3c644bf18bcbaa2d9185fd7, type: 2}
-  currentTile: {fileID: 0}
 --- !u!54 &841148468
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6140,7 +6138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteractionData: {fileID: 11400000, guid: 627d32878043d433eaad787cd8774dad, type: 2}
-  currentTile: {fileID: 0}
 --- !u!65 &2002575428
 BoxCollider:
   m_ObjectHideFlags: 0

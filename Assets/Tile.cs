@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class Tile : MonoBehaviour
 {
     public bool hasPlayer;
-    public GameObject currentItem;
+    public bool isOccupied;
 
     private Material _material;
     private PlayerInventory _player;
@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        _material.color = hasPlayer || currentItem ? Color.red : Color.white;
+        _material.color = hasPlayer ? Color.red : Color.white;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,15 +31,8 @@ public class Tile : MonoBehaviour
 
         if (other.GetComponent<InteractableFramework>())
         {
-            currentItem = other.gameObject;
-            other.gameObject.GetComponent<InteractableFramework>().currentTile = this;
+            isOccupied = true;
         }
-    }
-
-    public void Clear()
-    {
-        currentItem = null;
-        AstarPath.active.Scan();
     }
     
     private void OnTriggerExit(Collider other)
