@@ -19,7 +19,6 @@ public class Tile : MonoBehaviour
     private void Update()
     {
         _material.color = hasPlayer || currentItem ? Color.red : Color.white;
-        transform.parent.gameObject.layer = currentItem ? LayerMask.NameToLayer("Unwalkable") : LayerMask.NameToLayer("Tile");
     }
 
     private void OnTriggerEnter(Collider other)

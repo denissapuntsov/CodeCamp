@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level0.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/InteractableFramework.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/InteractableFramework.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +121,7 @@
       <workItem from="1745522409617" duration="286000" />
       <workItem from="1745531291378" duration="3735000" />
       <workItem from="1745580266458" duration="4970000" />
+      <workItem from="1745793133663" duration="1920000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />

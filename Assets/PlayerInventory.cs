@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Debug")] [SerializeField] private GameObject debugCube;
+    [Header("Debug")] [SerializeField] 
+    private GameObject debugCube;
     
     [Header("Level Position")] 
     public Tile activeTile;
@@ -18,8 +19,8 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 
     private Popup _popup;
     
-    Collider[] _hitColliders = new Collider[18];
-    public List<Tile> _hitTiles;
+    private readonly Collider[] _hitColliders = new Collider[18];
+    private List<Tile> _hitTiles;
 
     private void Start()
     {
@@ -42,8 +43,18 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
         clothes = item;
+    }
 
-        AstarPath.active.Scan();
+    public void TakeOff(Transform placement)
+    {
+        if (!clothes) return;
+
+        clothes.transform.SetParent(p: null);
+        clothes.GetComponent<Rigidbody>().isKinematic = false;
+        ResetTransform(clothes);
+        clothes.transform.position = placement.position;
+        
+        
     }
 
     private void ResetTransform(GameObject obj)

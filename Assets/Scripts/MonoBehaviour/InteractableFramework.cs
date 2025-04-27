@@ -32,6 +32,9 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _collider = gameObject.AddComponent<BoxCollider>();
         _collider.isTrigger = true;
         _collider.size = new Vector3(6, 6, 6);
+        
+        // RequiresComponent(typeof(DynamicObstacle))
+        if (!GetComponent<DynamicObstacle>()) gameObject.AddComponent<DynamicObstacle>();
     }
     
     private void Start()
@@ -46,6 +49,14 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _childInteractable = transform.GetChild(0).gameObject;
         
         ReplaceChildInteractable();
+        
+        // As an example, use the bounding box from the attached collider
+        Bounds bounds = GetComponent<Collider>().bounds;
+        var guo = new GraphUpdateObject(bounds);
+
+        // Set some settings
+        guo.updatePhysics = true;
+        AstarPath.active.UpdateGraphs(guo);
     }
 
     private void ReplaceChildInteractable()
@@ -63,8 +74,8 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        if (_playerDestinationSetter.target) return;
         if (_menuManager.activeMenuGroup) return;
+        if (_playerDestinationSetter.target) return;
         
         switch (pointerEventData.button)
         {
@@ -115,8 +126,8 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 
     public void OnMouseOver()
     {
-        if (_playerDestinationSetter.target) return;
         if (_menuManager.activeMenuGroup) return;
+        if (_playerDestinationSetter.target) return;
         
         // set corresponding popup interface
         string popupMode = _isWithinPlayerRange ? "Use" : "Approach";
