@@ -1,4 +1,5 @@
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -6,6 +7,7 @@ using UnityEngine.Serialization;
 public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private InteractionData activeInteractionData;
+    public Tile currentTile;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;

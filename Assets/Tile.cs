@@ -1,15 +1,39 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private bool hasPlayer;
-    [SerializeField] private GameObject currentItem;
+    public bool hasPlayer;
+    public GameObject currentItem;
+
+    private Material _material;
+    private PlayerInventory _player;
+
+    private void Start()
+    {
+        _material = GetComponentInParent<MeshRenderer>().material;
+        _player = FindAnyObjectByType<PlayerInventory>();
+    }
+
+    private void Update()
+    {
+        _material.color = hasPlayer || currentItem ? Color.red : Color.white;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        hasPlayer = other.gameObject.CompareTag("Player Parent");
-        if (!other.GetComponent<InteractableFramework>()) return;
-        currentItem = other.gameObject;
+        if (other.CompareTag("Player"))
+        {
+            hasPlayer = true;
+            _player.activeTile = this;
+        }
+
+        if (other.GetComponent<InteractableFramework>())
+        {
+            currentItem = other.gameObject;
+            other.gameObject.GetComponent<InteractableFramework>().currentTile = this;
+        }
     }
 
     public void Clear()
@@ -19,9 +43,11 @@ public class Tile : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == currentItem)
+
+        if (other.gameObject.CompareTag("Player"))
         {
-            currentItem = null;
+            hasPlayer = false;
+            _player.activeTile = null;
         }
     }
 }
