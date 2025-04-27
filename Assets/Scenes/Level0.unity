@@ -1350,7 +1350,7 @@ Transform:
   m_GameObject: {fileID: 465601911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0000005960464, y: 0, z: 0}
+  m_LocalPosition: {x: 5.0000005, y: 0, z: -0.0000005960464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 474142452}
   - component: {fileID: 474142451}
   - component: {fileID: 474142450}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 6, z: 6}
+  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &474142451
 MonoBehaviour:
@@ -1736,6 +1736,10 @@ PrefabInstance:
     - target: {fileID: 6482172160063749011, guid: 8216c69b9e0ee4702a5cf22f313d850b, type: 3}
       propertyPath: m_Name
       value: BootPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482172160063749011, guid: 8216c69b9e0ee4702a5cf22f313d850b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2427,7 +2431,7 @@ GameObject:
   - component: {fileID: 841148468}
   - component: {fileID: 841148467}
   - component: {fileID: 841148466}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Boot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2453,7 +2457,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 6, z: 6}
+  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &841148467
 MonoBehaviour:
@@ -3476,7 +3480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1073741824
   data:
-    dataString: UEsDBBQAAAgIAAAAIeyp8vOOsAIAAOwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVNtu2kAQ/RW0z02FrVxK31pISB+SoJAqDyUPg3eMVyy71l4CJOLfO7tebEMkJJs5Z2bO3PzJhLI1Fk6bqRH8QXNkPwcsvLNvgw68xx2stJqLDzxyXgV3VSBB5DyDE5rsWXCzeoPOiOKXWslAHpLRK1Fqs7nlKxxr6yyZS5AWCTLaBW9Fps8B2yWHfXp+hOfgQG8FKoemY2XntKzheVVI2NTIg96Onl8len4VaYoqSYyAFFpKYZMM5vZ1LHMMtfVUBBG4ACorCsjpb4ViVbn0p3V+KkuLLmkysJ8IQ91porLfumnZBuy60fUO0mNbYBPy4Qua5TcRL43e3B/TZsOQwlWiWD/DvgDrei3tmyed7ix2ZwtyDUuJrxWqRz012itOoDM+uHqL+aQXqi1tXGGx7niN2DOjr78OMeuGeIjF7+YO67aO4ffLzvrXop1LHXufQgYkWUYhJBqa2x+qJ+6MTYnIGjSS/wus+suVgDthrCMo6UnWwJ3RgJCjKjA1/iIQVJC31N6EWOyOXsLgCu/G2iiM1qSvRgXS7WcU0J0vwBnWk3WG3EE4syQuYcfrOXOJ5o4/HJ5BM71tZ21odW3c5+Pbv7cwA1vp7QPa6sk7KVSv2QF4pP6OtVLN3vZ7eXSbe1NC0XNzuHPe4AQcxGwkh/aL912pg9FDeSnDKscCoiIqIPzeQn8roLwymtmjVvHuTp5R/soLfnoh7CYHzHB5dfmjwHIEo4ubYT7KKQtcL68vRzhk8YKEonaDnDX9SlOi5VJdLYqu5fgRHEwN1PFkuYHtVHxsdG/yQpV6XhhE9dREaItFQ0no08JvuaAy5+icUHEt2eeCSV2skS/aQIvY2NudM7DooixYLd61C5YFG8dP34IFc3uQtLnvArch+UkwlDQ65C9C4gbqAGUHdvgPUEsDBBQAAAgIAAAAIewyw2FgbAAAAHcAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNUz1jPRUVBKL0osyCgGChiCOKWZKSB2tJK5UWKqYWqSqYlFcmqaZaKlrrmBkaVRWmJyolmSmYllqoFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7Kny846wAgAA7AUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7DLDYWBsAAAAdwAAAAkAJAAAAAAAAAAAAAAA/QIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAC0AwAAAAA=
+    dataString: UEsDBBQAAAgIAAAAIewC9OnSuAIAAPMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVNtu4jAQ/RXk521Fsr2xb11o6T60RaWrPix9MPGEWBg78oVLK/59ZxxDUiohJZw5M3Pmlk8mtauh8MaOrRSPRgD71WO3Ys11AYL96LWEB9jyhdFT+QEH3psUviISj5wX7qVBPCM3Z1bgrSxu9UIRuY9g0LI0dnUnFjA0zjuES64coMkaT94aoc8e2yaHXXp+0LO3x7cCtAfbsrJTWtbwgi4UX9UgSG9Lzy8TPb+MNI2VJAZZCqOUdEkG87s6ljnktQtYBBKE5FhWFJCf/7xBpAK5qDz97/o/l6UDn2RZvhtJiw1qArPfpunairtlI23NVYBjjU3Ix2/WLL+O9tKa1cMhbdanFL6SxfKF7wrufKerXXjUSs9igzZcLflcwVsF+smMrQlaoNHbQK7BQT7qhDqWNqygWLa8RuwJGOrvc8zaOe5j8duph/pYR//8okX/OnBTZWL7U0iyJGRAIcHi6P5gPXFtXEqEKGlE/1e+6O5XMtxL6zyakp6EEneCAwIBuPap8WdE0CRvboKlWOweX2hwRfBDYzVENOmrQXPldxMM6E8X4MTWkXViued0aUlcsh0O6MQlwi2/3z8xTczmOGuL2+viSh/e/r3TDFxlNo/gqufgldSdZpPhCfs7NFo3e9vt5cFtGmzJi46bh60PFkbc85gN5eB+ia4rdjB66KAUrXIsICrCAuj3Tv2tOOZVEWZPRsfT+/KM8hdBiq8Xwq5zDhnMLy9uCigHfHB23c8HOWbhV/OriwH0WbwgqbHdXE2afqUp4XLpthaN10IR6bvYG1tex5MVlm/G8mNlOpOXujTTwgLo5ybCsViwmAS/LuJOSCxzCt5LHdeSfc6YMsUSxOwYaBYbe7f1ls/aKDNWy7XxhMzYMH79Zozg40Hi5q4lbCj5l2CgcHQgXqWCFa/JlO3Z/j9QSwMEFAAACAgAAAAh7DLDYWBsAAAAdwAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw1TPWM9FRUEovSizIKAYKGII4pZkpIHa0krlRYqphapKpiUVyapploqWuuYGRpVFaYnKiWZKZiWWqgVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAACHsAvTp0rgCAADzBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHsMsNhYGwAAAB3AAAACQAkAAAAAAAAAAAAAAAFAwAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAALwDAAAAAA==
     file_cachedStartup: {fileID: 0}
     cacheStartup: 0
   showNavGraphs: 1
@@ -3534,7 +3538,7 @@ MonoBehaviour:
   - 29
   - 30
   - 31
-  heuristic: 2
+  heuristic: 0
   heuristicScale: 1
   threadCount: 1
   maxFrameTime: 10
@@ -4666,9 +4670,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 474142449}
     m_Modifications:
+    - target: {fileID: 966706155315042325, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3722737750699343719, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
       propertyPath: m_Name
       value: HatPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3722737750699343719, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6896847487691766194, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4864,6 +4876,10 @@ PrefabInstance:
     - target: {fileID: 329947234073499131, guid: b1efe78e8721b4d909171967e1759605, type: 3}
       propertyPath: m_Name
       value: BoatPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 329947234073499131, guid: b1efe78e8721b4d909171967e1759605, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9067133878815459046, guid: b1efe78e8721b4d909171967e1759605, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5531,10 +5547,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002575426}
-  - component: {fileID: 2002575427}
   - component: {fileID: 2002575425}
+  - component: {fileID: 2002575427}
   - component: {fileID: 2002575428}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5617,8 +5633,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 6, z: 6}
-  m_Center: {x: 0, y: 0, z: 1.1061134}
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2003625059
 GameObject:
   m_ObjectHideFlags: 0
