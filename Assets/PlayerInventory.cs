@@ -33,7 +33,7 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         
         // turn off trigger for tiles and collider for pointers
         item.GetComponent<BoxCollider>().enabled = false;
-        item.GetComponentInChildren<MeshCollider>().enabled = false;
+        if (item.GetComponentInChildren<MeshCollider>()) item.GetComponentInChildren<MeshCollider>().enabled = false;
         
         item.GetComponent<InteractableFramework>().currentTile.Clear();
         item.GetComponent<InteractableFramework>().currentTile = null;
