@@ -4,7 +4,7 @@ public class TileWalkState : TileBaseState
  {
      public override void EnterState(Tile tile)
      {
-         return;
+         tile.parent.name = "Tile (Empty)";
      }
  
      public override void UpdateState(Tile tile)

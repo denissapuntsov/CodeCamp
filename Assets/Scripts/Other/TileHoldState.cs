@@ -40,6 +40,7 @@ public class TileHoldState : TileBaseState
         {
             case Type.Clothes:
                 tile.player.PutOn(tile.currentInteractable.gameObject);
+                tile.currentInteractable = null;
                 tile.SwitchState(tile.WalkState);
                 break;
         }

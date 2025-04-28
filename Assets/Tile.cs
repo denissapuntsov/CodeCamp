@@ -6,13 +6,13 @@ using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private GameObject parent;
+    public GameObject parent;
     
     public bool hasPlayer;
     public PlayerInventory player;
     public InteractableFramework currentInteractable;
 
-    private BoxCollider _collider;
+    private MeshCollider _collider;
     private Material _material;
     public AIDestinationSetter aiDestinationSetter;
     private MenuManager _menuManager;
@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         player = FindAnyObjectByType<PlayerInventory>();
         aiDestinationSetter = player.GetComponent<AIDestinationSetter>();
         _menuManager = FindAnyObjectByType<MenuManager>();
-        _collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<MeshCollider>();
         
         currentInteractable = parent?.GetComponentInChildren<InteractableFramework>();
         parent.name = currentInteractable != null ? $"Tile ({currentInteractable.name})" : "Tile (Empty)";
@@ -70,6 +70,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
+                if (aiDestinationSetter.target) return;
                 _currentState.HandleLeftClick(this);
                 break;
             
