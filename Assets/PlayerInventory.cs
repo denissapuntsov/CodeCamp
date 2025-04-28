@@ -35,7 +35,13 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         
         // turn off trigger for tiles and collider for pointers
         item.GetComponent<BoxCollider>().enabled = false;
-        if (item.GetComponentInChildren<Collider>()) item.GetComponentInChildren<Collider>().enabled = false;
+        if (item.GetComponentsInChildren<Collider>() != null)
+        {
+            foreach (Collider c in item.GetComponentsInChildren<Collider>())
+            {
+                c.enabled = false;
+            }
+        }
         
         item.transform.SetParent(headGearParent, false);
         item.GetComponent<Rigidbody>().isKinematic = true;
@@ -51,7 +57,13 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         clothes.GetComponent<Rigidbody>().isKinematic = false;
         ResetTransform(clothes);
         
-        if (clothes.GetComponentInChildren<Collider>()) clothes.GetComponentInChildren<Collider>().enabled = true;
+        if (clothes.GetComponentsInChildren<Collider>() != null)
+        {
+            foreach (Collider c in clothes.GetComponentsInChildren<Collider>())
+            {
+                c.enabled = true;
+            }
+        }
         clothes.GetComponent<BoxCollider>().enabled = true;
         
         clothes.transform.position = placementCubeTransform.position;
@@ -100,7 +112,7 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
             Tile tile = _hitColliders[i].GetComponent<Tile>();
             if (!tile) continue;
             
-            if (!tile.hasPlayer && !tile.isOccupied)
+            if (!tile.hasPlayer && !tile.currentInteractable)
             {
                 _hitTiles.Add(tile);
             }

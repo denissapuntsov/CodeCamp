@@ -14,7 +14,7 @@ public class Popup : MonoBehaviour
     
     private void Start()
     {
-        _defaultPopupPositions = mousePopups.Select(mousePopup => mousePopup.transform.position).ToList();
+        _defaultPopupPositions = mousePopups.Select(mousePopup => mousePopup.transform.localPosition).ToList();
         _defaultPopupScales = mousePopups.Select(mousePopup => mousePopup.transform.localScale).ToList();
         _defaultPopupColor = Color.white;
         
@@ -55,7 +55,7 @@ public class Popup : MonoBehaviour
         
         foreach (TextMeshProUGUI popup in mousePopups)
         {
-            popup.transform.DOMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], duration);
+            popup.transform.DOLocalMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], duration);
             popup.transform.DOScale(_defaultPopupScales[mousePopups.IndexOf(popup)], duration);
             popup.GetComponent<TextMeshProUGUI>().DOColor(_defaultPopupColor, duration);
         }

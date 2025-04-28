@@ -53,8 +53,6 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         // As an example, use the bounding box from the attached collider
         Bounds bounds = GetComponent<Collider>().bounds;
         var guo = new GraphUpdateObject(bounds);
-
-        // Set some settings
         guo.updatePhysics = true;
         AstarPath.active.UpdateGraphs(guo);
     }
@@ -145,21 +143,17 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
 
     private void Update()
     {
+        _isWithinPlayerRange = Vector2.Distance(
+            new Vector2(_player.transform.position.x, 
+                        _player.transform.position.z),
+            new Vector2(transform.position.x, 
+                        transform.position.z)
+            ) <= 5.2f;
+        
         if (_aiPath.reachedEndOfPath)
         {
+            Debug.Log("reached end of path");
             _playerDestinationSetter.target = null;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
-        _isWithinPlayerRange = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
-        _isWithinPlayerRange = false;
     }
 }

@@ -1,24 +1,38 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField] private GameObject parent;
+    
     public bool hasPlayer;
-    public bool isOccupied;
+    public GameObject currentInteractable;
 
     private Material _material;
     private PlayerInventory _player;
+
+    private TileBaseState _currentState;
+    private TileWalkState _walkState = new TileWalkState();
+    private TilePlaceState _placeState = new TilePlaceState();
+    private TileHoldState _holdState = new TileHoldState();
 
     private void Start()
     {
         _material = GetComponentInParent<MeshRenderer>().material;
         _player = FindAnyObjectByType<PlayerInventory>();
+        
+        currentInteractable = parent?.GetComponentInChildren<InteractableFramework>()?.gameObject;
+        parent.name = currentInteractable != null ? $"Tile ({currentInteractable.name})" : "Tile (Empty)";
+
+        _currentState = _walkState;
     }
 
-    private void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        _material.color = hasPlayer ? Color.red : Color.white;
+        _material.color = Color.green;
+        Debug.Log(name + " " + currentInteractable);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,11 +41,6 @@ public class Tile : MonoBehaviour
         {
             hasPlayer = true;
             _player.activeTile = this;
-        }
-
-        if (other.GetComponent<InteractableFramework>())
-        {
-            isOccupied = true;
         }
     }
     
