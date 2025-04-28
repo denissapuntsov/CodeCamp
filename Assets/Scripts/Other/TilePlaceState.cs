@@ -4,21 +4,31 @@ public class TilePlaceState : TileBaseState
 {
     public override void EnterState(Tile tile)
     {
-        throw new System.NotImplementedException();
+        return;
     }
      
     public override void UpdateState(Tile tile)
     {
-        throw new System.NotImplementedException();
+        return;
     }
      
-    public override void OnMouseOver(Tile tile)
+    public override void OnMouseEnter(Tile tile)
     {
-        throw new System.NotImplementedException();
+        return;
     }
-     
+
+    public override void OnMouseExit(Tile tile)
+    {
+        return;
+    }
+
     public override void HandleLeftClick(Tile tile)
     {
-        throw new System.NotImplementedException();
+        return;
+    }
+
+    public override void HandleRightClick(Tile tile)
+    {
+        return;
     }
 }

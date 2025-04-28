@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public class PlayerInventory : MonoBehaviour, IPointerClickHandler
@@ -18,8 +20,8 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 
     private Popup _popup;
     
-    private readonly Collider[] _hitColliders = new Collider[18];
-    private List<Tile> _hitTiles;
+    [SerializeField] readonly Collider[] _hitColliders = new Collider[18];
+    [SerializeField] private List<Tile> _hitTiles;
     private List<GameObject> _cubes;
 
     private void Start()
@@ -34,7 +36,6 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         if (clothes) return;
         
         // turn off trigger for tiles and collider for pointers
-        item.GetComponent<BoxCollider>().enabled = false;
         if (item.GetComponentsInChildren<Collider>() != null)
         {
             foreach (Collider c in item.GetComponentsInChildren<Collider>())
@@ -64,7 +65,6 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
                 c.enabled = true;
             }
         }
-        clothes.GetComponent<BoxCollider>().enabled = true;
         
         clothes.transform.position = placementCubeTransform.position;
 
@@ -83,6 +83,7 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            Debug.Log("pressed left click on player");
             HandleLeftClick();
         }
     }

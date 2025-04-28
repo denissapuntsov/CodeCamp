@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 1, z: 0.8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 2.5, z: 0.8}
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!114 &3751337445963913867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +68,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 8121134798832782413}
   hasPlayer: 0
+  player: {fileID: 0}
   currentInteractable: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
 --- !u!1 &8121134798832782413
 GameObject:
   m_ObjectHideFlags: 0

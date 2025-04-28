@@ -2,10 +2,9 @@ using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InteractableFramework : MonoBehaviour, IPointerClickHandler
+public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
 {
-    [SerializeField] private InteractionData activeInteractionData;
-    //public Tile currentTile;
+    public InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
     private WordInteractionManager _interactionManager;
@@ -26,12 +25,12 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         
-        // sets a trigger for cursor and player detection
+        /* REDUNDANT: sets a trigger for cursor and player detection
         if (!GetComponent<BoxCollider>()) gameObject.AddComponent<BoxCollider>();
         _collider = GetComponent<BoxCollider>();
         _collider = gameObject.AddComponent<BoxCollider>();
         _collider.isTrigger = true;
-        _collider.size = new Vector3(6, 6, 6);
+        _collider.size = new Vector3(6, 6, 6);*/
         
         // RequiresComponent(typeof(DynamicObstacle))
         if (!GetComponent<DynamicObstacle>()) gameObject.AddComponent<DynamicObstacle>();
@@ -51,10 +50,10 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         ReplaceChildInteractable();
         
         // As an example, use the bounding box from the attached collider
-        Bounds bounds = GetComponent<Collider>().bounds;
+        /*Bounds bounds = GetComponent<Collider>().bounds;
         var guo = new GraphUpdateObject(bounds);
         guo.updatePhysics = true;
-        AstarPath.active.UpdateGraphs(guo);
+        AstarPath.active.UpdateGraphs(guo);*/
     }
 
     private void ReplaceChildInteractable()
@@ -69,34 +68,8 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         activeInteractionData = interactionData;
         ReplaceChildInteractable();
     }
-    
-    public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        if (_menuManager.activeMenuGroup) return;
-        if (_playerDestinationSetter.target) return;
-        
-        switch (pointerEventData.button)
-        {
-            case PointerEventData.InputButton.Left:
-                HandleLeftClick();
-                break;
-            
-            case PointerEventData.InputButton.Right:
-                HandleRightClick();
-                break;
-                
-        }
-    }
 
-    private void HandleRightClick()
-    {
-        // use if close
-        if (!_isWithinPlayerRange) return;
-        if (_popup) _popup.GetComponent<Popup>().Disappear(0.15f);
-        UseByType();
-    }
-
-    private void HandleLeftClick()
+    public void HandleLeftClick()
     {
         // approach if far away
         if (!_isWithinPlayerRange)
@@ -111,23 +84,9 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _interactionManager.lastActiveFramework = this;
         _interactionManager.SetActiveInteraction(activeInteractionData);
     }
-
-    private void UseByType()
+    
+    public void DisplayPopup()
     {
-        switch (activeInteractionData.interactionType)
-        {
-            case Type.Clothes:
-                _player.PutOn(gameObject);
-                break;
-        }
-    }
-
-    public void OnMouseOver()
-    {
-        if (_menuManager.activeMenuGroup) return;
-        if (_playerDestinationSetter.target) return;
-        
-        // set corresponding popup interface
         string popupMode = _isWithinPlayerRange ? "Use" : "Approach";
         _popup.UpdateSelection(popupMode);
         
@@ -136,7 +95,7 @@ public class InteractableFramework : MonoBehaviour, IPointerClickHandler
         _popup.SetUseText(activeInteractionData.leftMouseText, activeInteractionData.rightMouseText);
     }
 
-    public void OnMouseExit()
+    public void RemovePopup()
     {
         _popup.Disappear();
     }

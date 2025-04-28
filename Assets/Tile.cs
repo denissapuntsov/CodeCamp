@@ -1,4 +1,5 @@
 using System;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -8,48 +9,87 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject parent;
     
     public bool hasPlayer;
-    public GameObject currentInteractable;
+    public PlayerInventory player;
+    public InteractableFramework currentInteractable;
 
+    private BoxCollider _collider;
     private Material _material;
-    private PlayerInventory _player;
+    public AIDestinationSetter aiDestinationSetter;
+    private MenuManager _menuManager;
 
     private TileBaseState _currentState;
-    private TileWalkState _walkState = new TileWalkState();
-    private TilePlaceState _placeState = new TilePlaceState();
-    private TileHoldState _holdState = new TileHoldState();
+    public TileWalkState WalkState = new TileWalkState();
+    public TileHoldState HoldState = new TileHoldState();
+    public TilePlaceState PlaceState = new TilePlaceState();
 
     private void Start()
     {
         _material = GetComponentInParent<MeshRenderer>().material;
-        _player = FindAnyObjectByType<PlayerInventory>();
+        player = FindAnyObjectByType<PlayerInventory>();
+        aiDestinationSetter = player.GetComponent<AIDestinationSetter>();
+        _menuManager = FindAnyObjectByType<MenuManager>();
+        _collider = GetComponent<BoxCollider>();
         
-        currentInteractable = parent?.GetComponentInChildren<InteractableFramework>()?.gameObject;
+        currentInteractable = parent?.GetComponentInChildren<InteractableFramework>();
         parent.name = currentInteractable != null ? $"Tile ({currentInteractable.name})" : "Tile (Empty)";
 
-        _currentState = _walkState;
+        _currentState = currentInteractable != null ? HoldState : WalkState;
+        Debug.Log($"{parent.name} in state {_currentState}");
+    }
+
+    private void Update()
+    {
+        SetCollision();
+    }
+
+    private void SetCollision()
+    {
+        hasPlayer = Vector2.Distance(
+            new Vector2(player.transform.position.x, 
+                player.transform.position.z),
+            new Vector2(transform.position.x, 
+                transform.position.z)
+        ) <= 0.5f;
+
+        _collider.enabled = !hasPlayer;
+        player.activeTile = hasPlayer ? this : null;
+    }
+
+    public void SwitchState(TileBaseState state)
+    {
+        _currentState = state;
+        Debug.Log($"entered {_currentState}");
+        state.EnterState(this);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _material.color = Color.green;
-        Debug.Log(name + " " + currentInteractable);
+        if (_menuManager.activeMenuGroup) return;
+        if (aiDestinationSetter.target) return;
+        
+        switch (eventData.button)
+        {
+            case PointerEventData.InputButton.Left:
+                _currentState.HandleLeftClick(this);
+                break;
+            
+            case PointerEventData.InputButton.Right:
+                _currentState.HandleRightClick(this);
+                break;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnMouseEnter()
     {
-        if (other.CompareTag("Player"))
-        {
-            hasPlayer = true;
-            _player.activeTile = this;
-        }
+        if (_menuManager.activeMenuGroup) return;
+        if (aiDestinationSetter.target) return;
+        _currentState.OnMouseEnter(this);
     }
-    
-    private void OnTriggerExit(Collider other)
+
+    private void OnMouseExit()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            hasPlayer = false;
-            _player.activeTile = null;
-        }
+        if (_menuManager.activeMenuGroup) return;
+        if (aiDestinationSetter.target) return;
+        _currentState.OnMouseExit(this);
     }
 }
