@@ -23,7 +23,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private List<Tile> _hitTiles;
     
     // FSM
-
     private PlayerBaseState _currentState;
     public PlayerBaseState CurrentState
     {
