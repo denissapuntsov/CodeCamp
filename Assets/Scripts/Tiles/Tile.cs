@@ -9,32 +9,31 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     public GameObject parent;
     
     public bool hasPlayer;
-    public PlayerInventory player;
+    public Player player;
     public InteractableFramework currentInteractable;
 
     private MeshCollider _collider;
-    private Material _material;
     public AIDestinationSetter aiDestinationSetter;
     private MenuManager _menuManager;
-
+    
+    // FSM
     private TileBaseState _currentState;
+    
     public TileWalkState WalkState = new TileWalkState();
     public TileHoldState HoldState = new TileHoldState();
     public TilePlaceState PlaceState = new TilePlaceState();
 
     private void Start()
     {
-        _material = GetComponentInParent<MeshRenderer>().material;
-        player = FindAnyObjectByType<PlayerInventory>();
+        player = FindAnyObjectByType<Player>();
         aiDestinationSetter = player.GetComponent<AIDestinationSetter>();
         _menuManager = FindAnyObjectByType<MenuManager>();
         _collider = GetComponent<MeshCollider>();
         
-        currentInteractable = parent?.GetComponentInChildren<InteractableFramework>();
-        parent.name = currentInteractable != null ? $"Tile ({currentInteractable.name})" : "Tile (Empty)";
+        currentInteractable = parent.GetComponentInChildren<InteractableFramework>();
 
         _currentState = currentInteractable != null ? HoldState : WalkState;
-        Debug.Log($"{parent.name} in state {_currentState}");
+        _currentState.EnterState(this);
     }
 
     private void Update()

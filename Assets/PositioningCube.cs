@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PositioningCube : MonoBehaviour, IPointerClickHandler
+public class PositioningCube : MonoBehaviour//, IPointerClickHandler
 {
-    private PlayerInventory _playerInventory;
+    private Player _player;
     
     private void Start()
     {
-        _playerInventory = FindAnyObjectByType<PlayerInventory>();
+        _player = FindAnyObjectByType<Player>();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    /*public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            _playerInventory.PlaceAt(transform);
+            _playerInventory.RemoveHeadgear(transform);
         }
-    }
+    }*/
 }

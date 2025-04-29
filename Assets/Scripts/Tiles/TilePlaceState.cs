@@ -4,7 +4,7 @@ public class TilePlaceState : TileBaseState
 {
     public override void EnterState(Tile tile)
     {
-        return;
+        tile.parent.name = "Tile (Placeable)";
     }
      
     public override void UpdateState(Tile tile)
@@ -24,7 +24,8 @@ public class TilePlaceState : TileBaseState
 
     public override void HandleLeftClick(Tile tile)
     {
-        return;
+        Debug.Log("Tile in placeState clicked");
+        tile.player.RemoveHeadgear(tile);
     }
 
     public override void HandleRightClick(Tile tile)

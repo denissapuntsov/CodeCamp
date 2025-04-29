@@ -5,7 +5,8 @@ public class TileHoldState : TileBaseState
 {
     public override void EnterState(Tile tile)
     {
-        return;
+        tile.currentInteractable = tile.parent.GetComponentInChildren<InteractableFramework>();
+        tile.parent.name = $"Tile ({tile.currentInteractable.name})";
     }
      
     public override void UpdateState(Tile tile)
@@ -39,7 +40,8 @@ public class TileHoldState : TileBaseState
         switch (tile.currentInteractable.activeInteractionData.interactionType)
         {
             case Type.Clothes:
-                tile.player.PutOn(tile.currentInteractable.gameObject);
+                if (tile.player.headgear) return;
+                tile.player.PutOnHeadgear(tile.currentInteractable.gameObject);
                 tile.currentInteractable = null;
                 tile.SwitchState(tile.WalkState);
                 break;

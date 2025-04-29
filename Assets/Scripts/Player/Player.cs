@@ -6,35 +6,40 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
-public class PlayerInventory : MonoBehaviour, IPointerClickHandler
+public class Player : MonoBehaviour, IPointerClickHandler
 {
     [Header("Level Position")] 
     public Tile activeTile;
     [SerializeField] private GameObject positioningCube;
-    
+
     [Header("Item Slots")]
-    [SerializeField] private GameObject clothes;
+    public GameObject headgear;
     
     [Header("Transforms")]
     [SerializeField] private Transform headGearParent;
 
     private Popup _popup;
+    private Collider[] _hitColliders = new Collider[18];
+    private List<Tile> _hitTiles;
     
-    [SerializeField] readonly Collider[] _hitColliders = new Collider[18];
-    [SerializeField] private List<Tile> _hitTiles;
-    private List<GameObject> _cubes;
+    // FSM
+    private PlayerBaseState _currentState;
+    
+    public PlayerIdleState IdleState = new PlayerIdleState();
+    /*public PlayerWalkState walkState = new PlayerWalkState();
+    public PlayerPlaceState placeState = new PlayerPlaceState();*/
 
     private void Start()
     {
         _popup = GetComponentInChildren<Popup>();
-        _cubes = new List<GameObject>();
         _hitTiles = new List<Tile>();
+
+        _currentState = IdleState;
+        _currentState.EnterState(this);
     }
 
-    public void PutOn(GameObject item)
+    public void PutOnHeadgear(GameObject item)
     {
-        if (clothes) return;
-        
         // turn off trigger for tiles and collider for pointers
         if (item.GetComponentsInChildren<Collider>() != null)
         {
@@ -47,38 +52,30 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
         item.transform.SetParent(headGearParent, false);
         item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
-        clothes = item;
+        headgear = item;
     }
 
-    public void PlaceAt(Transform placementCubeTransform)
+    public void RemoveHeadgear(Tile tileTarget)
     {
-        if (!clothes) return;
+        if (!headgear) return;
 
-        clothes.transform.SetParent(p: null);
-        clothes.GetComponent<Rigidbody>().isKinematic = false;
-        ResetTransform(clothes);
+        headgear.transform.SetParent(p: null);
+        headgear.GetComponent<Rigidbody>().isKinematic = false;
+        ResetTransform(headgear);
         
-        if (clothes.GetComponentsInChildren<Collider>() != null)
+        if (headgear.GetComponentsInChildren<Collider>() != null)
         {
-            foreach (Collider c in clothes.GetComponentsInChildren<Collider>())
-            {
-                c.enabled = true;
-            }
+            foreach (Collider c in headgear.GetComponentsInChildren<Collider>()) c.enabled = true;
         }
         
-        clothes.transform.position = placementCubeTransform.position;
-
-        clothes = null;
+        headgear.transform.position = tileTarget.transform.position;
+        headgear.transform.SetParent(p: tileTarget.parent.transform);
+        headgear = null;
         
-        foreach (GameObject cube in _cubes) Destroy(cube);
+        foreach (Tile tile in _hitTiles) tile.SwitchState(tile.WalkState);
+        tileTarget.SwitchState(tileTarget.HoldState);
     }
-
-    private void ResetTransform(GameObject obj)
-    {
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localRotation = Quaternion.identity;
-    }
-
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -90,19 +87,19 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
 
     private void OnMouseOver()
     {
-        if (!clothes) return;
+        if (!headgear) return;
         _popup.Appear();
     }
 
     private void OnMouseExit()
     {
-        if(!clothes) return;
+        if(!headgear) return;
         _popup.Disappear();
     }
 
     private void HandleLeftClick()
     {
-        if (!clothes) return;
+        if (!headgear) return;
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
@@ -118,13 +115,22 @@ public class PlayerInventory : MonoBehaviour, IPointerClickHandler
                 _hitTiles.Add(tile);
             }
         }
-
-        _cubes.Clear();
-        // debug
+        
         foreach (Tile tile in _hitTiles)
         {
-            GameObject newCube = Instantiate(positioningCube, tile.transform, false);
-            _cubes.Add(newCube);
+            tile.SwitchState(tile.PlaceState);
         }
+    }
+    
+    private void ResetTransform(GameObject obj)
+    { 
+        obj.transform.localPosition = Vector3.zero; 
+        obj.transform.localRotation = Quaternion.identity;
+    }
+
+    public void SwitchState(PlayerBaseState newState)
+    {
+        _currentState = newState;
+        newState.EnterState(this);
     }
 }

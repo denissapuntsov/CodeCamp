@@ -13,7 +13,7 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
     private Popup _popup;
     private bool _isWithinPlayerRange;     
     private AIDestinationSetter _playerDestinationSetter;
-    private PlayerInventory _player;
+    private Player _player;
     private AIPath _aiPath;
     
     private void Reset()
@@ -41,7 +41,7 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
         _interactionManager = WordInteractionManager.Instance;
         _menuManager = MenuManager.Instance;
         _popup = GetComponentInChildren<Popup>();
-        _player = FindAnyObjectByType<PlayerInventory>();
+        _player = FindAnyObjectByType<Player>();
         _aiPath = _player.GetComponent<AIPath>();
         _playerDestinationSetter = _player.GetComponent<AIDestinationSetter>();
         
