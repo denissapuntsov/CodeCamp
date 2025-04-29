@@ -18,6 +18,17 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     
     // FSM
     private TileBaseState _currentState;
+
+    public TileBaseState CurrentState
+    {
+        get => _currentState;
+
+        set
+        {
+            _currentState = value;
+            _currentState.EnterState(this);
+        }
+    }
     
     public TileWalkState WalkState = new TileWalkState();
     public TileHoldState HoldState = new TileHoldState();
@@ -54,12 +65,11 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         player.activeTile = hasPlayer ? this : null;
     }
 
-    public void SwitchState(TileBaseState state)
+    /*public void SwitchState(TileBaseState state)
     {
         _currentState = state;
-        Debug.Log($"entered {_currentState}");
-        state.EnterState(this);
-    }
+        _currentState.EnterState(this);
+    }*/
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -18,24 +18,40 @@ public class Player : MonoBehaviour, IPointerClickHandler
     [Header("Transforms")]
     [SerializeField] private Transform headGearParent;
 
-    private Popup _popup;
+    public Popup popup;
     private Collider[] _hitColliders = new Collider[18];
     private List<Tile> _hitTiles;
     
     // FSM
+
     private PlayerBaseState _currentState;
+    public PlayerBaseState CurrentState
+    {
+        get => _currentState;
+
+        set
+        {
+            _currentState = value;
+            _currentState.EnterState(player: this);
+        }
+    }
     
     public PlayerIdleState IdleState = new PlayerIdleState();
-    /*public PlayerWalkState walkState = new PlayerWalkState();
-    public PlayerPlaceState placeState = new PlayerPlaceState();*/
+    //public PlayerWalkState walkState = new PlayerWalkState();
+    public PlayerPlaceState PlaceState = new PlayerPlaceState();
 
     private void Start()
     {
-        _popup = GetComponentInChildren<Popup>();
+        popup = GetComponentInChildren<Popup>();
         _hitTiles = new List<Tile>();
 
-        _currentState = IdleState;
-        _currentState.EnterState(this);
+        CurrentState = IdleState;
+        //CurrentState.EnterState(this);
+    }
+
+    private void Update()
+    {
+        CurrentState.UpdateState(player:this);
     }
 
     public void PutOnHeadgear(GameObject item)
@@ -72,8 +88,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         headgear.transform.SetParent(p: tileTarget.parent.transform);
         headgear = null;
         
-        foreach (Tile tile in _hitTiles) tile.SwitchState(tile.WalkState);
-        tileTarget.SwitchState(tileTarget.HoldState);
+        foreach (Tile tile in _hitTiles) tile.CurrentState = tile.WalkState;
+        tileTarget.CurrentState = tileTarget.HoldState;
+        CurrentState = IdleState;
     }
     
     public void OnPointerClick(PointerEventData eventData)
@@ -87,19 +104,21 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void OnMouseOver()
     {
-        if (!headgear) return;
-        _popup.Appear();
+        CurrentState.OnMouseOver(this);
     }
 
     private void OnMouseExit()
     {
-        if(!headgear) return;
-        _popup.Disappear();
+        CurrentState.OnMouseExit(this);
     }
 
     private void HandleLeftClick()
     {
-        if (!headgear) return;
+        CurrentState.HandleLeftClick(this);
+    }
+
+    public void CalculatePlacementTiles()
+    {
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
@@ -109,28 +128,21 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Tile tile = _hitColliders[i].GetComponent<Tile>();
             if (!tile) continue;
-            
-            if (!tile.hasPlayer && !tile.currentInteractable)
-            {
-                _hitTiles.Add(tile);
-            }
+            if (!tile.hasPlayer && !tile.currentInteractable) _hitTiles.Add(tile);
         }
         
-        foreach (Tile tile in _hitTiles)
-        {
-            tile.SwitchState(tile.PlaceState);
-        }
+        foreach (Tile tile in _hitTiles) tile.CurrentState = tile.PlaceState;
     }
-    
+
+    public void ClearPlacementTiles()
+    {
+        foreach (Tile tile in _hitTiles) tile.CurrentState = tile.WalkState;
+        CurrentState = IdleState;
+    }
+
     private void ResetTransform(GameObject obj)
     { 
         obj.transform.localPosition = Vector3.zero; 
         obj.transform.localRotation = Quaternion.identity;
-    }
-
-    public void SwitchState(PlayerBaseState newState)
-    {
-        _currentState = newState;
-        newState.EnterState(this);
     }
 }

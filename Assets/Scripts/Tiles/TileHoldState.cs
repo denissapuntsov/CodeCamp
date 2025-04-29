@@ -43,7 +43,7 @@ public class TileHoldState : TileBaseState
                 if (tile.player.headgear) return;
                 tile.player.PutOnHeadgear(tile.currentInteractable.gameObject);
                 tile.currentInteractable = null;
-                tile.SwitchState(tile.WalkState);
+                tile.CurrentState = tile.WalkState;
                 break;
         }
     }

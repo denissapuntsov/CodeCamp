@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerWalkState : PlayerBaseState
 {
     public override void EnterState(Player player)
     {
-        player.gameObject.name = player.headgear ? $"Player (Idle) ({player.headgear.name})" : "Player (Idle)";
+        player.gameObject.name = "Player (Walking)";
     }
 
     public override void UpdateState(Player player)
@@ -14,22 +14,17 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void OnMouseOver(Player player)
     {
-        if (player.headgear) player.popup.Appear();
+        throw new System.NotImplementedException();
     }
 
     public override void OnMouseExit(Player player)
     {
-        if (player.headgear) player.popup.Disappear();
+        throw new System.NotImplementedException();
     }
 
     public override void HandleLeftClick(Player player)
     {
-        if (player.headgear)
-        {
-            player.popup.Disappear();
-            player.CalculatePlacementTiles();
-            player.CurrentState = player.PlaceState;
-        }
+        throw new System.NotImplementedException();
     }
 
     public override void HandleKeyboardInput(Player player)
