@@ -1,21 +1,32 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Dictionary : MonoBehaviour
 {
-    [SerializeField] private List<InteractionData> interactions;
+    [SerializeField] private List<string> words;
+    
+    private List<InteractionData> _interactions;
+    public List<string> Words => words;
 
-    private List<string> _words;
-    public List<string> Words => _words;
+    private void Awake()
+    {
+        _interactions = new List<InteractionData>();
+        foreach (var data in Resources.LoadAll<InteractionData>(path: "InteractionData"))
+        {
+            _interactions.Add(data);
+        }
+    }
 
     private void Start()
     {
-        _words = interactions.Select(x => x.id).ToList();
+        words = _interactions.Select(x => x.id).ToList();
     }
 
     public InteractionData GetInteractionByName(string nameToMatch)
     {
-        return interactions.Find(interaction => interaction.id == nameToMatch.ToLower());
+        return _interactions.Find(interaction => interaction.id == nameToMatch.ToLower());
     }
 }

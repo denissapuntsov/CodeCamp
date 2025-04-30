@@ -14,17 +14,18 @@ public class TilePlaceState : TileBaseState
      
     public override void OnMouseEnter(Tile tile)
     {
-        return;
+        tile.selection.SetActive(true);
     }
 
     public override void OnMouseExit(Tile tile)
     {
-        return;
+        tile.selection.SetActive(false);
     }
 
     public override void HandleLeftClick(Tile tile)
     {
         Debug.Log("Tile in placeState clicked");
+        tile.selection.SetActive(false);
         tile.player.RemoveHeadgear(tile);
     }
 

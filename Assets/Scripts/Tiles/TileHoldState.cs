@@ -7,6 +7,7 @@ public class TileHoldState : TileBaseState
     {
         tile.currentInteractable = tile.parent.GetComponentInChildren<InteractableFramework>();
         tile.parent.name = $"Tile ({tile.currentInteractable.name})";
+        tile.SetColliderSize("Item");
     }
      
     public override void UpdateState(Tile tile)
@@ -16,16 +17,19 @@ public class TileHoldState : TileBaseState
      
     public override void OnMouseEnter(Tile tile)
     {
+        tile.selection.SetActive(true);
         tile.currentInteractable.DisplayPopup();
     }
 
     public override void OnMouseExit(Tile tile)
     {
+        tile.selection.SetActive(false);
         tile.currentInteractable.RemovePopup();
     }
 
     public override void HandleLeftClick(Tile tile)
     {
+        tile.selection.SetActive(false);
         tile.currentInteractable.HandleLeftClick();
     }
 

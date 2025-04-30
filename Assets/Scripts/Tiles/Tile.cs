@@ -1,18 +1,16 @@
-using System;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject parent;
+    public GameObject parent, selection;
     
     public bool hasPlayer;
     public Player player;
     public InteractableFramework currentInteractable;
 
-    private MeshCollider _collider;
+    private BoxCollider _collider;
     public AIDestinationSetter aiDestinationSetter;
     private MenuManager _menuManager;
     
@@ -38,7 +36,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         player = FindAnyObjectByType<Player>();
         aiDestinationSetter = player.GetComponent<AIDestinationSetter>();
         _menuManager = FindAnyObjectByType<MenuManager>();
-        _collider = GetComponent<MeshCollider>();
+        _collider = GetComponent<BoxCollider>();
         
         currentInteractable = parent.GetComponentInChildren<InteractableFramework>();
 
@@ -72,7 +70,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                if (aiDestinationSetter.target) return;
                 _currentState.HandleLeftClick(this);
                 break;
             
@@ -94,5 +91,20 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         if (_menuManager.activeMenuGroup) return;
         if (aiDestinationSetter.target) return;
         _currentState.OnMouseExit(this);
+    }
+
+    public void SetColliderSize(string colliderMode)
+    {
+        switch (colliderMode)
+        {
+            case "Item":
+                _collider.center = new Vector3(0, 5, 0);
+                _collider.size = new Vector3(1f, 8, 1f);
+                break;
+            case "Empty":
+                _collider.center = new Vector3(0, 2, 0);
+                _collider.size = new Vector3(1.3f, 2, 1.3f);
+                break;
+        }
     }
 }

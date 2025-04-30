@@ -74,7 +74,11 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
         // approach if far away
         if (!_isWithinPlayerRange)
         {
-            _playerDestinationSetter.target = gameObject.transform;
+            //_playerDestinationSetter.target = gameObject.transform;
+            _player.distanceThreshold = 5.1f;
+            _player.aiPath.destination = transform.position;
+            _player.CurrentState = _player.WalkState;
+            
             _popup.Disappear(0.15f);
             return;
         }

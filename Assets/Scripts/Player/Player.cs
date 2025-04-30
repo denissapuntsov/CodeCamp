@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Pathfinding;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, IPointerClickHandler
 {
     [Header("Level Position")] 
     public Tile activeTile;
-    [SerializeField] private GameObject positioningCube;
 
     [Header("Item Slots")]
     public GameObject headgear;
@@ -18,7 +16,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     [Header("Transforms")]
     [SerializeField] private Transform headGearParent;
 
-    public Popup popup;
+    [System.NonSerialized] public Popup popup;
+    [System.NonSerialized] public AIPath aiPath;
+    [System.NonSerialized] public float distanceThreshold;
+    
     private Collider[] _hitColliders = new Collider[18];
     private List<Tile> _hitTiles;
     
@@ -36,13 +37,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
     
     public PlayerIdleState IdleState = new PlayerIdleState();
-    //public PlayerWalkState walkState = new PlayerWalkState();
+    public PlayerWalkState WalkState = new PlayerWalkState();
     public PlayerPlaceState PlaceState = new PlayerPlaceState();
 
     private void Start()
     {
         popup = GetComponentInChildren<Popup>();
         _hitTiles = new List<Tile>();
+        aiPath = GetComponent<AIPath>();
 
         CurrentState = IdleState;
         //CurrentState.EnterState(this);
@@ -68,6 +70,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
         headgear = item;
+        
+        // reset player destination to current position
+        aiPath.destination = transform.position;
     }
 
     public void RemoveHeadgear(Tile tileTarget)
@@ -121,7 +126,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
-        int collidersHit = Physics.OverlapSphereNonAlloc(transform.position, 5f, _hitColliders, LayerMask.GetMask("Tile"));
+        int collidersHit = Physics.OverlapSphereNonAlloc(transform.position, 2.6f, _hitColliders, LayerMask.GetMask("Tile"));
 
         for (int i = 0; i < collidersHit; i++)
         {

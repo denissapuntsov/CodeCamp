@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState(Player player)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void OnMouseOver(Player player)
@@ -34,6 +34,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void HandleKeyboardInput(Player player)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

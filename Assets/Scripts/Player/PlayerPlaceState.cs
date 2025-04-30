@@ -14,17 +14,17 @@ public class PlayerPlaceState : PlayerBaseState
 
     public override void OnMouseOver(Player player)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void OnMouseExit(Player player)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void HandleLeftClick(Player player)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void HandleKeyboardInput(Player player)
