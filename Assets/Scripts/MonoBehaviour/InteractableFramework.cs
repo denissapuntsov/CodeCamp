@@ -11,7 +11,7 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private Popup _popup;
-    private bool _isWithinPlayerRange;     
+    public bool isWithinPlayerRange;     
     private AIDestinationSetter _playerDestinationSetter;
     private Player _player;
     private AIPath _aiPath;
@@ -72,7 +72,7 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
     public void HandleLeftClick()
     {
         // approach if far away
-        if (!_isWithinPlayerRange)
+        if (!isWithinPlayerRange)
         {
             //_playerDestinationSetter.target = gameObject.transform;
             _player.distanceThreshold = 5.1f;
@@ -91,11 +91,11 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
     
     public void DisplayPopup()
     {
-        string popupMode = _isWithinPlayerRange ? "Use" : "Approach";
+        string popupMode = isWithinPlayerRange ? "Use" : "Approach";
         _popup.UpdateSelection(popupMode);
         
         _popup.Appear();
-        if (!_isWithinPlayerRange) return;
+        if (!isWithinPlayerRange) return;
         _popup.SetUseText(activeInteractionData.leftMouseText, activeInteractionData.rightMouseText);
     }
 
@@ -106,7 +106,7 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
 
     private void Update()
     {
-        _isWithinPlayerRange = Vector2.Distance(
+        isWithinPlayerRange = Vector2.Distance(
             new Vector2(_player.transform.position.x, 
                         _player.transform.position.z),
             new Vector2(transform.position.x, 

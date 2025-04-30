@@ -14,6 +14,7 @@ public class InteractionData : ScriptableObject
 public enum Type
 {
     None,
-    Clothes,
-    Vehicle
+    Headgear,
+    Traversal,
+    Special
 };

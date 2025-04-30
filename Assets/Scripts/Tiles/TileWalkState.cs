@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Security.Principal;
-using UnityEngine;
-
 public class TileWalkState : TileBaseState
  {
      public override void EnterState(Tile tile)

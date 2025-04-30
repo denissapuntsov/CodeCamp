@@ -1,6 +1,3 @@
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class TileHoldState : TileBaseState
 {
     public override void EnterState(Tile tile)
@@ -17,12 +14,14 @@ public class TileHoldState : TileBaseState
      
     public override void OnMouseEnter(Tile tile)
     {
+        if (tile.player.CurrentState != tile.player.IdleState) return;
         tile.selection.SetActive(true);
         tile.currentInteractable.DisplayPopup();
     }
 
     public override void OnMouseExit(Tile tile)
     {
+        if (tile.player.CurrentState != tile.player.IdleState) return;
         tile.selection.SetActive(false);
         tile.currentInteractable.RemovePopup();
     }
@@ -35,6 +34,7 @@ public class TileHoldState : TileBaseState
 
     public override void HandleRightClick(Tile tile)
     {
+        if (!tile.currentInteractable.isWithinPlayerRange) return;
         UseHeldInteractableByType(tile);
     }
 
@@ -43,11 +43,15 @@ public class TileHoldState : TileBaseState
         tile.currentInteractable.RemovePopup();
         switch (tile.currentInteractable.activeInteractionData.interactionType)
         {
-            case Type.Clothes:
+            case Type.Headgear:
                 if (tile.player.headgear) return;
                 tile.player.PutOnHeadgear(tile.currentInteractable.gameObject);
                 tile.currentInteractable = null;
                 tile.CurrentState = tile.WalkState;
+                break;
+            case Type.Traversal:
+                tile.player.EnterTraversal(tile.currentInteractable.gameObject);
+                tile.selection.SetActive(false);
                 break;
         }
     }

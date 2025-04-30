@@ -87,6 +87,11 @@ public class Popup : MonoBehaviour
         hasAppeared = false;
     }
 
+    public void SetPlayerText(string text)
+    {
+        mousePopups[0].text = text;
+    }
+
     public void SetUseText(string leftMousePopupText, string rightMousePopupText)
     {
         mousePopups[1].text = leftMousePopupText;

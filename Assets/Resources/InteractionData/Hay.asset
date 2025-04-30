@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hay
   m_EditorClassIdentifier: 
   id: hay
-  interactionType: 0
+  interactionType: 2
   prefab: {fileID: 6285747443236201197, guid: 5a4a0b1d030f9c24cbeb52acca448d04, type: 3}
   leftMouseText: Change
   rightMouseText: Climb

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Pathfinding;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -39,6 +37,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public PlayerIdleState IdleState = new PlayerIdleState();
     public PlayerWalkState WalkState = new PlayerWalkState();
     public PlayerPlaceState PlaceState = new PlayerPlaceState();
+    public PlayerTraverseState TraverseState = new PlayerTraverseState();
 
     private void Start()
     {
@@ -47,7 +46,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         aiPath = GetComponent<AIPath>();
 
         CurrentState = IdleState;
-        //CurrentState.EnterState(this);
     }
 
     private void Update()
@@ -55,6 +53,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentState.UpdateState(player:this);
     }
 
+    // Headgear
     public void PutOnHeadgear(GameObject item)
     {
         // turn off trigger for tiles and collider for pointers
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
         
         item.transform.SetParent(headGearParent, false);
-        item.GetComponent<Rigidbody>().isKinematic = true;
+        //item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
         headgear = item;
         
@@ -80,7 +79,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (!headgear) return;
 
         headgear.transform.SetParent(p: null);
-        headgear.GetComponent<Rigidbody>().isKinematic = false;
+        //headgear.GetComponent<Rigidbody>().isKinematic = false;
         ResetTransform(headgear);
         
         if (headgear.GetComponentsInChildren<Collider>() != null)
@@ -95,6 +94,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
         foreach (Tile tile in _hitTiles) tile.CurrentState = tile.WalkState;
         tileTarget.CurrentState = tileTarget.HoldState;
         CurrentState = IdleState;
+    }
+    
+    // Traversal
+
+    public void EnterTraversal(GameObject item)
+    {
+        aiPath.destination = transform.position;
+        Traversal traversal = item.GetComponentInChildren<Traversal>();
+        transform.position = traversal.playerTransform.position;
+        aiPath.destination = transform.position;
+        CurrentState = TraverseState;
     }
     
     public void OnPointerClick(PointerEventData eventData)
@@ -126,11 +136,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
-        int collidersHit = Physics.OverlapSphereNonAlloc(transform.position, 2.6f, _hitColliders, LayerMask.GetMask("Tile"));
+        int collidersHit = Physics.OverlapSphereNonAlloc(transform.position, 2.6f, _hitColliders /*LayerMask.GetMask("TileTrigger")*/);
 
         for (int i = 0; i < collidersHit; i++)
         {
-            Tile tile = _hitColliders[i].GetComponent<Tile>();
+            Tile tile = _hitColliders[i].GetComponentInChildren<Tile>();
             if (!tile) continue;
             if (!tile.hasPlayer && !tile.currentInteractable) _hitTiles.Add(tile);
         }
@@ -148,5 +158,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     { 
         obj.transform.localPosition = Vector3.zero; 
         obj.transform.localRotation = Quaternion.identity;
+    }
+
+    public void ShowPopup(string text)
+    {
+        popup.SetPlayerText(text);
+        popup.Appear();
     }
 }

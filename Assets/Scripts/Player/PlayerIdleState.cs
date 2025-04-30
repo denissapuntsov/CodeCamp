@@ -14,7 +14,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void OnMouseOver(Player player)
     {
-        if (player.headgear) player.popup.Appear();
+        if (player.headgear) player.ShowPopup("Remove");
     }
 
     public override void OnMouseExit(Player player)

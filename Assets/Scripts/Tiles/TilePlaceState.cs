@@ -9,7 +9,7 @@ public class TilePlaceState : TileBaseState
      
     public override void UpdateState(Tile tile)
     {
-        return;
+        
     }
      
     public override void OnMouseEnter(Tile tile)
@@ -31,6 +31,6 @@ public class TilePlaceState : TileBaseState
 
     public override void HandleRightClick(Tile tile)
     {
-        return;
+        
     }
 }
