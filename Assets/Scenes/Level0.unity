@@ -1898,6 +1898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteractionData: {fileID: 11400000, guid: 3f3596a4693d526408ca2797d1f0552b, type: 2}
+  interactionManager: {fileID: 0}
   isWithinPlayerRange: 0
 --- !u!54 &474142452
 Rigidbody:
@@ -6305,6 +6306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeInteractionData: {fileID: 11400000, guid: 0553f9de37b9cbe4d8c7c819b90d931a, type: 2}
+  interactionManager: {fileID: 0}
   isWithinPlayerRange: 0
 --- !u!54 &1697206898
 Rigidbody:
