@@ -1,3 +1,5 @@
+using Pathfinding;
+
 public class TileHoldState : TileBaseState
 {
     public override void EnterState(Tile tile)
@@ -28,8 +30,21 @@ public class TileHoldState : TileBaseState
 
     public override void HandleLeftClick(Tile tile)
     {
+        if (tile.player.CurrentState != tile.player.IdleState) return;
         tile.selection.SetActive(false);
-        tile.currentInteractable.HandleLeftClick();
+        tile.currentInteractable.RemovePopup();
+        
+        if (!tile.currentInteractable.isWithinPlayerRange)
+        {
+            Path p = tile.player.seeker.StartPath(tile.player.transform.position, tile.transform.position, p =>
+            {
+                tile.player.aiPath.SetPath(p);
+                tile.player.CurrentState = tile.player.WalkState;
+            });
+            return;
+        }
+        tile.currentInteractable.interactionManager.lastActiveFramework = tile.currentInteractable;
+        tile.currentInteractable.interactionManager.SetActiveInteraction(tile.currentInteractable.activeInteractionData);
     }
 
     public override void HandleRightClick(Tile tile)

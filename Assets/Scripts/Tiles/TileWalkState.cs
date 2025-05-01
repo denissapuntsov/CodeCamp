@@ -1,3 +1,6 @@
+using Pathfinding;
+using UnityEngine;
+
 public class TileWalkState : TileBaseState
  {
      public override void EnterState(Tile tile)
@@ -26,10 +29,18 @@ public class TileWalkState : TileBaseState
      {
          if (tile.player.CurrentState != tile.player.IdleState) return;
          tile.selection.SetActive(false);
-         tile.player.distanceThreshold = 2.5f;
+         
+         Path p = tile.player.seeker.StartPath(tile.player.transform.position, tile.transform.position, p =>
+         {
+             Debug.Log("Calculated path");
+             tile.player.aiPath.SetPath(p);
+             tile.player.CurrentState = tile.player.WalkState;
+             tile.selection.SetActive(false);
+         });
+         
+         /*tile.player.distanceThreshold = 2.5f;
          tile.player.aiPath.destination = tile.transform.position;
-         tile.player.CurrentState = tile.player.WalkState;
-         //tile.aiDestinationSetter.target = tile.transform;
+         tile.player.CurrentState = tile.player.WalkState;#1#*/
      }
 
      public override void HandleRightClick(Tile tile)

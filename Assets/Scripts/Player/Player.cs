@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [System.NonSerialized] public Popup popup;
     [System.NonSerialized] public AIPath aiPath;
+    [System.NonSerialized] public Seeker seeker;
     [System.NonSerialized] public float distanceThreshold;
     
     private Collider[] _hitColliders = new Collider[18];
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         popup = GetComponentInChildren<Popup>();
         _hitTiles = new List<Tile>();
         aiPath = GetComponent<AIPath>();
-
+        seeker = GetComponent<Seeker>();
         CurrentState = IdleState;
     }
 

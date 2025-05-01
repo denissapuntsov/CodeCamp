@@ -2,12 +2,12 @@ using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
+public class InteractableFramework : MonoBehaviour
 {
     public InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
-    private WordInteractionManager _interactionManager;
+    public WordInteractionManager interactionManager;
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private Popup _popup;
@@ -25,20 +25,13 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
         if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         
-        /* REDUNDANT: sets a trigger for cursor and player detection
-        if (!GetComponent<BoxCollider>()) gameObject.AddComponent<BoxCollider>();
-        _collider = GetComponent<BoxCollider>();
-        _collider = gameObject.AddComponent<BoxCollider>();
-        _collider.isTrigger = true;
-        _collider.size = new Vector3(6, 6, 6);*/
-        
         // RequiresComponent(typeof(DynamicObstacle))
         if (!GetComponent<DynamicObstacle>()) gameObject.AddComponent<DynamicObstacle>();
     }
     
     private void Start()
     {
-        _interactionManager = WordInteractionManager.Instance;
+        interactionManager = WordInteractionManager.Instance;
         _menuManager = MenuManager.Instance;
         _popup = GetComponentInChildren<Popup>();
         _player = FindAnyObjectByType<Player>();
@@ -48,12 +41,6 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
         _childInteractable = transform.GetChild(0).gameObject;
         
         ReplaceChildInteractable();
-        
-        // As an example, use the bounding box from the attached collider
-        /*Bounds bounds = GetComponent<Collider>().bounds;
-        var guo = new GraphUpdateObject(bounds);
-        guo.updatePhysics = true;
-        AstarPath.active.UpdateGraphs(guo);*/
     }
 
     private void ReplaceChildInteractable()
@@ -67,26 +54,6 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
     {
         activeInteractionData = interactionData;
         ReplaceChildInteractable();
-    }
-
-    public void HandleLeftClick()
-    {
-        // approach if far away
-        if (!isWithinPlayerRange)
-        {
-            //_playerDestinationSetter.target = gameObject.transform;
-            _player.distanceThreshold = 5.1f;
-            _player.aiPath.destination = transform.position;
-            _player.CurrentState = _player.WalkState;
-            
-            _popup.Disappear(0.15f);
-            return;
-        }
-                
-        // enter word interaction menu if close
-        _popup.Disappear(0.15f);
-        _interactionManager.lastActiveFramework = this;
-        _interactionManager.SetActiveInteraction(activeInteractionData);
     }
     
     public void DisplayPopup()
@@ -115,7 +82,6 @@ public class InteractableFramework : MonoBehaviour//, IPointerClickHandler
         
         if (_aiPath.reachedEndOfPath)
         {
-            Debug.Log("reached end of path");
             _playerDestinationSetter.target = null;
         }
     }

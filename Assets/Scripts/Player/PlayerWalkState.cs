@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class PlayerWalkState : PlayerBaseState
@@ -9,19 +10,28 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void UpdateState(Player player)
     {
-        // if within a distance to the last node, disable rotation of pathfinding, transition to idle state
+        /*// if within a distance to the last node, disable rotation of pathfinding, transition to idle state
         // switch (tileState):
         //  case WalkState => 2.5
         //  case HoldState => 5.1
-
-        if (Vector3.Distance(player.transform.position, player.aiPath.destination) <= player.distanceThreshold)
+        /*if (Vector3.Distance(player.transform.position, player.aiPath.endOfPath) <= player.distanceThreshold)
         {
+            Debug.Log(player.aiPath.endOfPath);
+            Debug.Log("Reached threshold");
             player.aiPath.enableRotation = false;
             player.CurrentState = player.IdleState;
             return;
-        }
+        }#1#
 
-        player.aiPath.enableRotation = true;
+        player.seeker.StartPath(player.transform.position, )
+
+        player.aiPath.enableRotation = true;*/
+
+        if (player.aiPath.reachedEndOfPath)
+        {
+            Debug.Log("reached destination");
+            player.CurrentState = player.IdleState;
+        }
     }
 
     public override void OnMouseOver(Player player)

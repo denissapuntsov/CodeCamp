@@ -1824,7 +1824,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  endReachedDistance: 2.5
+  endReachedDistance: 0.5
   whenCloseToDestination: 1
   rvoDensityBehavior:
     enabled: 1
