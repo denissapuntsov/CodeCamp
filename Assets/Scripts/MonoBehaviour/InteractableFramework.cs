@@ -1,4 +1,5 @@
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,7 @@ public class InteractableFramework : MonoBehaviour
     public InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
-    public WordInteractionManager interactionManager;
+    [DoNotSerialize] public WordInteractionManager interactionManager;
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private Popup _popup;
