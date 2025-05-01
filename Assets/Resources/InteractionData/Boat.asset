@@ -15,5 +15,5 @@ MonoBehaviour:
   id: boat
   interactionType: 2
   prefab: {fileID: 329947234073499131, guid: b1efe78e8721b4d909171967e1759605, type: 3}
-  leftMouseText: Change
-  rightMouseText: Use
+  leftMouseText: Use
+  rightMouseText: Change

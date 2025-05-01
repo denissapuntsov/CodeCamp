@@ -112,7 +112,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("pressed left click on player");
             HandleLeftClick();
         }
     }

@@ -15,5 +15,5 @@ MonoBehaviour:
   id: boot
   interactionType: 1
   prefab: {fileID: 6482172160063749011, guid: 8216c69b9e0ee4702a5cf22f313d850b, type: 3}
-  leftMouseText: Change
-  rightMouseText: Wear
+  leftMouseText: Wear
+  rightMouseText: Change

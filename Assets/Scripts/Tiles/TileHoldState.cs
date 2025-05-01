@@ -39,14 +39,17 @@ public class TileHoldState : TileBaseState
             tile.SetNewPath();
             return;
         }
-        tile.currentInteractable.interactionManager.lastActiveFramework = tile.currentInteractable;
-        tile.currentInteractable.interactionManager.SetActiveInteraction(tile.currentInteractable.activeInteractionData);
+        UseHeldInteractableByType(tile);
     }
 
     public override void HandleRightClick(Tile tile)
     {
         if (!tile.currentInteractable.isWithinPlayerRange) return;
-        UseHeldInteractableByType(tile);
+        tile.selection.SetActive(false);
+        tile.currentInteractable.RemovePopup();
+        
+        tile.currentInteractable.interactionManager.lastActiveFramework = tile.currentInteractable;
+        tile.currentInteractable.interactionManager.SetActiveInteraction(tile.currentInteractable.activeInteractionData);
     }
 
     private void UseHeldInteractableByType(Tile tile)

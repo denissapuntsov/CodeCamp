@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject parent, selection;
+    public GameObject parent, selection, cross;
     
     public bool hasPlayer;
     public Player player;
