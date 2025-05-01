@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         aiPath.destination = transform.position;
         Traversal traversal = item.GetComponentInChildren<Traversal>();
-        transform.position = traversal.playerTransform.position;
+        traversal.Use();
         aiPath.destination = transform.position;
         CurrentState = TraverseState;
     }
@@ -137,7 +137,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         _hitTiles.Clear();
 
         //Collider[] hitColliders = new Collider[8];
-        int collidersHit = Physics.OverlapSphereNonAlloc(transform.position, 2.6f, _hitColliders /*LayerMask.GetMask("TileTrigger")*/);
+        int collidersHit = Physics.OverlapSphereNonAlloc(
+            position: transform.position, 
+            radius: 2.6f, 
+            results: _hitColliders);
 
         for (int i = 0; i < collidersHit; i++)
         {

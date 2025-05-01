@@ -57,9 +57,9 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             new Vector2(transform.position.x, 
                 transform.position.z)
         ) <= 0.5f;
-
+        
         _collider.enabled = !hasPlayer;
-        player.activeTile = hasPlayer ? this : null;
+        if (hasPlayer) { player.activeTile = this;}
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -106,5 +106,14 @@ public class Tile : MonoBehaviour, IPointerClickHandler
                 _collider.size = new Vector3(1.3f, 2, 1.3f);
                 break;
         }
+    }
+
+    public void SetNewPath()
+    {
+        Path p = player.seeker.StartPath(player.transform.position, transform.position, p =>
+        {
+            player.aiPath.SetPath(p);
+            player.CurrentState = player.WalkState;
+        });
     }
 }

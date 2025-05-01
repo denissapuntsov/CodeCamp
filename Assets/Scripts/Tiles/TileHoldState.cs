@@ -36,11 +36,7 @@ public class TileHoldState : TileBaseState
         
         if (!tile.currentInteractable.isWithinPlayerRange)
         {
-            Path p = tile.player.seeker.StartPath(tile.player.transform.position, tile.transform.position, p =>
-            {
-                tile.player.aiPath.SetPath(p);
-                tile.player.CurrentState = tile.player.WalkState;
-            });
+            tile.SetNewPath();
             return;
         }
         tile.currentInteractable.interactionManager.lastActiveFramework = tile.currentInteractable;

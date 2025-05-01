@@ -214,7 +214,6 @@ public class WordInteractionManager : MonoBehaviour
         
         foreach (UILetter child in gridChildren)
         {
-            Debug.Log(child.gameObject.name);
             Destroy(child.gameObject);
         }
     }
