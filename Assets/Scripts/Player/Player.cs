@@ -65,6 +65,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 c.enabled = false;
             }
         }
+
+        item.GetComponentInChildren<Light>().enabled = false;
         
         item.transform.SetParent(headGearParent, false);
         //item.GetComponent<Rigidbody>().isKinematic = true;
@@ -87,6 +89,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             foreach (Collider c in headgear.GetComponentsInChildren<Collider>()) c.enabled = true;
         }
+        
+        headgear.GetComponentInChildren<Light>().enabled = true;
         
         headgear.transform.position = tileTarget.transform.position;
         headgear.transform.SetParent(p: tileTarget.parent.transform);
