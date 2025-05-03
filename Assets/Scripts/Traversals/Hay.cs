@@ -29,7 +29,6 @@ public class Hay : Traversal
         _mode = _entryPointPlayerPosition.y < transform.position.y ? "up" : "down";
         
         linkedTile = ScanForAvailableTile(_mode);
-        Debug.Log(linkedTile);
         if (linkedTile == null) 
         {
             StartCoroutine(SendPlayerBack());
@@ -54,7 +53,6 @@ public class Hay : Traversal
         }
         
         Tile foundTile = null;
-        Debug.Log($"Scanning for available tile, mode: {mode}");
         int collidersHit = Physics.OverlapBoxNonAlloc(
             center: transform.position + new Vector3(0, centerY, 0), 
             halfExtents: new Vector3(1f, 1f, 7f), _hitColliders, 
