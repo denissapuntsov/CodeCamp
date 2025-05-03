@@ -4,19 +4,22 @@ using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Popup : MonoBehaviour
 {
-    [SerializeField] private List<TextMeshProUGUI> mousePopups;
+    [SerializeField] private List<GameObject> popupPanels;
     private List<Vector3> _defaultPopupPositions, _defaultPopupScales;
-    private Color _defaultPopupColor;
+    private Color _defaultPopupColor, _defaultTextColor;
     public bool hasAppeared = false;
     
     private void Start()
     {
-        _defaultPopupPositions = mousePopups.Select(mousePopup => mousePopup.transform.localPosition).ToList();
-        _defaultPopupScales = mousePopups.Select(mousePopup => mousePopup.transform.localScale).ToList();
-        _defaultPopupColor = Color.white;
+        _defaultPopupPositions = popupPanels.Select(mousePopup => mousePopup.transform.localPosition).ToList();
+        _defaultPopupScales = popupPanels.Select(mousePopup => mousePopup.transform.localScale).ToList();
+        _defaultTextColor = Color.white;
+        _defaultPopupColor = Color.black;
         
         ResetPositionsToZero();
     }
@@ -28,15 +31,15 @@ public class Popup : MonoBehaviour
 
     public void UpdateSelection(string mode)
     {
-        foreach (TextMeshProUGUI mousePopup in mousePopups) mousePopup.gameObject.SetActive(false);
+        foreach (GameObject popupPanel in popupPanels) popupPanel.SetActive(false);
         switch (mode)
         {
             case "Approach":
-                mousePopups[0].gameObject.SetActive(true);
+                popupPanels[0].SetActive(true);
                 break;
             case "Use":
-                mousePopups[1].gameObject.SetActive(true);
-                mousePopups[2].gameObject.SetActive(true);
+                popupPanels[1].SetActive(true);
+                popupPanels[2].SetActive(true);
                 break;
         }
     }
@@ -53,17 +56,18 @@ public class Popup : MonoBehaviour
 
         ResetPositionsToZero();
         
-        foreach (TextMeshProUGUI popup in mousePopups)
+        foreach (GameObject popup in popupPanels)
         {
-            popup.transform.DOLocalMove(_defaultPopupPositions[mousePopups.IndexOf(popup)], duration);
-            popup.transform.DOScale(_defaultPopupScales[mousePopups.IndexOf(popup)], duration);
-            popup.GetComponent<TextMeshProUGUI>().DOColor(_defaultPopupColor, duration);
+            popup.transform.DOLocalMove(_defaultPopupPositions[popupPanels.IndexOf(popup)], duration);
+            popup.transform.DOScale(_defaultPopupScales[popupPanels.IndexOf(popup)], duration);
+            popup.GetComponentInChildren<Image>().DOColor(_defaultPopupColor, duration);
+            popup.GetComponentInChildren<TextMeshProUGUI>().DOColor(_defaultTextColor, duration);
         }
     }
 
     private void ResetPositionsToZero()
     {
-        foreach (TextMeshProUGUI popup in mousePopups)
+        foreach (GameObject popup in popupPanels)
         {
             popup.transform.localPosition = Vector3.zero;
             popup.transform.localScale = Vector3.zero;
@@ -78,23 +82,24 @@ public class Popup : MonoBehaviour
     public void Disappear(float duration)
     {
         
-        foreach (TextMeshProUGUI popup in mousePopups)
+        foreach (GameObject popup in popupPanels)
         {
             popup.transform.DOLocalMove(Vector3.zero, duration);
             popup.transform.DOScale(Vector3.zero, duration);
-            popup.GetComponent<TextMeshProUGUI>().DOColor(Color.clear, duration);
+            popup.GetComponentInChildren<Image>().DOColor(Color.clear, duration);
+            popup.GetComponentInChildren<TextMeshProUGUI>().DOColor(Color.clear, duration);
         }
         hasAppeared = false;
     }
 
     public void SetPlayerText(string text)
     {
-        mousePopups[0].text = text;
+        popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
 
     public void SetUseText(string leftMousePopupText, string rightMousePopupText)
     {
-        mousePopups[1].text = leftMousePopupText;
-        mousePopups[2].text = rightMousePopupText;
+        popupPanels[1].GetComponentInChildren<TextMeshProUGUI>().text = leftMousePopupText;
+        popupPanels[2].GetComponentInChildren<TextMeshProUGUI>().text = rightMousePopupText;
     }
 }
