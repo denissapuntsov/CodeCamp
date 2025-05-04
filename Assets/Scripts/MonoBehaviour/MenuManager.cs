@@ -1,10 +1,10 @@
-using System;
+using System;using System.Linq;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuParent;
-    public GameObject activeMenuGroup;
+    public Menu activeMenuGroup, pauseMenuGroup;
 
     public static MenuManager Instance;
 
@@ -22,7 +22,12 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseActiveMenu();
+            if (activeMenuGroup != null)
+            {
+                CloseActiveMenu();
+                return;
+            }
+            SetMenu(pauseMenuGroup);
         }
     }
     
@@ -34,15 +39,15 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void SetMenu(GameObject menuGroup)
+    public void SetMenu(Menu menuGroup)
     {
         menuParent.SetActive(true);
         
-        if (activeMenuGroup) return;
+        //if (activeMenuGroup) return;
         
         activeMenuGroup = menuGroup;
         Clear();
-        activeMenuGroup.SetActive(true);
+        activeMenuGroup.gameObject.SetActive(true);
     }
     
     public void CloseActiveMenu()
@@ -52,7 +57,7 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
-        activeMenuGroup.SetActive(false);
+        activeMenuGroup.CloseMenu();
         activeMenuGroup = null;
     }
 }

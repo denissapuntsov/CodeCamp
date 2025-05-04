@@ -16,7 +16,7 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private List<Neighbour> neighbours;
     
     [Header("UI Elements")]
-    [SerializeField] private GameObject interactionUIGroup;
+    [SerializeField] private Menu interactionUIGroup;
     [SerializeField] private GridLayoutGroup wordGrid;
     [SerializeField] private GameObject letterButton, inventoryLetter;
     //public GameObject usePopupPrefab, approachPopupPrefab;

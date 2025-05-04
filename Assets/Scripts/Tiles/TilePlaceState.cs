@@ -26,7 +26,6 @@ public class TilePlaceState : TileBaseState
 
     public override void HandleLeftClick(Tile tile)
     {
-        Debug.Log("Tile in placeState clicked");
         tile.selection.SetActive(false);
         tile.cross.SetActive(false);
         tile.player.RemoveHeadgear(tile);
