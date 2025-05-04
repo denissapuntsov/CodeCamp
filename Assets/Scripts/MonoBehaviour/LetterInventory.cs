@@ -12,7 +12,7 @@ public class LetterInventory : MonoBehaviour
 
     public void SetLetter(char letter)
     {
-        inventoryLetter.GetComponentInChildren<TextMeshProUGUI>().text = letter.ToString();
+        inventoryLetter.GetComponentInChildren<TextMeshProUGUI>().text = letter.ToString().ToUpper();
         heldLetter = letter;
     }
 }

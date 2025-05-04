@@ -109,7 +109,7 @@ public class WordInteractionManager : MonoBehaviour
         for (int i = 0; i < _activeName.Length; i++)
         {
             var charBox = Instantiate(letterButton, wordGrid.transform, false);
-            charBox.GetComponentInChildren<TextMeshProUGUI>().text = _activeName[i].ToString();
+            charBox.GetComponentInChildren<TextMeshProUGUI>().text = _activeName[i].ToString().ToUpper();
             charBox.GetComponent<UILetter>().character = _activeName[i];
             charBox.GetComponent<UILetter>().index = i;
         }
@@ -168,9 +168,9 @@ public class WordInteractionManager : MonoBehaviour
                 
                 // make all the letters except for the switched one pop a little bit
                 Sequence popSubsequence = DOTween.Sequence();
-                foreach (UILetter child in wordGrid.GetComponentsInChildren<UILetter>())
+                foreach (Image child in wordGrid.GetComponentsInChildren<Image>())
                 {
-                    if (child.gameObject == currentLetter) continue;
+                    Debug.Log(child.name);
                     popSubsequence.Join(child.transform.DOShakeScale(strength:new Vector3(0.1f, 0.1f, 0.1f), duration:1f));
                 }
                 successSequence.Append(popSubsequence);
