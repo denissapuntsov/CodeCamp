@@ -55,7 +55,8 @@ public class Hay : Traversal
         Tile foundTile = null;
         int collidersHit = Physics.OverlapBoxNonAlloc(
             center: transform.position + new Vector3(0, centerY, 0), 
-            halfExtents: new Vector3(1f, 1f, 7f), _hitColliders, 
+            halfExtents: new Vector3(1f, 1f, 7f), 
+            results: _hitColliders, 
             orientation: Quaternion.identity, 
             mask: LayerMask.GetMask("TileTrigger"),
             queryTriggerInteraction: QueryTriggerInteraction.Collide);

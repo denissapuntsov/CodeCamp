@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="90de5ed9-b1ae-455e-b5a8-4b8f2178bad3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level0.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/MenuManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/WordInteractionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/WordInteractionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tiles/TilePlaceState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tiles/TilePlaceState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traversals/Hay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traversals/Hay.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +137,7 @@
       <workItem from="1746230410985" duration="2328000" />
       <workItem from="1746296179636" duration="4655000" />
       <workItem from="1746374870344" duration="4225000" />
+      <workItem from="1746469950634" duration="1985000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />
