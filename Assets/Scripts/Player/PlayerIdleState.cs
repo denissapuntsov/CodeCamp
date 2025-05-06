@@ -5,6 +5,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState(Player player)
     {
         player.gameObject.name = player.headgear ? $"Player (Idle) ({player.headgear.name})" : "Player (Idle)";
+        player.animator.SetBool(player.IsInteracting, false);
     }
 
     public override void UpdateState(Player player)
@@ -36,5 +37,10 @@ public class PlayerIdleState : PlayerBaseState
     public override void HandleKeyboardInput(Player player)
     {
         return;
+    }
+
+    public override void ExitState(Player player)
+    {
+        
     }
 }

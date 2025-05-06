@@ -1,10 +1,13 @@
-using System;using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuParent;
     public Menu activeMenuGroup, pauseMenuGroup;
+    List<GameObject> foundObjects = new List<GameObject>();
 
     public static MenuManager Instance;
 
@@ -27,7 +30,7 @@ public class MenuManager : MonoBehaviour
                 CloseActiveMenu();
                 return;
             }
-            SetMenu(pauseMenuGroup);
+            OpenMenu(pauseMenuGroup);
         }
     }
     
@@ -39,10 +42,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void SetMenu(Menu menuGroup)
+    public void OpenMenu(Menu menuGroup)
     {
-        menuParent.SetActive(true);
-        
+        //menuParent.SetActive(true);
+        foundObjects = GameObject.FindGameObjectsWithTag("3DUI").ToList();
+        foreach (GameObject foundObject in foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = false;
         //if (activeMenuGroup) return;
         
         activeMenuGroup = menuGroup;
@@ -52,12 +56,13 @@ public class MenuManager : MonoBehaviour
     
     public void CloseActiveMenu()
     {
+        foreach (GameObject foundObject in foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = true;
         if (!activeMenuGroup)
         {
             return;
         }
 
-        activeMenuGroup.CloseMenu();
+        activeMenuGroup.Close();
         activeMenuGroup = null;
     }
 }

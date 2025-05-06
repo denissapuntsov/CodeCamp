@@ -14,21 +14,27 @@ public class PlayerPlaceState : PlayerBaseState
 
     public override void OnMouseOver(Player player)
     {
-        return;
+        player.ShowPopup("Cancel");
     }
 
     public override void OnMouseExit(Player player)
     {
-        return;
+        player.popup.Disappear();
     }
 
     public override void HandleLeftClick(Player player)
     {
-        return;
+        Debug.Log("Clicked on player in handle state");
+        player.ClearPlacementTiles();
     }
 
     public override void HandleKeyboardInput(Player player)
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) { player.ClearPlacementTiles();}
+
+    }
+
+    public override void ExitState(Player player)
+    {
+        
     }
 }

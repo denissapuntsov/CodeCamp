@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player Parent
   - InventoryLetter
+  - 3DUI
   layers:
   - Default
   - TransparentFX

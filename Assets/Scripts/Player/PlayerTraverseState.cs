@@ -33,4 +33,9 @@ public class PlayerTraverseState : PlayerBaseState
     {
         return;
     }
+
+    public override void ExitState(Player player)
+    {
+        
+    }
 }

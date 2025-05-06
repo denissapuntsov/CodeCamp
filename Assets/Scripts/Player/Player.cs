@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
@@ -14,6 +15,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
     [Header("Transforms")]
     [SerializeField] private Transform headGearParent;
 
+    #region Animations
+
+    [Header("Animations")] 
+    public Animator animator;
+    
+    [System.NonSerialized] public int IsIdle = Animator.StringToHash("isIdle");
+    [System.NonSerialized] public int IsWalking = Animator.StringToHash("isWalking");
+    [System.NonSerialized] public int IsJumping = Animator.StringToHash("isJumping");
+    [System.NonSerialized] public int IsInteracting = Animator.StringToHash("isInteracting");
+
+    #endregion
+    
+    #region Hidden Public References
     [System.NonSerialized] public Popup popup;
     [System.NonSerialized] public AIPath aiPath;
     [System.NonSerialized] public Seeker seeker;
@@ -22,7 +36,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Collider[] _hitColliders = new Collider[18];
     private List<Tile> _hitTiles;
     
-    // FSM
+    #endregion
+    
+    #region Finite State Machine
+    
     private PlayerBaseState _currentState;
     public PlayerBaseState CurrentState
     {
@@ -30,15 +47,40 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         set
         {
+            _currentState?.ExitState(player: this);
             _currentState = value;
             _currentState.EnterState(player: this);
         }
     }
     
-    public PlayerIdleState IdleState = new PlayerIdleState();
-    public PlayerWalkState WalkState = new PlayerWalkState();
-    public PlayerPlaceState PlaceState = new PlayerPlaceState();
-    public PlayerTraverseState TraverseState = new PlayerTraverseState();
+    // Event-relevant version of setter
+    public void SetActiveState(string stateName)
+    {
+        _currentState?.ExitState(player: this);
+        switch (stateName)
+        {
+            case "Idle":
+                _currentState = IdleState;
+                break;
+            case "Walk":
+                _currentState = WalkState;
+                break;
+            case "Place":
+                _currentState = PlaceState;
+                break;
+            case "Traverse":
+                _currentState = TraverseState;
+                break;
+        }
+        _currentState?.EnterState(player: this);
+    }
+    
+    public readonly PlayerIdleState IdleState = new PlayerIdleState();
+    public readonly PlayerWalkState WalkState = new PlayerWalkState();
+    public readonly PlayerPlaceState PlaceState = new PlayerPlaceState();
+    public readonly PlayerTraverseState TraverseState = new PlayerTraverseState();
+    
+    #endregion
 
     private void Start()
     {
@@ -54,7 +96,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentState.UpdateState(player:this);
     }
 
-    // Headgear
+    #region Headgear
     public void PutOnHeadgear(GameObject item)
     {
         // turn off trigger for tiles and collider for pointers
@@ -96,13 +138,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
         headgear.transform.SetParent(p: tileTarget.parent.transform);
         headgear = null;
         
-        foreach (Tile tile in _hitTiles) tile.CurrentState = tile.WalkState;
+        ClearPlacementTiles();
         tileTarget.CurrentState = tileTarget.HoldState;
-        CurrentState = IdleState;
     }
     
-    // Traversal
-
+    #endregion
+    
+    #region Traverse
     public void EnterTraversal(GameObject item)
     {
         aiPath.destination = transform.position;
@@ -134,7 +176,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         CurrentState.HandleLeftClick(this);
     }
-
+    
+    #endregion
+    
+    #region PlaceState
     public void CalculatePlacementTiles()
     {
         _hitTiles.Clear();
@@ -157,10 +202,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void ClearPlacementTiles()
     {
-        foreach (Tile tile in _hitTiles) tile.CurrentState = tile.WalkState;
+        foreach (Tile tile in _hitTiles)
+        {
+            tile.cross.SetActive(false);
+            tile.CurrentState = tile.WalkState;
+        }
         CurrentState = IdleState;
     }
-
+    
+    #endregion
+    
+    #region Helpers
     private void ResetTransform(GameObject obj)
     { 
         obj.transform.localPosition = Vector3.zero; 
@@ -172,4 +224,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         popup.SetPlayerText(text);
         popup.Appear();
     }
+    
+    #endregion
 }

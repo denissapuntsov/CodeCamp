@@ -13,4 +13,6 @@ public abstract class PlayerBaseState
     public abstract void HandleLeftClick(Player player);
 
     public abstract void HandleKeyboardInput(Player player);
+
+    public abstract void ExitState(Player player);
 }

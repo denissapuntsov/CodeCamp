@@ -34,6 +34,7 @@ public class WordInteractionManager : MonoBehaviour
     private Vector3 _inventoryLetterDefaultPosition;
     private Vector3 _defaultLetterScale;
     private bool _isTryingLetter = false;
+    private Player _player;
 
     public static WordInteractionManager Instance;
 
@@ -49,6 +50,7 @@ public class WordInteractionManager : MonoBehaviour
         _letterInventory = FindAnyObjectByType<LetterInventory>();
         _inventoryLetterDefaultPosition = inventoryLetter.transform.localPosition;
         _defaultLetterScale = inventoryLetter.transform.localScale;
+        _player = FindAnyObjectByType<Player>();
     }
     private void FilterNeighbours()
     {
@@ -220,7 +222,8 @@ public class WordInteractionManager : MonoBehaviour
 
     public void SetActiveInteraction(InteractionData interactionData)
     {
-        _menuManager.SetMenu(interactionUIGroup);
+        _player.animator.SetBool(_player.IsInteracting, true);
+        _menuManager.OpenMenu(interactionUIGroup);
         
         interactionUIGroup.gameObject.SetActive(true);
         lastActiveInteractionData = interactionData;
