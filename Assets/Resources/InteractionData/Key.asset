@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: key
   interactionType: 3
-  prefab: {fileID: 0}
+  prefab: {fileID: 293110026101180588, guid: f7baf77e2fe5f24479cebda71689ee1d, type: 3}
   leftMouseText: Inspect
   rightMouseText: Change

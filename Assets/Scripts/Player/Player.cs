@@ -134,8 +134,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         headgear.GetComponentInChildren<Light>().enabled = true;
         
-        headgear.transform.position = tileTarget.transform.position;
         headgear.transform.SetParent(p: tileTarget.parent.transform);
+        headgear.transform.localPosition = new Vector3(0, 0.65f, 0);
         headgear = null;
         
         ClearPlacementTiles();
