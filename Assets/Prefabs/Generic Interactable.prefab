@@ -1099,10 +1099,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6284290726228732663, guid: f7baf77e2fe5f24479cebda71689ee1d, type: 3}
-      propertyPath: uniqueID
-      value: 2931857330607524035
-      objectReference: {fileID: 0}
     - target: {fileID: 6623525264434788423, guid: f7baf77e2fe5f24479cebda71689ee1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

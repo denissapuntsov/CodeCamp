@@ -7,6 +7,7 @@ TagManager:
   - Player Parent
   - InventoryLetter
   - 3DUI
+  - Obstacle
   layers:
   - Default
   - TransparentFX
