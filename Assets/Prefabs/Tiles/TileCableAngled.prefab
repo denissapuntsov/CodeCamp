@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7cacef97b65303d4b991dc2e286ba80d, type: 2}
+      objectReference: {fileID: 2100000, guid: 3fb1c590a44c5b4478d0fd0f8756d645, type: 2}
     - target: {fileID: 919132149155446097, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}
       propertyPath: m_Name
       value: CableBlockAngle001
@@ -71,8 +71,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6337991071216615222}
   m_SourcePrefab: {fileID: 100100000, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}
+--- !u!1 &2488279809833553632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}
+  m_PrefabInstance: {fileID: 3335281233334301617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6337991071216615222
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488279809833553632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43c4b80f329047b4893822052cbf6cf2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &3009519323474007130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ec6129cd88cf61449710df8ce5d6dc4, type: 3}

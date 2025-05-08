@@ -1683,6 +1683,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4577275065056262378, guid: 7c8f2290c80578d449efe42252f8a42d, type: 3}
   m_PrefabInstance: {fileID: 253235154}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &257334808 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8260365608326559643, guid: f045a9f949c26844781e8181ed5a5dd2, type: 3}
+  m_PrefabInstance: {fileID: 472412523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &294760697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,6 +3341,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4577275065056262378, guid: f16094ee68c7e514fb1459201f05319c, type: 3}
   m_PrefabInstance: {fileID: 477284276}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &500404134 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8260365608326559643, guid: f045a9f949c26844781e8181ed5a5dd2, type: 3}
+  m_PrefabInstance: {fileID: 366868316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &528632052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4960,6 +4970,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightUpSequencer, Assembly-CSharp
+        m_MethodName: LightUp
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6640,7 +6662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1879752326620454925, guid: 4e85d3360a026684687ce86345f7224a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.5
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 1879752326620454925, guid: 4e85d3360a026684687ce86345f7224a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6648,7 +6670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1879752326620454925, guid: 4e85d3360a026684687ce86345f7224a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.5
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1879752326620454925, guid: 4e85d3360a026684687ce86345f7224a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8202,6 +8224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!95 &1495234109 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6337991071216615222, guid: 0e588ea4e1bedcf4c9955807da58ae2d, type: 3}
+  m_PrefabInstance: {fileID: 1833782429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1503859229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8286,6 +8313,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577275065056262378, guid: 7c8f2290c80578d449efe42252f8a42d, type: 3}
   m_PrefabInstance: {fileID: 1503859229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1514746089 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6337991071216615222, guid: 0e588ea4e1bedcf4c9955807da58ae2d, type: 3}
+  m_PrefabInstance: {fileID: 1440774063}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1529275671
 GameObject:
@@ -11162,6 +11194,7 @@ GameObject:
   - component: {fileID: 6173879476345743484}
   - component: {fileID: 8235660837599665334}
   - component: {fileID: 8235660837599665335}
+  - component: {fileID: 8235660837599665336}
   m_Layer: 8
   m_Name: Key
   m_TagString: Untagged
@@ -11332,6 +11365,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8235660837599665336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586891458227404131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41712abacfaff674a84409df6aa5f24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 12279617}
+  - {fileID: 1514746089}
+  - {fileID: 500404134}
+  - {fileID: 1495234109}
+  - {fileID: 257334808}
+  stepDelay: 0.5
 --- !u!1 &8274330947662530891
 GameObject:
   m_ObjectHideFlags: 0
