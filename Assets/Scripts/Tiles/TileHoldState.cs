@@ -49,7 +49,7 @@ public class TileHoldState : TileBaseState
         tile.currentInteractable.RemovePopup();
         
         tile.currentInteractable.interactionManager.lastActiveFramework = tile.currentInteractable;
-        tile.currentInteractable.interactionManager.SetActiveInteraction(tile.currentInteractable.activeInteractionData);
+        tile.currentInteractable.interactionManager.SetActiveInteraction(tile);
     }
 
     private void UseHeldInteractableByType(Tile tile)

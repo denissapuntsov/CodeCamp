@@ -12,8 +12,9 @@ public class WordInteractionManager : MonoBehaviour
 {
     [Header("Properties of Active Word Interaction")]
     public InteractableFramework lastActiveFramework;
-    [FormerlySerializedAs("lastActiveInteraction")] [SerializeField] private InteractionData lastActiveInteractionData;
+    [SerializeField] private InteractionData lastActiveInteractionData;
     [SerializeField] private List<Neighbour> neighbours;
+    public Tile currentTile;
     
     [Header("UI Elements")]
     [SerializeField] private Menu interactionUIGroup;
@@ -172,7 +173,6 @@ public class WordInteractionManager : MonoBehaviour
                 Sequence popSubsequence = DOTween.Sequence();
                 foreach (Image child in wordGrid.GetComponentsInChildren<Image>())
                 {
-                    Debug.Log(child.name);
                     popSubsequence.Join(child.transform.DOShakeScale(strength:new Vector3(0.1f, 0.1f, 0.1f), duration:1f));
                 }
                 successSequence.Append(popSubsequence);
@@ -219,16 +219,36 @@ public class WordInteractionManager : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-
-    public void SetActiveInteraction(InteractionData interactionData)
+    
+    private void SetActiveInteraction(InteractionData interactionData)
     {
         _player.animator.SetBool(_player.IsInteracting, true);
         _menuManager.OpenMenu(interactionUIGroup);
         
+        if (lastActiveInteractionData != interactionData)
+        {
+            lastActiveInteractionData = interactionData;
+            currentTile.currentInteractable.ReplaceInteraction(lastActiveInteractionData);
+            _activeName = interactionData.id;
+            currentTile.GetComponent<ItemTrigger>()?.CheckForItem(interactionData);
+        }
+        FilterNeighbours();
+    }
+    
+    public void SetActiveInteraction(Tile tile)
+    {
+        currentTile = tile;
+        var interactionData = tile.currentInteractable.activeInteractionData;
+        
+        _player.animator.SetBool(_player.IsInteracting, true);
+        _menuManager.OpenMenu(interactionUIGroup);
+        
         interactionUIGroup.gameObject.SetActive(true);
-        lastActiveInteractionData = interactionData;
-        lastActiveFramework.ReplaceInteraction(lastActiveInteractionData);
-        _activeName = interactionData.id;
+        if (lastActiveInteractionData != interactionData)
+        {
+            lastActiveInteractionData = interactionData;
+            _activeName = interactionData.id;
+        }
         FilterNeighbours();
     }
 }
