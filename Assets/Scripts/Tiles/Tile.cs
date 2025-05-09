@@ -39,8 +39,9 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         _collider = GetComponent<BoxCollider>();
         
         currentInteractable = parent.GetComponentInChildren<InteractableFramework>();
-
+        
         _currentState = currentInteractable != null ? HoldState : WalkState;
+        
         _currentState.EnterState(this);
     }
 

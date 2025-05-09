@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -29,12 +30,14 @@ public class Hay : Traversal
         _mode = _entryPointPlayerPosition.y < transform.position.y ? "up" : "down";
         
         linkedTile = ScanForAvailableTile(_mode);
+        
+        _player.GetComponent<AIPath>().canMove = false;
         if (linkedTile == null) 
         {
             StartCoroutine(SendPlayerBack());
             return; 
         }
-
+        
         StartCoroutine(SendPlayerToTile());
     }
 
@@ -76,6 +79,7 @@ public class Hay : Traversal
         _player.CurrentState = _player.IdleState;
         _player.transform.position = linkedTile.transform.position;
         linkedTile.SetNewPath();
+        _player.GetComponent<AIPath>().canMove = true;
     }
 
     IEnumerator SendPlayerBack()
@@ -84,5 +88,6 @@ public class Hay : Traversal
         _player.CurrentState = _player.IdleState;
         _player.transform.position = _entryPointPlayerPosition;
         _player.activeTile.SetNewPath();
+        _player.GetComponent<AIPath>().canMove = true;
     }
 }
