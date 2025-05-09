@@ -92,7 +92,7 @@ public class Popup : MonoBehaviour
         hasAppeared = false;
     }
 
-    public void SetPlayerText(string text)
+    public void SetText(string text)
     {
         popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }

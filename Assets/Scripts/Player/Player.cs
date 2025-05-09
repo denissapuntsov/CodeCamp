@@ -194,7 +194,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Tile tile = _hitColliders[i].GetComponentInChildren<Tile>();
             if (!tile) continue;
-            if (!tile.hasPlayer && !tile.currentInteractable) _hitTiles.Add(tile);
+            if (!tile.hasPlayer && !tile.currentInteractable && !tile.gameObject.GetComponent<Portal>()) _hitTiles.Add(tile);
         }
         
         foreach (Tile tile in _hitTiles) tile.CurrentState = tile.PlaceState;
@@ -221,7 +221,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void ShowPopup(string text)
     {
-        popup.SetPlayerText(text);
+        popup.SetText(text);
         popup.Appear();
     }
     

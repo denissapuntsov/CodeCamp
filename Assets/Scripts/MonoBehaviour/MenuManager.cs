@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuParent;
     public Menu activeMenuGroup, pauseMenuGroup;
-    List<GameObject> foundObjects = new List<GameObject>();
+    List<GameObject> _foundObjects = new List<GameObject>();
 
     public static MenuManager Instance;
 
@@ -45,8 +45,8 @@ public class MenuManager : MonoBehaviour
     public void OpenMenu(Menu menuGroup)
     {
         //menuParent.SetActive(true);
-        foundObjects = GameObject.FindGameObjectsWithTag("3DUI").ToList();
-        foreach (GameObject foundObject in foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = false;
+        _foundObjects = GameObject.FindGameObjectsWithTag("3DUI").ToList();
+        foreach (GameObject foundObject in _foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = false;
         //if (activeMenuGroup) return;
         
         activeMenuGroup = menuGroup;
@@ -56,7 +56,7 @@ public class MenuManager : MonoBehaviour
     
     public void CloseActiveMenu()
     {
-        foreach (GameObject foundObject in foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = true;
+        foreach (GameObject foundObject in _foundObjects) foundObject.GetComponent<MeshRenderer>().enabled = true;
         if (!activeMenuGroup)
         {
             return;
