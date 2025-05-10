@@ -114,6 +114,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         Path p = player.seeker.StartPath(player.transform.position, transform.position, p =>
         {
             player.aiPath.SetPath(p);
+            player.CurrentState = player.WalkState;
         });
     }
 }

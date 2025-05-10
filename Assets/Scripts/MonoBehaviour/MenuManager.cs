@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,11 +8,11 @@ public class MenuManager : MonoBehaviour
     public Menu activeMenuGroup, pauseMenuGroup;
     List<GameObject> _foundObjects = new List<GameObject>();
 
-    public static MenuManager Instance;
+    public static MenuManager instance;
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()

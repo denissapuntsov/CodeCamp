@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour, IPointerClickHandler
     {
         _player = FindAnyObjectByType<Player>();
         _destinationSetter = _player.GetComponent<AIDestinationSetter>();
-        _menuManager = MenuManager.Instance;
+        _menuManager = MenuManager.instance;
         popup.SetText("Approach");
     }
 

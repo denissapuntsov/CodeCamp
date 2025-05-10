@@ -33,7 +33,7 @@ public class InteractableFramework : MonoBehaviour
     private void Start()
     {
         interactionManager = WordInteractionManager.Instance;
-        _menuManager = MenuManager.Instance;
+        _menuManager = MenuManager.instance;
         _popup = GetComponentInChildren<Popup>();
         _player = FindAnyObjectByType<Player>();
         _aiPath = _player.GetComponent<AIPath>();
