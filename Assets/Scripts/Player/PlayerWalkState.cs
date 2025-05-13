@@ -8,6 +8,7 @@ public class PlayerWalkState : PlayerBaseState
     {
         player.gameObject.name = "Player (Walking)";
         player.animator.SetBool(player.IsWalking, true);
+        if (TutorialManager.instance.ActiveTutorial == TutorialManager.instance.walk) TutorialManager.instance.ClearActiveTutorial();
     }
 
     public override void UpdateState(Player player)

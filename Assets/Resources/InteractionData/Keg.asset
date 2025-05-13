@@ -17,3 +17,5 @@ MonoBehaviour:
   prefab: {fileID: 1431341719258375016, guid: f3329f90ca0ec4f499e881e36dcf14e3, type: 3}
   leftMouseText: Inspect
   rightMouseText: Change
+  inspectionText: "This Keg is just too heavy to carry \u2014 or it would be, if
+    you had arms to begin with."

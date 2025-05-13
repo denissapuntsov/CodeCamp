@@ -3,7 +3,22 @@ guid: 3d6dadcc42f13a84cb347bf99872d7d0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_001
+    second: {fileID: 2100000, guid: c3bf81feb4be22d418a8a43df56dcb3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_002
+    second: {fileID: 2100000, guid: 248c438279e18f04d9f907763c0a2897, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_003
+    second: {fileID: 2100000, guid: 91fc7ade7e22f5945b724698cdf82d2b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -88,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2.5
+    globalScale: 250
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
