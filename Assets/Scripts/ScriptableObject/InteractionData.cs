@@ -9,6 +9,7 @@ public class InteractionData : ScriptableObject
     public GameObject prefab;
     public string leftMouseText = "Change"; 
     public string rightMouseText = "Use";
+    public string inspectionText = "This is an Inspectable";
 }
 
 public enum Type
@@ -16,5 +17,5 @@ public enum Type
     None,
     Headgear,
     Traversal,
-    Special
+    Inspectable
 };

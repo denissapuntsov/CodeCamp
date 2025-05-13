@@ -1,4 +1,5 @@
 using Pathfinding;
+using UnityEngine;
 
 public class TileHoldState : TileBaseState
 {
@@ -67,6 +68,9 @@ public class TileHoldState : TileBaseState
                 tile.player.EnterTraversal(tile.currentInteractable.gameObject);
                 tile.selection.SetActive(false);
                 break;
+            case Type.Inspectable:
+                SubtitleManager.instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
+                break;  
         }
     }
 }

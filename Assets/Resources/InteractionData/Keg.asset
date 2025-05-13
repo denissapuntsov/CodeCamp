@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: keg
   interactionType: 3
-  prefab: {fileID: 293110026101180588, guid: f7baf77e2fe5f24479cebda71689ee1d, type: 3}
-  leftMouseText: Use
+  prefab: {fileID: 1431341719258375016, guid: f3329f90ca0ec4f499e881e36dcf14e3, type: 3}
+  leftMouseText: Inspect
   rightMouseText: Change
