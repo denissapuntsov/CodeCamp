@@ -7082,6 +7082,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51df68af321d25b42a71b2f96b7e309d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  captionList:
+  - {fileID: 11400000, guid: 96abdac25f375e5459a04a3bb67b1d2f, type: 2}
+  - {fileID: 11400000, guid: 2ce1924225ef0094684c3d9648a01e4d, type: 2}
+  - {fileID: 11400000, guid: 20e714ffda56e1f4f80a70214174134e, type: 2}
   captions: {fileID: 451006674}
 --- !u!1001 &1035516512
 PrefabInstance:
@@ -9364,14 +9368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3507476c2bb5f3e4e90e32c9a791626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: Left-click any tile to move onto it
-  approach: Left-click an object to approach it
-  wear: This Hat is a Wearable. Left-click a Wearable to put it on
-  change: Most objects you can interact with can also be Changed. Right-click an
-    object to Change it
-  remove: To remove a Wearable, left-click the character, and select a tile to place
-    the Wearable on
-  inspect: ' '
 --- !u!1001 &1421216336
 PrefabInstance:
   m_ObjectHideFlags: 0

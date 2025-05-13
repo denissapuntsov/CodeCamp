@@ -69,7 +69,7 @@ public class TileHoldState : TileBaseState
                 tile.selection.SetActive(false);
                 break;
             case Type.Inspectable:
-                SubtitleManager.instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
+                CaptionManager.instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
                 break;  
         }
     }

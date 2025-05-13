@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.Serialization;
 
-public class SubtitleManager : MonoBehaviour
+public class CaptionManager : MonoBehaviour
 {
-    public static SubtitleManager instance;
+    public static CaptionManager instance;
+
+    public List<Caption> captionList;
     [SerializeField] private TextMeshProUGUI captions;
     private CanvasGroup _captionsCanvasGroup;
     private Sequence _sequence;
@@ -55,5 +58,18 @@ public class SubtitleManager : MonoBehaviour
 
         if (subtitle == String.Empty) return;
         _sequence.Append(_captionsCanvasGroup.DOFade(endValue: 1, duration: 1f));
+    }
+
+    public string GetCaptionTextByID(string id)
+    {
+        string textToReturn = String.Empty;
+        foreach (Caption caption in captionList)
+        {
+            if (caption.id == id)
+            {
+               textToReturn = caption.text;
+            }
+        }
+        return textToReturn;
     }
 }
