@@ -24,9 +24,9 @@ public class CaptionManager : MonoBehaviour
     public void ProcessInteractable(InteractionData objectData)
     {
         //Debug.Log(objectData.inspectionText);
-        DisplaySubtitle(objectData.inspectionText);
+        DisplaySubtitle(objectData.inspectionText, duration: 4f);
     }
-
+    
     public void DisplaySubtitle(string subtitle, float duration)
     {
         DisplaySubtitle(subtitle);

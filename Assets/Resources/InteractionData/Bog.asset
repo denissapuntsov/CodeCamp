@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
+  m_Name: Bog
+  m_EditorClassIdentifier: 
+  id: bog
+  interactionType: 3
+  prefab: {fileID: 7811423355711961649, guid: 6e9a627820969a0439b641c812303a45, type: 3}
+  leftMouseText: Inspect
+  rightMouseText: Change
+  inspectionText: Damp smell and annoying gnats aside, this Bog might just prove
+    useful.
