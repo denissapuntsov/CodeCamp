@@ -85,5 +85,7 @@ public class InteractableFramework : MonoBehaviour
         {
             _playerDestinationSetter.target = null;
         }
+        
+        if (isWithinPlayerRange) TutorialManager.Instance.SetActiveTutorial("wear");
     }
 }

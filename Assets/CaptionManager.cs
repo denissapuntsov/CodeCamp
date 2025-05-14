@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using UnityEngine.Serialization;
 
 public class CaptionManager : MonoBehaviour
 {
-    public static CaptionManager instance;
+    public static CaptionManager Instance;
 
     public List<Caption> captionList;
     [SerializeField] private TextMeshProUGUI captions;
@@ -16,7 +15,7 @@ public class CaptionManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         _captionsCanvasGroup = captions.GetComponentInParent<CanvasGroup>();
         _captionsCanvasGroup.alpha = 0;
         _sequence = DOTween.Sequence();
@@ -65,6 +64,7 @@ public class CaptionManager : MonoBehaviour
         string textToReturn = String.Empty;
         foreach (Caption caption in captionList)
         {
+            if (!caption) continue;
             if (caption.id == id)
             {
                textToReturn = caption.text;

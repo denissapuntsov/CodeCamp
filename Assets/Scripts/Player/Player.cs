@@ -98,6 +98,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     #region Headgear
     public void PutOnHeadgear(GameObject item)
     {
+        TutorialManager.Instance.ClearTutorialByID("wear");
+        TutorialManager.Instance.SetActiveTutorial("remove");
+        
         // turn off trigger for tiles and collider for pointers
         if (item.GetComponentsInChildren<Collider>() != null)
         {
@@ -139,6 +142,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         ClearPlacementTiles();
         tileTarget.CurrentState = tileTarget.HoldState;
+        
+        TutorialManager.Instance.ClearTutorialByID("remove");
+        TutorialManager.Instance.SetActiveTutorial("change");
     }
     
     #endregion

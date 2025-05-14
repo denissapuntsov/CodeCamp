@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager instance;
+    public static TutorialManager Instance;
     
     private List<String> _passedTutorials = new List<String>();
 
@@ -19,14 +16,14 @@ public class TutorialManager : MonoBehaviour
         private set
         {
             if (_activeTutorial == value) return;
-            CaptionManager.instance.DisplaySubtitle(value);
+            CaptionManager.Instance.DisplaySubtitle(value);
             _activeTutorial = value;
         }
     }
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
@@ -36,13 +33,31 @@ public class TutorialManager : MonoBehaviour
 
     public void SetActiveTutorial(string tutorial)
     {
-        ActiveTutorial = CaptionManager.instance.GetCaptionTextByID(tutorial);
+        if (_passedTutorials.Contains(tutorial)) return;
+        ActiveTutorial = CaptionManager.Instance.GetCaptionTextByID(tutorial);
+        _passedTutorials.Add(tutorial);
     }
 
-    public void ClearActiveTutorial()
+    public void SetActiveTutorial(string tutorial, float timeToDisappear)
     {
-        CaptionManager.instance.ClearSubtitle();
+        if (_passedTutorials.Contains(tutorial)) return;
+        _passedTutorials.Add(tutorial);
+        _activeTutorial = CaptionManager.Instance.GetCaptionTextByID(tutorial);
+        CaptionManager.Instance.DisplaySubtitle(_activeTutorial, timeToDisappear);
+    }
+
+    private void ClearActiveTutorial()
+    {
+        CaptionManager.Instance.ClearSubtitle();
         _activeTutorial = null;
+    }
+
+    public void ClearTutorialByID(string id)
+    {
+        if (ActiveTutorial == CaptionManager.Instance.GetCaptionTextByID(id))
+        {
+            ClearActiveTutorial();
+        }
     }
 }
 

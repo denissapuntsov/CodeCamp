@@ -186,6 +186,8 @@ public class WordInteractionManager : MonoBehaviour
                     Instantiate(smokeParticlePrefab, lastActiveFramework.transform, worldPositionStays:false);
                     _isTryingLetter = false;
                     _menuManager.CloseActiveMenu();
+                    TutorialManager.Instance.ClearTutorialByID("change");
+                    TutorialManager.Instance.SetActiveTutorial("changeBack", timeToDisappear: 5f);
                 });
             }
             else

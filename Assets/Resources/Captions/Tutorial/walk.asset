@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: walk
   m_EditorClassIdentifier: 
   id: walk
-  text: Left-click any tile to move onto it
+  text: Left-click on any tile to move onto it

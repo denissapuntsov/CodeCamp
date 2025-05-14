@@ -37,6 +37,7 @@ public class TileHoldState : TileBaseState
         
         if (!tile.currentInteractable.isWithinPlayerRange)
         {
+            TutorialManager.Instance.ClearTutorialByID(id: "approach");
             tile.SetNewPath();
             return;
         }
@@ -69,7 +70,7 @@ public class TileHoldState : TileBaseState
                 tile.selection.SetActive(false);
                 break;
             case Type.Inspectable:
-                CaptionManager.instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
+                CaptionManager.Instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
                 break;  
         }
     }
