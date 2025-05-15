@@ -117,4 +117,9 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             player.CurrentState = player.WalkState;
         });
     }
+
+    public void HideCurrentInteractable()
+    {
+        transform.parent.gameObject.GetComponentInChildren<InteractableFramework>().gameObject.SetActive(false);
+    }
 }
