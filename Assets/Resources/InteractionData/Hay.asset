@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Hay
   m_EditorClassIdentifier: 
-  id: hay
+  id: Hay
   interactionType: 2
   prefab: {fileID: 6285747443236201197, guid: 5a4a0b1d030f9c24cbeb52acca448d04, type: 3}
   leftMouseText: Climb
   rightMouseText: Change
+  inspectionText: This is an Inspectable

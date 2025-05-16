@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Herd
   m_EditorClassIdentifier: 
-  id: herd
+  id: Herd
   interactionType: 3
   prefab: {fileID: 299475152424885086, guid: b095ab1a308420b49bf6871e3bbd336e, type: 3}
   leftMouseText: Inspect
   rightMouseText: Change
-  inspectionText: A horizontal Herd! You don't see that every day.
+  inspectionText: A vertical Herd! You don't see that every day.

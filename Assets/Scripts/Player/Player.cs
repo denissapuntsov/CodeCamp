@@ -115,6 +115,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         item.transform.SetParent(headGearParent, false);
         //item.GetComponent<Rigidbody>().isKinematic = true;
         ResetTransform(item);
+        item.GetComponentInChildren<HeadgearEx>()?.SwitchModels(true);
         headgear = item;
         
         // reset player destination to current position
@@ -138,6 +139,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         headgear.transform.SetParent(p: tileTarget.parent.transform);
         headgear.transform.localPosition = new Vector3(0, 0.65f, 0);
+        headgear.GetComponentInChildren<HeadgearEx>()?.SwitchModels(false);
         headgear = null;
         
         ClearPlacementTiles();

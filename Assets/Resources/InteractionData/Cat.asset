@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
+  m_Name: Cat
+  m_EditorClassIdentifier: 
+  id: Cat
+  interactionType: 3
+  prefab: {fileID: 1235196233141417262, guid: 85b826637b5eb064c8c12715dd6eacc2, type: 3}
+  leftMouseText: Inspect
+  rightMouseText: Change
+  inspectionText: Maybe it's something about you not being a cat person, but your
+    gut tells you you should change it into some other animal.

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Bag
   m_EditorClassIdentifier: 
-  id: bag
+  id: Bag
   interactionType: 1
   prefab: {fileID: 7156825569187959260, guid: 2aaef928dc079d748b957f75fb06f336, type: 3}
   leftMouseText: Wear

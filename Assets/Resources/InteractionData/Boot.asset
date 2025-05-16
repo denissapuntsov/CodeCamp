@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Boot
   m_EditorClassIdentifier: 
-  id: boot
+  id: Boot
   interactionType: 1
   prefab: {fileID: 6482172160063749011, guid: 8216c69b9e0ee4702a5cf22f313d850b, type: 3}
   leftMouseText: Wear
   rightMouseText: Change
+  inspectionText: This is an Inspectable

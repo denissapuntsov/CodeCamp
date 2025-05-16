@@ -8,11 +8,11 @@ public class InteractableFramework : MonoBehaviour
     public InteractionData activeInteractionData;
     
     private GameObject _childInteractable;
-    [DoNotSerialize] public WordInteractionManager interactionManager;
+    [System.NonSerialized] public WordInteractionManager interactionManager;
     private MenuManager _menuManager;
     private BoxCollider _collider;
     private Popup _popup;
-    public bool isWithinPlayerRange;     
+    [System.NonSerialized] public bool isWithinPlayerRange;     
     private AIDestinationSetter _playerDestinationSetter;
     private Player _player;
     private AIPath _aiPath;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  id: bat
+  id: Bat
   interactionType: 3
   prefab: {fileID: 2640267517690977437, guid: aa89400cd58a8b44ca974156e2e60988, type: 3}
   leftMouseText: Inspect

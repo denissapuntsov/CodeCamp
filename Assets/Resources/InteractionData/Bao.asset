@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Bao
   m_EditorClassIdentifier: 
-  id: bao
+  id: Bao
   interactionType: 3
   prefab: {fileID: 705051683137045176, guid: a524d7de0cebd81489d5ad46dac334c6, type: 3}
   leftMouseText: Inspect
   rightMouseText: Change
-  inspectionText: As good as that bao bun smells, you don't feel particularly hungry.
+  inspectionText: As good as this bao bun smells, you don't feel particularly hungry.

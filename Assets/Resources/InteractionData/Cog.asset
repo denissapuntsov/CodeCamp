@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Cog
   m_EditorClassIdentifier: 
-  id: cog
+  id: Cog
   interactionType: 3
   prefab: {fileID: 7289251985646781270, guid: b0160aa8d897fbe40bf7cc47dfaed79f, type: 3}
   leftMouseText: Inspect

@@ -22,11 +22,11 @@ public class Dictionary : MonoBehaviour
 
     private void Start()
     {
-        words = _interactions.Select(x => x.id).ToList();
+        words = _interactions.Select(x => x.id.ToLower()).ToList();
     }
 
     public InteractionData GetInteractionByName(string nameToMatch)
     {
-        return _interactions.Find(interaction => interaction.id == nameToMatch.ToLower());
+        return _interactions.Find(interaction => interaction.id.ToLower() == nameToMatch.ToLower());
     }
 }

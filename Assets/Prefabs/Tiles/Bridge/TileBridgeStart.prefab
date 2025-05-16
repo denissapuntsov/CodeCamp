@@ -86,6 +86,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 559165917685754033, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4577275065056262378, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -129,6 +133,22 @@ PrefabInstance:
     - target: {fileID: 8121134798832782413, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
       propertyPath: m_Name
       value: TileBridgeStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454520384847761359, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717395169921483491, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717395169921483491, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717395169921483491, guid: 1d6c292c8e4da624e9077ad8d6143798, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

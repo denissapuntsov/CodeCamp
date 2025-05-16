@@ -231,7 +231,7 @@ public class WordInteractionManager : MonoBehaviour
         {
             lastActiveInteractionData = interactionData;
             currentTile.currentInteractable.ReplaceInteraction(lastActiveInteractionData);
-            _activeName = interactionData.id;
+            _activeName = interactionData.id.ToLower();
             currentTile.GetComponent<ItemTrigger>()?.CheckForItem(interactionData);
         }
         FilterNeighbours();
@@ -249,7 +249,7 @@ public class WordInteractionManager : MonoBehaviour
         if (lastActiveInteractionData != interactionData)
         {
             lastActiveInteractionData = interactionData;
-            _activeName = interactionData.id;
+            _activeName = interactionData.id.ToLower();
         }
         FilterNeighbours();
     }

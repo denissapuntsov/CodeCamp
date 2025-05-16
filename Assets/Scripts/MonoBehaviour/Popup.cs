@@ -20,8 +20,20 @@ public class Popup : MonoBehaviour
         _defaultPopupScales = popupPanels.Select(mousePopup => mousePopup.transform.localScale).ToList();
         _defaultTextColor = Color.white;
         _defaultPopupColor = Color.black;
+
+        if (popupPanels.Count == 4)
+        {
+            UpdateName();
+        }
         
         ResetPositionsToZero();
+    }
+
+    private void UpdateName()
+    {
+        if (popupPanels.Count < 4) return;
+        popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text =
+            GetComponentInParent<InteractableFramework>().activeInteractionData.id;
     }
 
     private void Update()
@@ -32,6 +44,7 @@ public class Popup : MonoBehaviour
     public void UpdateSelection(string mode)
     {
         foreach (GameObject popupPanel in popupPanels) popupPanel.SetActive(false);
+        if (popupPanels.Count == 4) popupPanels[3].SetActive(true);
         switch (mode)
         {
             case "Approach":
@@ -95,11 +108,13 @@ public class Popup : MonoBehaviour
     public void SetText(string text)
     {
         popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = text;
+        UpdateName();
     }
 
     public void SetUseText(string leftMousePopupText, string rightMousePopupText)
     {
         popupPanels[1].GetComponentInChildren<TextMeshProUGUI>().text = leftMousePopupText;
         popupPanels[2].GetComponentInChildren<TextMeshProUGUI>().text = rightMousePopupText;
+        UpdateName();
     }
 }

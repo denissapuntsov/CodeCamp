@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Hat
   m_EditorClassIdentifier: 
-  id: hat
+  id: Hat
   interactionType: 1
   prefab: {fileID: 3722737750699343719, guid: 1e016cbc51aad794b8e809fcaf4c6047, type: 3}
   leftMouseText: Wear
   rightMouseText: Change
+  inspectionText: This is an Inspectable

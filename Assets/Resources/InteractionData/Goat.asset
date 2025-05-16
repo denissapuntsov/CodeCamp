@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb2352fa17e4b43ad121b6dd1eac5c, type: 3}
   m_Name: Goat
   m_EditorClassIdentifier: 
-  id: goat
+  id: Goat
   interactionType: 2
   prefab: {fileID: 3949153531375807235, guid: 47ca1e65c8cd7794ca9b813cd51a0028, type: 3}
   leftMouseText: Mount
   rightMouseText: Change
+  inspectionText: This is an Inspectable
