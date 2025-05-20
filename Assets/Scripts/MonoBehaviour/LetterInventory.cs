@@ -4,7 +4,7 @@ using TMPro;
 public class LetterInventory : MonoBehaviour
 {
     [SerializeField] public char heldLetter;
-    [SerializeField] GameObject inventoryLetter;
+    [SerializeField] GameObject inventoryLetter, playInventoryLetter;
     private void Start()
     {
         SetLetter(heldLetter);
@@ -13,6 +13,7 @@ public class LetterInventory : MonoBehaviour
     public void SetLetter(char letter)
     {
         inventoryLetter.GetComponentInChildren<TextMeshProUGUI>().text = letter.ToString().ToUpper();
+        playInventoryLetter.GetComponentInChildren<TextMeshProUGUI>().text = letter.ToString().ToUpper();
         heldLetter = letter;
     }
 }
