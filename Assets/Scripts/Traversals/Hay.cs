@@ -48,7 +48,7 @@ public class Hay : Traversal
         switch (mode)
         {
             case "up":
-                centerY = 5f;
+                centerY = 2.5f;
                 break;
             case "down":
                 centerY = -0.5f;

@@ -20,13 +20,6 @@ public class Portal : MonoBehaviour, IPointerClickHandler
         _destinationSetter = _player.GetComponent<AIDestinationSetter>();
         _menuManager = MenuManager.Instance;
         popup = FindAnyObjectByType<Popup>();
-        popup.SetText("Approach");
-    }
-
-    private void Update()
-    {
-        string popupText = playerEntryTile.hasPlayer ? "Enter" : "Approach";
-        popup.SetText(popupText);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -49,6 +42,8 @@ public class Portal : MonoBehaviour, IPointerClickHandler
     private void OnMouseEnter()
     {
         selection.SetActive(true);
+        string popupMode = playerEntryTile.hasPlayer ? "PortalEnter" : "PortalApproach";
+        popup.UpdateSelection(popupMode, null);
         popup.Appear();
     }
 

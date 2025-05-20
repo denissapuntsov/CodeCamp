@@ -52,6 +52,18 @@ public class Popup : MonoBehaviour
             case "Player":
                 popupPanels[3].SetActive(true);
                 break;
+            case "PortalApproach":
+                popupPanels[0].SetActive(true);
+                popupPanels[3].SetActive(true);
+                popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text = "Exit Portal";
+                popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = "Approach";
+                break;
+            case "PortalEnter":
+                popupPanels[0].SetActive(true);
+                popupPanels[3].SetActive(true);
+                popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text = "Exit Portal";
+                popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = "Enter";
+                break;
         }
 
         if (popupPanels.Count == 4) popupPanels[3].SetActive(true);
