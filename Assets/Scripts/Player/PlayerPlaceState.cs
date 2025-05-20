@@ -4,7 +4,7 @@ public class PlayerPlaceState : PlayerBaseState
 {
     public override void EnterState(Player player)
     {
-        player.name = $"Player (Placing {player.headgear?.name})";
+        player.name = $"Player (Placing {player.headgear.name})";
     }
 
     public override void UpdateState(Player player)

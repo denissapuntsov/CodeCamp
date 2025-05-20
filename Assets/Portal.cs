@@ -18,7 +18,8 @@ public class Portal : MonoBehaviour, IPointerClickHandler
     {
         _player = FindAnyObjectByType<Player>();
         _destinationSetter = _player.GetComponent<AIDestinationSetter>();
-        _menuManager = MenuManager.instance;
+        _menuManager = MenuManager.Instance;
+        popup = FindAnyObjectByType<Popup>();
         popup.SetText("Approach");
     }
 
@@ -70,7 +71,8 @@ public class Portal : MonoBehaviour, IPointerClickHandler
         
         // Enter
         inputBlockCanvas.SetActive(true);
-        _player.CurrentState = _player.PlaceState;
+        _player.gameObject.SetActive(false);
+        transform.parent.GetComponent<Animator>().Play("Exit");
         Debug.Log("Entering the portal");
     }
 

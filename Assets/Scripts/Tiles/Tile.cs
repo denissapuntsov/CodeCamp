@@ -66,7 +66,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("click");
         
         if (_menuManager.activeMenuGroup) return;
         if (aiDestinationSetter.target) return;

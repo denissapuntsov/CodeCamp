@@ -47,7 +47,7 @@ public class WordInteractionManager : MonoBehaviour
     {
         _sameLengthWords = new List<string>();
         _dictionary = FindAnyObjectByType<Dictionary>();
-        _menuManager = MenuManager.instance;
+        _menuManager = MenuManager.Instance;
         _letterInventory = FindAnyObjectByType<LetterInventory>();
         _inventoryLetterDefaultPosition = inventoryLetter.transform.localPosition;
         _defaultLetterScale = inventoryLetter.transform.localScale;

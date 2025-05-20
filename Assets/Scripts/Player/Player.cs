@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     #endregion
     
     #region Hidden Public References
-    [System.NonSerialized] public Popup popup;
+    /*[System.NonSerialized]*/ public Popup popup;
     [System.NonSerialized] public AIPath aiPath;
     [System.NonSerialized] public Seeker seeker;
     [System.NonSerialized] public float distanceThreshold;
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        popup = GetComponentInChildren<Popup>();
+        popup = FindAnyObjectByType<Popup>();
         _hitTiles = new List<Tile>();
         aiPath = GetComponent<AIPath>();
         seeker = GetComponent<Seeker>();
@@ -228,6 +228,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void ShowPopup(string text)
     {
+        popup.UpdateSelection("Player", null);
         popup.SetText(text);
         popup.Appear();
     }

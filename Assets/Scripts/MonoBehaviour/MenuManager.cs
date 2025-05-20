@@ -10,11 +10,11 @@ public class MenuManager : MonoBehaviour
     public Menu captionMenuGroup;
     List<GameObject> _foundObjects = new List<GameObject>();
 
-    public static MenuManager instance;
+    public static MenuManager Instance;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
     
     private void Clear()
     {
-        foreach (Transform child in menuParent.transform)
+        foreach (Menu child in menuParent.transform.GetComponentsInChildren<Menu>())
         {
             child.gameObject.SetActive(false);
         }

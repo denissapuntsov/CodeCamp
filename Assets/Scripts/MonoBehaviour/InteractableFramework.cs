@@ -33,8 +33,8 @@ public class InteractableFramework : MonoBehaviour
     private void Start()
     {
         interactionManager = WordInteractionManager.Instance;
-        _menuManager = MenuManager.instance;
-        _popup = GetComponentInChildren<Popup>();
+        _menuManager = MenuManager.Instance;
+        _popup = FindAnyObjectByType<Popup>();
         _player = FindAnyObjectByType<Player>();
         _aiPath = _player.GetComponent<AIPath>();
         _playerDestinationSetter = _player.GetComponent<AIDestinationSetter>();
@@ -60,11 +60,11 @@ public class InteractableFramework : MonoBehaviour
     public void DisplayPopup()
     {
         string popupMode = isWithinPlayerRange ? "Use" : "Approach";
-        _popup.UpdateSelection(popupMode);
+        _popup.UpdateSelection(popupMode, activeInteractionData);
         
         _popup.Appear();
         if (!isWithinPlayerRange) return;
-        _popup.SetUseText(activeInteractionData.leftMouseText, activeInteractionData.rightMouseText);
+        _popup.SetUseText(activeInteractionData);
     }
 
     public void RemovePopup()

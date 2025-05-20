@@ -23,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Cog.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ItemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/LightUpSequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PortalEx.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/Menu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerBaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerIdleState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,7 +53,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "<unknown>",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -155,6 +156,7 @@
       <workItem from="1747222070965" duration="22258000" />
       <workItem from="1747392860003" duration="10376000" />
       <workItem from="1747692887507" duration="6865000" />
+      <workItem from="1747735937989" duration="11773000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />

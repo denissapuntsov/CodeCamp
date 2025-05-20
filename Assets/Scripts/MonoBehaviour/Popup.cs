@@ -21,40 +21,40 @@ public class Popup : MonoBehaviour
         _defaultTextColor = Color.white;
         _defaultPopupColor = Color.black;
 
-        if (popupPanels.Count == 4)
-        {
-            UpdateName();
-        }
-        
-        ResetPositionsToZero();
-    }
-
-    private void UpdateName()
-    {
-        if (popupPanels.Count < 4) return;
-        popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text =
-            GetComponentInParent<InteractableFramework>().activeInteractionData.id;
+        Disappear();
     }
 
     private void Update()
     {
-        transform.rotation = Camera.main.transform.rotation;
+        Vector3 mouseWorldPos = new Vector3(
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            100f);
+        
+        transform.position = mouseWorldPos;
+
     }
 
-    public void UpdateSelection(string mode)
+    public void UpdateSelection(string mode, InteractionData data)
     {
         foreach (GameObject popupPanel in popupPanels) popupPanel.SetActive(false);
-        if (popupPanels.Count == 4) popupPanels[3].SetActive(true);
+        if (data) { popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text = data.id; }
         switch (mode)
         {
             case "Approach":
                 popupPanels[0].SetActive(true);
+                popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = "Approach";
                 break;
             case "Use":
                 popupPanels[1].SetActive(true);
                 popupPanels[2].SetActive(true);
                 break;
+            case "Player":
+                popupPanels[3].SetActive(true);
+                break;
         }
+
+        if (popupPanels.Count == 4) popupPanels[3].SetActive(true);
     }
 
     public void Appear()
@@ -107,14 +107,13 @@ public class Popup : MonoBehaviour
 
     public void SetText(string text)
     {
-        popupPanels[0].GetComponentInChildren<TextMeshProUGUI>().text = text;
-        UpdateName();
+        popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
 
-    public void SetUseText(string leftMousePopupText, string rightMousePopupText)
+    public void SetUseText(InteractionData data)
     {
-        popupPanels[1].GetComponentInChildren<TextMeshProUGUI>().text = leftMousePopupText;
-        popupPanels[2].GetComponentInChildren<TextMeshProUGUI>().text = rightMousePopupText;
-        UpdateName();
+        popupPanels[1].GetComponentInChildren<TextMeshProUGUI>().text = data.leftMouseText;
+        popupPanels[2].GetComponentInChildren<TextMeshProUGUI>().text = data.rightMouseText;
+        popupPanels[3].GetComponentInChildren<TextMeshProUGUI>().text = data.id;
     }
 }
