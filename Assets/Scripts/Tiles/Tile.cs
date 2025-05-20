@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     public InteractableFramework currentInteractable;
 
     private BoxCollider _collider;
+    private CapsuleCollider _capsule;
     public AIDestinationSetter aiDestinationSetter;
     private MenuManager _menuManager;
     
@@ -37,6 +38,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         aiDestinationSetter = player.GetComponent<AIDestinationSetter>();
         _menuManager = FindAnyObjectByType<MenuManager>();
         _collider = GetComponent<BoxCollider>();
+        _capsule = GetComponent<CapsuleCollider>();
         
         currentInteractable = parent.GetComponentInChildren<InteractableFramework>();
         
@@ -59,12 +61,13 @@ public class Tile : MonoBehaviour, IPointerClickHandler
                 transform.position.z)
         ) <= 0.5f;
         
-        _collider.enabled = !hasPlayer;
         if (hasPlayer) { player.activeTile = this;}
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("click");
+        
         if (_menuManager.activeMenuGroup) return;
         if (aiDestinationSetter.target) return;
         
@@ -96,17 +99,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
 
     public void SetColliderSize(string colliderMode)
     {
-        switch (colliderMode)
-        {
-            case "Item":
-                _collider.center = new Vector3(0, 5, 0);
-                _collider.size = new Vector3(1f, 8, 1f);
-                break;
-            case "Empty":
-                _collider.center = new Vector3(0, 2, 0);
-                _collider.size = new Vector3(1.3f, 2, 1.3f);
-                break;
-        }
+        _capsule.enabled = colliderMode == "Item";
     }
 
     public void SetNewPath()
