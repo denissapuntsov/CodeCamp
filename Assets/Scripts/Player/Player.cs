@@ -193,7 +193,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         //Collider[] hitColliders = new Collider[8];
         int collidersHit = Physics.OverlapSphereNonAlloc(
-            position: transform.position, 
+            position: transform.position + new Vector3(0, -2.6f, 0), 
             radius: 2.6f, 
             results: _hitColliders);
 

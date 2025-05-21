@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PortalEx : MonoBehaviour
 {
-    [SerializeField] private Animator playerDummyAnimator;
+    [SerializeField] private Animator playerDummyAnimator, panelAnimator;
 
     public void RemovePlayer()
     {
@@ -12,6 +12,11 @@ public class PortalEx : MonoBehaviour
     public void TogglePlayerWalk()
     {
         playerDummyAnimator.SetBool("isWalking", !playerDummyAnimator.GetBool("isWalking"));
+    }
+
+    public void FadeOut()
+    {
+        panelAnimator.Play("FadeOutPanel");
     }
     
     public void TransitionToNextLevel()
