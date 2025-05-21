@@ -19,4 +19,9 @@ public class GameManager : MonoBehaviour
         if (activeScene < SceneManager.sceneCountInBuildSettings - 1) SceneManager.LoadScene(activeScene + 1);
         else SceneManager.LoadScene(0);
     }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

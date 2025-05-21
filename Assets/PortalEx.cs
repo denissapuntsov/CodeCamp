@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class PortalEx : MonoBehaviour
 {
-    [SerializeField] private Animator playerDummyAnimator, panelAnimator;
+    [SerializeField] private Animator panelAnimator;
 
     public void RemovePlayer()
     {
         FindAnyObjectByType<Player>().gameObject.SetActive(false);
-    }
-
-    public void TogglePlayerWalk()
-    {
-        playerDummyAnimator.SetBool("isWalking", !playerDummyAnimator.GetBool("isWalking"));
     }
 
     public void FadeOut()
