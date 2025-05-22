@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Menu : MonoBehaviour
 {
     [SerializeField] private UnityEvent onMenuOpened, onMenuClosed;
+    public bool isSubmenu = false;
 
     public void Open()
     {

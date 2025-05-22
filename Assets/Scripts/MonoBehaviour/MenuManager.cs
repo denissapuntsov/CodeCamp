@@ -70,6 +70,11 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
+        if (activeMenuGroup.isSubmenu)
+        {
+            activeMenuGroup.Close();
+            return;
+        }
         activeMenuGroup.Close();
         activeMenuGroup = null;
     }

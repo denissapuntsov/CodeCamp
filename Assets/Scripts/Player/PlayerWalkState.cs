@@ -15,7 +15,6 @@ public class PlayerWalkState : PlayerBaseState
     {
         if (player.aiPath.reachedEndOfPath)
         {
-            Debug.Log("reached destination");
             player.CurrentState = player.IdleState;
         }
     }
