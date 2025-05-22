@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void FreezeTime(bool state)
+    {
+        Time.timeScale = state ? 0f : 1f;
+    }
 }

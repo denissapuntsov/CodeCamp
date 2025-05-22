@@ -47,16 +47,24 @@ public class MenuManager : MonoBehaviour
     public void OpenMenu(Menu menuGroup)
     {
         _foundObjects = GameObject.FindGameObjectsWithTag("3DUI").ToList();
-        foreach (GameObject foundObject in _foundObjects) foundObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+        foreach (GameObject foundObject in _foundObjects)
+        {
+            foundObject.GetComponentInChildren<MeshRenderer>().enabled = false; 
+            foundObject.GetComponentInChildren<Light>().enabled = false;
+        }
         
         activeMenuGroup = menuGroup;
         Clear();
-        activeMenuGroup.gameObject.SetActive(true);
+        activeMenuGroup.Open();
     }
     
     public void CloseActiveMenu()
     {
-        foreach (GameObject foundObject in _foundObjects) foundObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+        foreach (GameObject foundObject in _foundObjects)
+        {
+            foundObject.GetComponentInChildren<MeshRenderer>().enabled = true; 
+            foundObject.GetComponentInChildren<Light>().enabled = true;
+        }
         if (!activeMenuGroup)
         {
             return;
