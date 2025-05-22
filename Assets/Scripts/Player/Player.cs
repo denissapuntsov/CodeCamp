@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour, IPointerClickHandler
 {
@@ -27,13 +29,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     #endregion
     
     #region Hidden Public References
-    /*[System.NonSerialized]*/ public Popup popup;
+    [System.NonSerialized] public Popup popup;
     [System.NonSerialized] public AIPath aiPath;
     [System.NonSerialized] public Seeker seeker;
     [System.NonSerialized] public float distanceThreshold;
     
     private Collider[] _hitColliders = new Collider[18];
     private List<Tile> _hitTiles;
+    private PlayerAudio _playerAudio;
     
     #endregion
     
@@ -87,6 +90,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         _hitTiles = new List<Tile>();
         aiPath = GetComponent<AIPath>();
         seeker = GetComponent<Seeker>();
+        _playerAudio = GetComponentInChildren<PlayerAudio>();
         CurrentState = IdleState;
     }
 
@@ -117,6 +121,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetTransform(item);
         item.GetComponentInChildren<HeadgearEx>()?.SwitchModels(true);
         headgear = item;
+        _playerAudio.PlayPutOn();
         
         // reset player destination to current position
         aiPath.destination = transform.position;
@@ -144,6 +149,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         ClearPlacementTiles();
         tileTarget.CurrentState = tileTarget.HoldState;
+        _playerAudio.PlayTakeOff();
         
         TutorialManager.Instance.ClearTutorialByID("remove");
         TutorialManager.Instance.SetActiveTutorial("change");

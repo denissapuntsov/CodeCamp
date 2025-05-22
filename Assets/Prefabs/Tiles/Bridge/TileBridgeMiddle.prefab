@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e36bd5e3aad55a4f86a2edcb962bb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: 1
   parent: {fileID: 8121134798832782413}
   selection: {fileID: 8454520384847761359}
   cross: {fileID: 5379244198526462729}

@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
+    public TileMaterial material;
+    
     public GameObject parent, selection, cross;
     
     public bool hasPlayer;
@@ -114,4 +116,10 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     {
         transform.parent.gameObject.GetComponentInChildren<InteractableFramework>().gameObject.SetActive(false);
     }
+}
+
+public enum TileMaterial
+{
+    Stone,
+    Wood
 }
