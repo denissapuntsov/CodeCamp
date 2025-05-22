@@ -29,4 +29,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = state ? 0f : 1f;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
