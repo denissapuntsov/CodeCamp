@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: changeBack
   m_EditorClassIdentifier: 
   id: changeBack
-  text: You can change objects again and again, as long as you have the necessary
-    letters.
+  text: Now, use the Hay as a stepping stone to climb up to the next platform.

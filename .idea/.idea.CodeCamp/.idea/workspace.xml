@@ -6,9 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="90de5ed9-b1ae-455e-b5a8-4b8f2178bad3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeCamp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/KeyTile/Open.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/KeyTile/Open.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LightUpSequencer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LightUpSequencer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MasterMix.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MasterMix.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Particle Systems/Smoke.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Particle Systems/Smoke.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TileCableAngled.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TileCableAngled.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TileCableStraight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TileCableStraight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TilePortal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Tiles/Stone/TilePortal.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Captions/Tutorial/changeBack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Captions/Tutorial/changeBack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Captions/Tutorial/remove.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Captions/Tutorial/remove.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/LetterInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonoBehaviour/LetterInventory.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +32,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Cog.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/FollowPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ItemTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/KeyAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/LightUpSequencer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PortalAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PortalEx.cs" root0="FORCE_HIGHLIGHTING" />
@@ -53,22 +62,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;&lt;unknown&gt;&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CodeLensConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Builds\CodeCamp.exe" />
@@ -172,6 +181,7 @@
       <workItem from="1747735937989" duration="18125000" />
       <workItem from="1747828521030" duration="8375000" />
       <workItem from="1747911503624" duration="2132000" />
+      <workItem from="1747958181816" duration="1706000" />
     </task>
     <task id="LOCAL-00001" summary="Minor refactoring">
       <option name="closed" value="true" />

@@ -15,8 +15,12 @@ public class LightUpSequencer : MonoBehaviour
 
     private IEnumerator LightUpSequence()
     {
+        float pitch = 1.47f;
         foreach (Animator animator in lights)
         {
+            animator.gameObject.GetComponent<AudioSource>().pitch = pitch;
+            pitch += 0.2f;
+            animator.gameObject.GetComponent<AudioSource>().Play();
             animator.SetBool(IsLitUp, true);
             yield return new WaitForSeconds(stepDelay);
         }

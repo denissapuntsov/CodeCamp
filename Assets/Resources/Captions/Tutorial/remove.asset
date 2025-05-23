@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: remove
   m_EditorClassIdentifier: 
   id: remove
-  text: 'Click on the player to remove the Wearable. Wearables can only be put down
-    on empty nearby tiles '
+  text: Click the player, then one of the highlited tiles to remove the Wearable.
