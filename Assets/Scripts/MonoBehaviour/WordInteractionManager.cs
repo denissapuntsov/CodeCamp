@@ -135,6 +135,8 @@ public class WordInteractionManager : MonoBehaviour
             }
         }
 
+        GetComponent<AudioSource>().Play();
+
         // sequence and play animation of rotating letters + either letters going back or snapping in place
         Sequence letterChangeSequence = DOTween.Sequence();
         

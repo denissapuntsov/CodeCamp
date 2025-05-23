@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    private const float MIN_VOLUME = -80f;
-    private const float MIN_MUSIC_VOLUME = -12f;
+    private const float MIN_VOLUME = -40f;
+    private const float MIN_MUSIC_VOLUME = -36f;
     
     [SerializeField] private AudioMixer mixer;
     public float maxMasterVolume = 0f;
