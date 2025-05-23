@@ -26,6 +26,11 @@ public class WordInteractionManager : MonoBehaviour
     [SerializeField] private float positionAnimationDuration = 0.3f;
     [SerializeField] private float scaleAnimationDuration = 0.2f;
     [SerializeField] ParticleSystem smokeParticlePrefab;
+
+    [Header("Audio")] 
+    [SerializeField] private AudioSource selectSource;
+    [SerializeField] private AudioSource successSource; 
+    [SerializeField] private AudioSource whooshSource;
     
     private string _activeName;
     private List<string> _sameLengthWords;
@@ -135,7 +140,7 @@ public class WordInteractionManager : MonoBehaviour
             }
         }
 
-        GetComponent<AudioSource>().Play();
+        selectSource.Play();
 
         // sequence and play animation of rotating letters + either letters going back or snapping in place
         Sequence letterChangeSequence = DOTween.Sequence();
@@ -169,6 +174,8 @@ public class WordInteractionManager : MonoBehaviour
             if (isWordFound)
             {
                 // SUCCESS
+                successSource.Play();
+                
                 Sequence successSequence = DOTween.Sequence();
                 
                 // make all the letters except for the switched one pop a little bit
@@ -195,6 +202,7 @@ public class WordInteractionManager : MonoBehaviour
             else
             {
                 // FAIL
+                whooshSource.Play();
                 Sequence failSequence = DOTween.Sequence();
                 
                 // shake the inventory letter
