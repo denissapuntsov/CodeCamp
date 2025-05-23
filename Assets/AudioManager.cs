@@ -10,31 +10,32 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
     private const float MIN_VOLUME = -80f;
+    private const float MIN_MUSIC_VOLUME = -12f;
     
     [SerializeField] private AudioMixer mixer;
     public float maxMasterVolume = 0f;
     public float maxSfxVolume = 10f; 
     public float maxMusicVolume = 0f;
     
-    public float masterVolume, sfxVolume, musicVolume;
+    private float _masterVolume, _sfxVolume, _musicVolume;
     
     public Slider masterSlider, sfxSlider, musicSlider;
     
-    private TextMeshProUGUI masterText, sfxText, musicText;
+    private TextMeshProUGUI _masterText, _sfxText, _musicText;
     
     private void Start()
     {
-        masterText = masterSlider.GetComponentInChildren<TextMeshProUGUI>();
-        musicText = musicSlider.GetComponentInChildren<TextMeshProUGUI>();
-        sfxText = sfxSlider.GetComponentInChildren<TextMeshProUGUI>();
+        _masterText = masterSlider.GetComponentInChildren<TextMeshProUGUI>();
+        _musicText = musicSlider.GetComponentInChildren<TextMeshProUGUI>();
+        _sfxText = sfxSlider.GetComponentInChildren<TextMeshProUGUI>();
         
-        masterVolume = GetLevel("MasterVolume");
-        sfxVolume = GetLevel("SFXVolume");
-        musicVolume = GetLevel("MusicVolume");
-        
-        masterSlider.value = (masterVolume - MIN_VOLUME) / (maxMasterVolume - MIN_VOLUME) * masterSlider.maxValue;
-        sfxSlider.value = (sfxVolume - MIN_VOLUME) / (maxSfxVolume - MIN_VOLUME) * sfxSlider.maxValue;
-        musicSlider.value = (musicVolume - MIN_VOLUME) / (maxMusicVolume - MIN_VOLUME) * musicSlider.maxValue;
+        _masterVolume = GetLevel("MasterVolume");
+        _sfxVolume = GetLevel("SFXVolume");
+        _musicVolume = GetLevel("MusicVolume");
+
+        masterSlider.value = (_masterVolume - MIN_VOLUME) / (maxMasterVolume - MIN_VOLUME) * masterSlider.maxValue;
+        sfxSlider.value = (_sfxVolume - MIN_VOLUME) / (maxSfxVolume - MIN_VOLUME) * sfxSlider.maxValue;
+        musicSlider.value = (_musicVolume - MIN_MUSIC_VOLUME) / (maxMusicVolume - MIN_MUSIC_VOLUME) * musicSlider.maxValue;
     }
     
     private float GetLevel(string parameter)
@@ -47,13 +48,13 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        musicText.text = ((int)musicSlider.value).ToString();
-        masterText.text = ((int)masterSlider.value).ToString();
-        sfxText.text = ((int)sfxSlider.value).ToString();
+        _musicText.text = ((int)musicSlider.value).ToString();
+        _masterText.text = ((int)masterSlider.value).ToString();
+        _sfxText.text = ((int)sfxSlider.value).ToString();
         
         float scaledMasterVolume = masterSlider.value / masterSlider.maxValue * (maxMasterVolume - MIN_VOLUME) + MIN_VOLUME;
         float scaledSfxVolume =  sfxSlider.value / sfxSlider.maxValue * (maxSfxVolume - MIN_VOLUME) + MIN_VOLUME;
-        float scaledMusicVolume = musicSlider.value / musicSlider.maxValue * (maxMusicVolume - MIN_VOLUME) + MIN_VOLUME;
+        float scaledMusicVolume = musicSlider.value / musicSlider.maxValue * (maxMusicVolume - MIN_MUSIC_VOLUME) + MIN_MUSIC_VOLUME;
         
         mixer.SetFloat("MasterVolume", scaledMasterVolume);
         mixer.SetFloat("SFXVolume", scaledSfxVolume);

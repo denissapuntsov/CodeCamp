@@ -24,7 +24,6 @@ public class PlayerPlaceState : PlayerBaseState
 
     public override void HandleLeftClick(Player player)
     {
-        Debug.Log("Clicked on player in handle state");
         player.ClearPlacementTiles();
     }
 

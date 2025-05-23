@@ -19,3 +19,5 @@ MonoBehaviour:
   rightMouseText: Change
   inspectionText: You feel a sense of comfort and companionship when you look at
     this Rat. The fact it's not running away suggests the feeling to be mutual.
+  headgearRotation: {x: 0, y: 0, z: 0, w: 1}
+  audio: {fileID: 8300000, guid: b92c324fc8e64ea4b97894fe0eabcc3d, type: 3}

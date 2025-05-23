@@ -70,6 +70,8 @@ public class TileHoldState : TileBaseState
                 tile.selection.SetActive(false);
                 break;
             case Type.Inspectable:
+                tile.transform.parent.GetComponentInChildren<AudioSource>().clip = tile.currentInteractable.activeInteractionData.audio;
+                tile.transform.parent.GetComponentInChildren<AudioSource>().Play();
                 CaptionManager.Instance.ProcessInteractable(tile.currentInteractable.activeInteractionData);
                 break;  
         }

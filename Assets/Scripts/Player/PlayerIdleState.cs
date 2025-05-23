@@ -25,7 +25,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void HandleLeftClick(Player player)
     {
-        Debug.Log("Entering place state");
         if (player.headgear)
         {
             player.popup.Disappear();

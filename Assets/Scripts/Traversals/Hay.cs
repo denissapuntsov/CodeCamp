@@ -10,19 +10,24 @@ public class Hay : Traversal
     private Collider[] _hitColliders;
     private List<Tile> _hitTiles;
     private Player _player;
+    private AudioSource _source;
     private string _mode;
     private Vector3 _entryPointPlayerPosition;
     [SerializeField] private Tile linkedTile;
+    [SerializeField] private List<AudioClip> audioClips;
 
     private void Start()
     {
         _player = FindAnyObjectByType<Player>();
         _hitColliders = new Collider[2];
         _hitTiles = new List<Tile>();
+        _source = GetComponent<AudioSource>();
+        PlaySound();
     }
 
     public override void Use()
     {
+        PlaySound();
         _entryPointPlayerPosition = _player.transform.position;
         
         _player.transform.position = playerTransform.position;
@@ -80,6 +85,7 @@ public class Hay : Traversal
         _player.transform.position = linkedTile.transform.position;
         linkedTile.SetNewPath();
         _player.GetComponent<AIPath>().canMove = true;
+        PlaySound();
     }
 
     IEnumerator SendPlayerBack()
@@ -89,5 +95,11 @@ public class Hay : Traversal
         _player.transform.position = _entryPointPlayerPosition;
         _player.activeTile.SetNewPath();
         _player.GetComponent<AIPath>().canMove = true;
+        PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        _source.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Count)]);
     }
 }

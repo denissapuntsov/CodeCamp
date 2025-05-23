@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class SkipPanel : MonoBehaviour
 {
     [SerializeField] private bool _hasClickedOnce = false;
     [SerializeField] private Animator fadeOutAnimator;
+    [SerializeField] private int targetIndex;
     private Animator _skipAnimator;
 
     private void Start()
@@ -22,7 +24,7 @@ public class SkipPanel : MonoBehaviour
         
         if (_hasClickedOnce)
         {
-            GameManager.Instance.LoadMenu();
+            SceneManager.LoadScene(targetIndex);
             return;
         }
         _skipAnimator.Play("ShowWarning");

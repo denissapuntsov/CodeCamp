@@ -18,3 +18,5 @@ MonoBehaviour:
   leftMouseText: Inspect
   rightMouseText: Change
   inspectionText: A vertical Herd! You don't see that every day.
+  headgearRotation: {x: 0, y: 0, z: 0, w: 1}
+  audio: {fileID: 8300000, guid: fc2933f1354ae444ba6160fceec419a9, type: 3}

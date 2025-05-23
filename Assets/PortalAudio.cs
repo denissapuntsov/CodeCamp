@@ -20,4 +20,9 @@ public class PortalAudio : MonoBehaviour
     {
         portalSources[1].Play();
     }
+
+    public void EnableHum()
+    {
+        portalSources[2].enabled = true;
+    }
 }

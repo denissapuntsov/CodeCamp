@@ -19,3 +19,5 @@ MonoBehaviour:
   rightMouseText: Change
   inspectionText: Maybe it's something about you not being a cat person, but your
     gut tells you you should change it into some other animal.
+  headgearRotation: {x: 0, y: 0, z: 0, w: 1}
+  audio: {fileID: 8300000, guid: 9d9925f3c88f7794780c56575d4f708c, type: 3}

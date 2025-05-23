@@ -49,6 +49,10 @@ public class InteractableFramework : MonoBehaviour
         Destroy(_childInteractable);
         _childInteractable = Instantiate(activeInteractionData.prefab, transform, false);
         gameObject.name = activeInteractionData.id;
+        
+        var source = gameObject.transform.parent.GetComponentInChildren<AudioSource>();
+        source.clip = activeInteractionData.audio;
+        source.Play(delay: 22050); // WHY IS THIS MEASURED IN SAMPLES
     }
 
     public void ReplaceInteraction(InteractionData interactionData)

@@ -11,6 +11,7 @@ public class InteractionData : ScriptableObject
     public string rightMouseText = "Use";
     public string inspectionText = "This is an Inspectable";
     public Quaternion headgearRotation = Quaternion.identity;
+    public AudioClip audio;
 }
 
 public enum Type

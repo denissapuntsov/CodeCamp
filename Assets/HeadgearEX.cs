@@ -12,7 +12,6 @@ public class HeadgearEx : MonoBehaviour
             onModel.SetActive(true);
             return;
         }
-        Debug.Log("switched models");
         offModel.SetActive(true);
         onModel.SetActive(false);
 

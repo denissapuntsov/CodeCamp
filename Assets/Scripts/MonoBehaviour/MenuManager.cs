@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject menuParent;
+    [SerializeField] private GameObject menuParent, inputBlockCanvas;
     public Menu activeMenuGroup, pauseMenuGroup;
     public Menu captionMenuGroup;
     List<GameObject> _foundObjects = new List<GameObject>();
@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !inputBlockCanvas.activeSelf)
         {
             if (activeMenuGroup != null)
             {
