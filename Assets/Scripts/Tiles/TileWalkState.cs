@@ -16,7 +16,7 @@ public class TileWalkState : TileBaseState
  
      public override void OnMouseEnter(Tile tile)
      {
-         if (tile.player.CurrentState != tile.player.IdleState) return;
+         if (tile.player.CurrentState != tile.player.IdleState && tile.player.CurrentState != tile.player.WalkState) return;
          tile.selection.SetActive(true);
      }
 
@@ -27,7 +27,7 @@ public class TileWalkState : TileBaseState
 
      public override void HandleLeftClick(Tile tile)
      {
-         if (tile.player.CurrentState != tile.player.IdleState) return;
+         if (tile.player.CurrentState != tile.player.IdleState && tile.player.CurrentState != tile.player.WalkState) return;
          tile.selection.SetActive(false);
 
          tile.SetNewPath();

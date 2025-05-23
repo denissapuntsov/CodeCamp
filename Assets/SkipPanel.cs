@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class SkipPanel : MonoBehaviour
 {

@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour, IPointerClickHandler
 {

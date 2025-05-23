@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using System.Linq;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Popup : MonoBehaviour

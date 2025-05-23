@@ -1,7 +1,5 @@
 using Pathfinding;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class InteractableFramework : MonoBehaviour
 {
